@@ -1,5 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
@@ -18,7 +21,6 @@ const styles = StyleSheet.create({
     color: "white",
   },
   text: {
-    fontFamily: "Quicksand",
     justifyContent: "center",
     alignItems: "center",
     margin: "auto",
@@ -27,7 +29,6 @@ const styles = StyleSheet.create({
     height: "15%",
     width: "100%",
     backgroundColor: "white",
-    position: "absolute",
-    top: "0",
+    position: "relative",
   },
 });
