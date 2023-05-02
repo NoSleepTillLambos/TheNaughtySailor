@@ -25,9 +25,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#2b2b2b",
+    fontFamily: "sans-bold",
   },
   content: {
     padding: 40,
+    fontFamily: "sans-bold",
   },
   list: {
     marginTop: 20,

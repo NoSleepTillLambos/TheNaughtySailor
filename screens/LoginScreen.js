@@ -42,9 +42,10 @@ const LoginScreen = () => {
       </View>
 
       <View style={styles.buttonCon}>
-        <TouchableOpacity onPress={() => {}} style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        <Text>
+          Already have an account?{" "}
+          <TouchableOpacity style={styles.login}>Login</TouchableOpacity>
+        </Text>
         <TouchableOpacity
           onPress={handleSignUp}
           style={[styles.button, styles.buttonOutline]}
@@ -99,4 +100,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   buttonOutlineText: {},
+  login: {
+    color: "#88E8E6",
+    fontWeight: "bold",
+  },
 });
