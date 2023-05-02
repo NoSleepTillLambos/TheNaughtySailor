@@ -17,7 +17,7 @@
     <img src="src/assets/logo.svg" alt="Logo" width="140" height="140">
   </a>
   
-  <h3 align="center">Block Babies</h3>
+  <h3 align="center">The Naughty Sailor</h3>
 
   <p align="center">
     This project was developed using React-native and Firebase and utilizes features <br>
