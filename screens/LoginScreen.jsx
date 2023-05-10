@@ -10,8 +10,9 @@ import { firebase } from "../firebase";
 import React, { useState } from "react";
 import { authentication } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,12 +27,14 @@ const LoginScreen = () => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
+        {/*   */}
         <TextInput
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
           style={styles.input}
         />
+        <Ionicons name="md-checkmark-circle" size={32} color="green" />
         <TextInput
           placeholder="Password"
           value={password}
@@ -43,8 +46,13 @@ const LoginScreen = () => {
 
       <View style={styles.buttonCon}>
         <Text>
-          Already have an account?{" "}
-          <TouchableOpacity style={styles.login}>Login</TouchableOpacity>
+          Need an account?{" "}
+          <TouchableOpacity
+            style={styles.login}
+            onPress={() => navigation.goTo("Register")}
+          >
+            Register
+          </TouchableOpacity>
         </Text>
         <TouchableOpacity
           onPress={handleSignUp}
