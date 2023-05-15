@@ -5,6 +5,8 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 
 export default function App() {
+  // CHECK IF THE USER IS LOGGED IN
+  // const LoggedIn = false;
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
