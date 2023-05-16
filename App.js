@@ -1,23 +1,23 @@
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
+import CompetitionsScreen from "./screens/Competitions";
+import Results from "./screens/Results";
+import Voting from "./screens/Voting";
 
 export default function App() {
   // CHECK IF THE USER IS LOGGED IN
   // const LoggedIn = false;
-  const Stack = createNativeStackNavigator();
+  const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={LoginScreen}
-        />
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Login">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Competitions" component={CompetitionsScreen} />
+        <Drawer.Screen name="Results" component={Results} />
+        <Drawer.Screen name="Voting" component={Voting} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
