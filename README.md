@@ -149,8 +149,7 @@ and with the general idea being the same as what was expected of us in the brief
 <!-- stipulate all of the functionality you included in the project -->
 <!-- This is your time to shine, explain the technical nuances of your project, how did you achieve the final outcome!-->
 
-- I began by creating wire-frames and walkthrough prototypes so I could better understand the user-flow
-- Working with a whole new framework was tough so learning the ins and outs before development was essential.
+- A big part of the process was getting familiar with Expo and the world of mobile development and getting familiar with working on android and ios.
 
 #### Above And Beyond
 
