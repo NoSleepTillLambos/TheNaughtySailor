@@ -5,15 +5,17 @@ import {
   TouchableOpacity,
   TextInput,
   Pressable,
+  Image,
 } from "react-native";
 import React, { useState } from "react";
+import { Tooltip } from "@rneui/themed";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
 import { ScrollView } from "react-native-gesture-handler";
 
 const Competitions = () => {
-  const [open, setOpen] = useState(false);
+  const [openTip, setOpenTip] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
     { label: "", value: "AWP" },
@@ -23,6 +25,8 @@ const Competitions = () => {
 
   const [image, setImage] = useState(null);
   const [image1, setImage1] = useState(null);
+
+  const [open, setOpen] = useState(false);
 
   const [cocktailOne, setCocktailOne] = useState("");
   const [cocktailTwo, setCocktailTwo] = useState("");
@@ -46,15 +50,28 @@ const Competitions = () => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.EnterDetails}>
-          <Text style={styles.WantEnter}>
-            Want to try your luck at beating the best bartenders out there?
+          <Text style={styles.heading}>
+            Take your shot at the best cocktail!
           </Text>
-          <Text style={styles.Followsteps}>Follow these easy steps:</Text>
-
-          <Text style={styles.steps}>Tell us your cocktails name</Text>
-          <Text style={styles.steps}>2. Enter category for given skin.</Text>
-          <Text style={styles.steps}>3. Enter a clear image of the skin.</Text>
-
+          {/* // tooltip for entering comp */}
+          <Tooltip
+            visible={openTip}
+            onOpen={() => setOpenTip(true)}
+            onClose={() => setOpenTip(false)}
+            popover={
+              <>
+                <Text style={{ color: "#fff" }}>
+                  1. Choose a name {"\n"} 2.Enter the category
+                </Text>
+                <Text style={{ color: "#fff" }}>2. Choose a category</Text>
+              </>
+            }
+          >
+            <Text style={{ flexDirection: "row", display: "flex" }}>
+              Check out our rules here
+            </Text>
+            <Ionicons name="help-outline"></Ionicons>
+          </Tooltip>
           <Text style={styles.SkinNameLabel}>Gun type:</Text>
           <DropDownPicker
             style={styles.dropdown}
@@ -66,7 +83,6 @@ const Competitions = () => {
             setItems={setItems}
             disableBorderRadius={true}
           />
-
           <Text style={styles.SkinNameLabel}>Skin name:</Text>
           <TextInput
             style={styles.SkinName}
@@ -74,7 +90,6 @@ const Competitions = () => {
             // defaultValue={name}
             onChangeText={(newValue) => setName(newValue)}
           />
-
           <Text style={styles.SkinUploadLabel}>Select Image:</Text>
           <View style={styles.SkinImage}>
             {image && (
@@ -90,7 +105,6 @@ const Competitions = () => {
               />
             )}
           </View>
-
           <View style={styles.inputGroup}>
             {image ? (
               <Pressable onPress={() => setImage(null)}>
@@ -110,7 +124,6 @@ const Competitions = () => {
               </>
             )}
           </View>
-
           <TouchableOpacity style={styles.upload}>
             <Text style={styles.Enter}>Enter Comp</Text>
           </TouchableOpacity>
@@ -126,28 +139,27 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#E2B5B5",
     height: "100%",
-    paddingTop: 50,
+    flex: 1,
   },
   EnterDetails: {
     alignSelf: "flex-start",
     marginTop: 10,
-
-    // backgroundColor: "#A12895",
   },
-  WantEnter: {
+  heading: {
     color: "white",
     marginBottom: 20,
-    marginLeft: 20,
+    textAlignVertical: "center",
+    fontWeight: "bold",
+    fontSize: 15,
+    textAlign: "center",
   },
   Followsteps: {
     color: "white",
     marginBottom: 20,
-    marginLeft: 20,
   },
   steps: {
     color: "white",
     textAlign: "left",
-    marginLeft: 25,
   },
 
   SkinNameLabel: {
