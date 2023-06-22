@@ -14,13 +14,13 @@
 <p align="center">
 
   <a href="https://github.com/NoSleepTillLambos/BlockBabies">
-    <img src="assets/Vector.png" alt="Logo" width="140" height="140">
+    <img src="assets/Vector.png" alt="Logo" width="200" height="200">
   </a>
   
   <h3 align="center">The Naughty Sailor</h3>
 
   <p align="center">
-    This project was developed using React-native and Firebase and utilizes features <br>
+    This project was developed using React-native, Firebase and React Native elements <br>
     
     
    <br />
