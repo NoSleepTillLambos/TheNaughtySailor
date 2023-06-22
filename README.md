@@ -14,13 +14,13 @@
 <p align="center">
 
   <a href="https://github.com/NoSleepTillLambos/BlockBabies">
-    <img src="src/assets/logo.svg" alt="Logo" width="140" height="140">
+    <img src="assets/logo/logo1.png" alt="Logo" width="200" height="200">
   </a>
   
   <h3 align="center">The Naughty Sailor</h3>
 
   <p align="center">
-    This project was developed using React-native and Firebase and utilizes features <br>
+    This project was developed using React-native, Firebase and React Native elements <br>
     
     
    <br />
@@ -128,8 +128,8 @@ Login functionality that prevents a user from logging into without the correct c
 
 ## Concept Process
 
-My main source of inspiration was drawn from Axie infinity, so a lot of my inspiration was designed around them and their website and agenda
-Its a game i have quite a lot of experience using and a lot of time within the app so it helped a lot with my designs.
+The concept originated from my job. I work as a bartender at an upper class establlishment and always felt the need for customers to have the ability to visit the shop, 
+have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ### Road Map and conceptual process
 
@@ -163,7 +163,7 @@ Going above and beyond the brief
 
 <!-- stipulate functionality and improvements that can be implemented in the future. -->
 
-- In the future i would love to incorporate real world blockchain technology and maintain users funds.
+* In future i would like to publish the app to the app store, Firebase could be an issue however with calls to the db. I'd really like to create something real world ready
 
 <!-- MOCKUPS -->
 
