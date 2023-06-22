@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import React from "react";
 import { firebaseAuth } from "../firebase";
+import { updateUserProfile } from "../services/firebaseAuth";
+import { getCurrentUser } from "../services/firebaseAuth";
 
 const Profile = () => {
   return (

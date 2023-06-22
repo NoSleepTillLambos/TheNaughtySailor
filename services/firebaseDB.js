@@ -1,12 +1,15 @@
 // user collection
 
-import { addDoc, collection, doc } from "firebase/firestore";
+import { Timestamp, addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-export const createUserInDB = async (username, email, uid) => {
+export const createUserInDB = async (email, uid) => {
   try {
-    const docRef = await addDoc(doc(db, "users", uid));
-    console.log("user added" + docRef.id);
+    const docRef = await setDoc(doc(db, "users", uid), {
+      email,
+      role: "Judge",
+      createdAt: Timestamp.now(),
+    });
   } catch (e) {
     console.log("Something has gone wrong" + e);
   }

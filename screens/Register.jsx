@@ -7,14 +7,19 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { firebaseAuth } from "../firebase";
 import React from "react";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ScrollView } from "react-native-gesture-handler";
+import { createUserInDB } from "../services/firebaseDB";
 
 const Register = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const auth = firebaseAuth;
 
   const signUp = async () => {
     setLoading(true);
@@ -25,6 +30,8 @@ const Register = ({ navigation }) => {
         password
       );
       alert("Check your emails for verification");
+      console.log(response);
+      await createUserInDB(email, user.uid);
       // <AnimatedLottieView
       //   source={require("../assets/104368-thank-you.json")}
       // />;
