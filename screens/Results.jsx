@@ -1,10 +1,31 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useCallback, useState } from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import { useFocusEffect } from "@react-navigation/native";
 const Results = () => {
+  const [cocktails, setCocktails] = useState([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      // getting data when viewing screen
+
+      return () => {
+        // remove when not viewing to save space
+      };
+    }, [])
+  );
   return (
     <View style={styles.resultsCon}>
-      <Text style={styles.heading}>Here are the results</Text>
+      <ScrollView>
+        {cocktails.map((cocktail, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => navigation.push("details", { cocktail })}
+            activeOpacity={0.8}
+          ></TouchableOpacity>
+        ))}
+        <Text style={styles.heading}>Here are the current competitions</Text>
+      </ScrollView>
     </View>
   );
 };

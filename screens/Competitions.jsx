@@ -45,14 +45,13 @@ const Competitions = () => {
       var cocktail = {
         value,
         name,
-        creator: creatorInfo,
-        userId: creatorInfo.uid,
       };
 
       const success = await addCocktailToCollection(cocktail);
 
       if (success) {
         console.log("added cocktail successfully");
+        NavigationPreloadManager.goBack();
       } else {
         console.log("not added");
       }
