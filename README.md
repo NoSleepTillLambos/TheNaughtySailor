@@ -14,7 +14,7 @@
 <p align="center">
 
   <a href="https://github.com/NoSleepTillLambos/BlockBabies">
-    <img src="assets/Vector.png" alt="Logo" width="200" height="200">
+    <img src="assets/logo/logo1.png" alt="Logo" width="200" height="200">
   </a>
   
   <h3 align="center">The Naughty Sailor</h3>
