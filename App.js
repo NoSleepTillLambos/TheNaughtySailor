@@ -4,19 +4,44 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeScreen from "./screens/HomeScreen";
 import CompetitionsScreen from "./screens/Competitions";
 import Results from "./screens/Results";
-import Voting from "./screens/Voting";
+import Profile from "./screens/Profile";
+import Login from "./screens/LoginScreen";
+import Register from "./screens/Register";
+import { useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { firebaseAuth } from "./firebase";
 
 export default function App() {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (user) => {
+      setUser(user);
+    });
+  }, []);
   // CHECK IF THE USER IS LOGGED IN
   // const LoggedIn = false;
   const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Login">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Competitions" component={CompetitionsScreen} />
-        <Drawer.Screen name="Results" component={Results} />
-        <Drawer.Screen name="Voting" component={Voting} />
+        {user ? (
+          <>
+            <Drawer.Screen name="Home" component={HomeScreen} />
+            <Drawer.Screen name="Competitions" component={CompetitionsScreen} />
+            <Drawer.Screen name="Results" component={Results} />
+            <Drawer.Screen name="Profile" component={Profile} />
+          </>
+        ) : (
+          <>
+            <Drawer.Screen
+              name="LoginScreen"
+              component={Login}
+              options={{ headerShown: true }}
+            />
+            <Drawer.Screen name="Register" component={Register} />
+          </>
+        )}
       </Drawer.Navigator>
     </NavigationContainer>
   );

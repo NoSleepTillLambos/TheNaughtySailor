@@ -4,11 +4,18 @@ import React from "react";
 const Competitions = () => {
   return (
     <View>
-      <Text>These are all the competitions</Text>
+      <Text style={styles.header}>Upload and enter!:</Text>
     </View>
   );
 };
 
 export default Competitions;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  header: {
+    marginLeft: 10,
+    marginTop: 10,
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+});

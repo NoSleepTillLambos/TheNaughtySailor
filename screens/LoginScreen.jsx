@@ -1,115 +1,127 @@
 import {
+  ActivityIndicator,
+  Button,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
+  Image,
   TextInput,
-  TouchableOpacity,
   View,
+  Alert,
 } from "react-native";
-import { firebase } from "../firebase";
 import React, { useState } from "react";
-import { authentication } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { firebaseAuth } from "../firebase";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const LoginScreen = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSignUp = () => {
-    createUserWithEmailAndPassword(authentication, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user.email);
-      })
-      .catch((error) => alert(error.message));
+  const auth = firebaseAuth;
+
+  const signIn = async () => {
+    setLoading(true);
+    if (!email || !password) {
+      Alert.alert("All details must be filled in");
+    }
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <View style={styles.inputContainer}>
-        {/*   */}
+    <View style={styles.container}>
+      <Image
+        style={styles.tinyLogo}
+        source={require("../assets/logo/43341.png")}
+      />
+      <KeyboardAvoidingView behavior="padding">
         <TextInput
+          style={styles.input}
+          required
           placeholder="Email"
+          autoCapitalize="none"
           value={email}
           onChangeText={(text) => setEmail(text)}
-          style={styles.input}
         />
-        <Ionicons name="md-checkmark-circle" size={32} color="green" />
         <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
           style={styles.input}
-          secureTextEntry
+          placeholder="Password"
+          autoCapitalize="none"
+          value={password}
+          secureTextEntry={true}
+          onChangeText={(text) => setPassword(text)}
         />
-      </View>
 
-      <View style={styles.buttonCon}>
-        <Text>
-          Need an account?{" "}
-          <TouchableOpacity
-            style={styles.login}
-            onPress={() => navigation.goTo("Register")}
-          >
-            Register
-          </TouchableOpacity>
-        </Text>
-        <TouchableOpacity
-          onPress={handleSignUp}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>Register</Text>
+        {loading ? (
+          <ActivityIndicator size="large" color="#fff" />
+        ) : (
+          <>
+            <Button title="Login" onPress={signIn} style={styles.signIn} />
+          </>
+        )}
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <Text style={styles.noAccount}>Don't have an account? Sign Up</Text>
         </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </View>
   );
 };
 
-export default LoginScreen;
+export default Login;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
     flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#E2B5B5",
   },
-  inputContainer: {
-    width: "80%",
+  tinyLogo: {
+    width: 350,
+    height: 350,
+  },
+  Button: {
+    backgroundColor: "white",
   },
   input: {
-    backgroundColor: "white",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginTop: 5,
-  },
-  buttonCon: {
-    width: "60%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 40,
-  },
-  button: {
-    backgroundColor: "#2b2b2b",
+    marginVertical: 4,
+    height: 50,
     width: "100%",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
+    textAlign: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    borderWidth: 1,
+    borderRadius: 4,
+    padding: 10,
+    backgroundColor: "#fff",
   },
-  buttonText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  buttonOutline: {
+  signIn: {
     backgroundColor: "white",
-    marginTop: 5,
-    borderColor: "#2b2b2b",
-    borderWidth: 2,
   },
-  buttonOutlineText: {},
-  login: {
-    color: "#88E8E6",
-    fontWeight: "bold",
+  noAccount: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 15,
+    marginTop: 15,
   },
 });
