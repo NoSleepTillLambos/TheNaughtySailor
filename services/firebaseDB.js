@@ -14,3 +14,12 @@ export const createUserInDB = async (email, uid) => {
     console.log("Something has gone wrong" + e);
   }
 };
+
+export const addCocktailToCollection = async (cocktail) => {
+  try {
+    const docRef = await addDoc(collection(db, "cocktails", cocktail));
+    console.log(cocktail);
+  } catch (e) {
+    console.log("This went wrong: " + e);
+  }
+};

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import React from "react";
 import { firebaseAuth } from "../firebase";
 
@@ -8,12 +8,10 @@ const HomeScreen = ({ navigation }) => {
       <View>
         <Text style={styles.header}>Welcome to the Naughty Sailor!</Text>
       </View>
-      <View style={styles.intro}>
-        <Text style={styles.desc}>
-          Naughty sailor is a cocktail rating app that allows users to vote on
-          their favorite drinks at their favorite restaurants
-        </Text>
-      </View>
+
+      <Text style={styles.desc}>
+        A cocktail based rating app for all those cocktail lovers!
+      </Text>
     </View>
   );
 };

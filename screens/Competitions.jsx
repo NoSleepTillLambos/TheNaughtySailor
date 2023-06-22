@@ -6,21 +6,24 @@ import {
   TextInput,
   Pressable,
   Image,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
-import { Tooltip } from "@rneui/themed";
+import { Tooltip, useTheme } from "@rneui/themed";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
+import { getCurrentUser } from "../services/firebaseAuth";
 import DropDownPicker from "react-native-dropdown-picker";
 import { ScrollView } from "react-native-gesture-handler";
+import { firebaseAuth } from "../firebase";
+import { addCocktailToCollection } from "../services/firebaseDB";
 
 const Competitions = () => {
   const [openTip, setOpenTip] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    { label: "", value: "AWP" },
-    { label: "M4A4", value: "M4A4" },
-    { label: "AK-47", value: "AK-47" },
+    { label: "Non Alcoholic", value: "non" },
+    { label: "Alcoholic", value: "alc" },
   ]);
 
   const [image, setImage] = useState(null);
@@ -28,8 +31,35 @@ const Competitions = () => {
 
   const [open, setOpen] = useState(false);
 
+  const [name, setName] = useState("");
+
   const [cocktailOne, setCocktailOne] = useState("");
   const [cocktailTwo, setCocktailTwo] = useState("");
+
+  const createCocktailEntry = async () => {
+    // do all inputs have value
+
+    if (name && value) {
+      var creatorInfo = firebaseAuth.currentUser;
+
+      var cocktail = {
+        value,
+        name,
+        creator: creatorInfo,
+        userId: creatorInfo.uid,
+      };
+
+      const success = await addCocktailToCollection(cocktail);
+
+      if (success) {
+        console.log("added cocktail successfully");
+      } else {
+        console.log("not added");
+      }
+    } else {
+      Alert.alert("Please fill in all the fields");
+    }
+  };
 
   const pickImageFromLibrary = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -41,7 +71,7 @@ const Competitions = () => {
 
     console.log(result);
 
-    if (!result.cancelled) {
+    if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
   };
@@ -64,33 +94,36 @@ const Competitions = () => {
                   1. Choose a name {"\n"} 2.Enter the category
                 </Text>
                 <Text style={{ color: "#fff" }}>2. Choose a category</Text>
+                <Text style={{ color: "#fff" }}>2. Select an image</Text>
               </>
             }
           >
-            <Text style={{ flexDirection: "row", display: "flex" }}>
-              Check out our rules here
+            <Text style={{ textAlign: "center", fontSize: 18 }}>
+              Rules<Ionicons name="help-outline"></Ionicons>
             </Text>
-            <Ionicons name="help-outline"></Ionicons>
           </Tooltip>
-          <Text style={styles.SkinNameLabel}>Gun type:</Text>
+          <Text style={styles.SkinNameLabel}>Cocktail type:</Text>
           <DropDownPicker
             style={styles.dropdown}
             open={open}
             value={value}
+            placeholder="Alcoholic or non"
             items={items}
             setOpen={setOpen}
             setValue={setValue}
             setItems={setItems}
             disableBorderRadius={true}
           />
-          <Text style={styles.SkinNameLabel}>Skin name:</Text>
+          <Text style={styles.SkinNameLabel}>Cocktail name:</Text>
           <TextInput
             style={styles.SkinName}
             keyboardType="default"
-            // defaultValue={name}
+            defaultValue={name}
             onChangeText={(newValue) => setName(newValue)}
           />
-          <Text style={styles.SkinUploadLabel}>Select Image:</Text>
+          <Text style={styles.SkinUploadLabel}>
+            Select your cocktail image:
+          </Text>
           <View style={styles.SkinImage}>
             {image && (
               <Image
@@ -124,8 +157,8 @@ const Competitions = () => {
               </>
             )}
           </View>
-          <TouchableOpacity style={styles.upload}>
-            <Text style={styles.Enter}>Enter Comp</Text>
+          <TouchableOpacity style={styles.upload} onPress={createCocktailEntry}>
+            <Text style={styles.Enter}>Enter Cocktail competition!</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -147,10 +180,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     color: "white",
-    marginBottom: 20,
+    marginBottom: 10,
     textAlignVertical: "center",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 20,
+    marginLeft: 20,
     textAlign: "center",
   },
   Followsteps: {
@@ -158,7 +192,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   steps: {
-    color: "white",
     textAlign: "left",
   },
 
@@ -167,14 +200,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingLeft: 30,
     marginBottom: 5,
-    color: "white",
   },
   SkinName: {
-    backgroundColor: "#393B3F",
+    backgroundColor: "#fff",
     height: 50,
     width: 300,
-    borderRadius: 20,
-    color: "white",
+    borderRadius: 10,
     marginLeft: 30,
     paddingLeft: 15,
   },
@@ -183,26 +214,23 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingLeft: 30,
     marginBottom: 15,
-    color: "white",
   },
   SkinImage: {
-    backgroundColor: "#393B3F",
+    backgroundColor: "#fff",
     height: 210,
     width: 300,
-    borderRadius: 20,
+    borderRadius: 10,
     color: "black",
     marginLeft: 30,
     marginBottom: 20,
   },
   upload: {
-    width: 150,
+    width: 300,
     height: 50,
-    backgroundColor: "#A12895",
+    backgroundColor: "#fff",
     marginLeft: 30,
     marginTop: 20,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: "black",
+    borderRadius: 10,
   },
   uploadImgaeButton: {
     marginBottom: 20,
@@ -215,16 +243,17 @@ const styles = StyleSheet.create({
     alignItems: "left",
     marginLeft: 50,
   },
+  Ionicons: {
+    size: "32px",
+  },
   Enter: {
-    color: "white",
     textAlign: "center",
     marginTop: 15,
   },
   dropdown: {
-    backgroundColor: "#393B3F",
+    backgroundColor: "#fff",
     width: 300,
     height: 50,
     marginLeft: 30,
-    color: "white",
   },
 });
