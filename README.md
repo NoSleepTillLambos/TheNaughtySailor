@@ -172,7 +172,7 @@ Going above and beyond the brief
 
 ### Mockups
 
-![image2](src/assets/mockup2.png)
+![image2](assets/mockups/2.png)
 <br>
 ![image3](src/assets/mokcup3.png)
 
