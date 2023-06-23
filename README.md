@@ -142,8 +142,9 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ## Development Process
 
-I had to decide what my project was going to be based on and what the general theme would be. <br/> from playing Axie a lot
-and with the general idea being the same as what was expected of us in the brief i decided to base it off this.
+- I spent a lot of time on apps that were in line with what i was trying to create, i.e restaurants, bars etc and went through the functionality and how the app flowed
+
+- There is still a lot of work to do however but being that it's something i am passionate about im excited for the future of it
 
 ### Implementation Process
 
@@ -164,7 +165,10 @@ Going above and beyond the brief
 
 <!-- stipulate functionality and improvements that can be implemented in the future. -->
 
-- In future i would like to publish the app to the app store, Firebase could be an issue however with calls to the db. I'd really like to create something real world ready
+- In future i would like to publish the app to the app store, Firebase could be an issue however with calls to the db. I'd really like to create something real world ready.
+- Functionality to login with a Google account
+- Google reviews
+- Posting comments to the db
 
 <!-- MOCKUPS -->
 
@@ -203,7 +207,7 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 ## Contact
 
 - **Liam Wedge** - [liamwedge00@gmail.com]()
-- **Project Link** - https://github.com/NoSleepTillLambos/TheNaughtySailor
+- **Naughty Sailor** - https://github.com/NoSleepTillLambos/TheNaughtySailor
 
 <!-- ACKNOWLEDGEMENTS -->
 
