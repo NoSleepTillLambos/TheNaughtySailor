@@ -185,7 +185,7 @@ Going above and beyond the brief
 
 ![image2](assets/mockups/2.png)
 <br>
-![image3](src/assets/mokcup3.png)
+![image3](assets/mockups/3.png)
 
 <!-- VIDEO DEMONSTRATION -->
 
