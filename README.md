@@ -134,9 +134,7 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ### Road Map and conceptual process
 
-![image4](src/assets/HomePage.png)
-![image5](src/assets/CraftingPage.png)
-![image6](src/assets/LocationPage.png)
+![image4](assets/mockups/Frame 66.png)
 
 <!-- DEVELOPMENT PROCESS -->
 
