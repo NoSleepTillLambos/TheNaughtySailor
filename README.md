@@ -62,7 +62,8 @@
 
 ### Project Description
 
-Algo crypt is a crypto currency web application designed to provide users with the ability to analyze various price points and historical data about the top 5 currencies by market cap, namely Bitcoin, Ethereum, BNB, USDT etc
+Naughty sailor is based off one of my favourite cocktails, it allows users to vote on certain drinks and enter into competitions themselves to prove who the best cocktail maker around
+is!
 
 ### Built With
 
