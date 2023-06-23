@@ -41,7 +41,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   desc: {
-    textAlign: "center",
     marginTop: 10,
+    marginLeft: 10,
+    color: "#7799CC",
+    fontSize: 30,
+    fontWeight: "bold",
   },
 });

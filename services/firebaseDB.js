@@ -1,9 +1,16 @@
 // user collection
-
-import { Timestamp, addDoc, collection, doc, setDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  orderBy,
+  setDoc,
+} from "firebase/firestore";
 import { db } from "../firebase";
 
-export const createUserInDB = async (email, uid) => {
+export const createUserInDb = async (email, uid) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
       email,
@@ -26,5 +33,23 @@ export const addCocktailToCollection = async (cocktail) => {
     }
   } catch (e) {
     console.log("This went wrong: " + e);
+  }
+};
+
+export const getAllCompetitionsFromCollection = async () => {
+  try {
+    var cocktailCompetitions = [];
+
+    const snapshot = await getDocs(collection(db, "competitions"));
+    snapshot.forEach((doc) => {
+      // console.log(doc.id, "=>", doc.data())
+
+      cocktailCompetitions.push({ ...doc.data(), id: doc.id });
+    });
+
+    return cocktailCompetitions;
+  } catch (error) {
+    console.log("Something went wrong when returning collection: " + error);
+    return [];
   }
 };

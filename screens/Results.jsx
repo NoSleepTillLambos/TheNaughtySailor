@@ -1,30 +1,56 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useCallback, useState } from "react";
-import { ScrollView } from "react-native-gesture-handler";
+import React, { useCallback, useEffect, useState } from "react";
+import { RefreshControl, ScrollView } from "react-native-gesture-handler";
 import { useFocusEffect } from "@react-navigation/native";
-const Results = () => {
+import {
+  getAllCocktails,
+  getAllCompetitionsFromCollection,
+} from "../services/firebaseDB";
+import CocktailCard from "../components/CocktailCard";
+
+const Results = (props) => {
   const [cocktails, setCocktails] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     // getting data when viewing screen
+  //     getAllCocktails();
+  //     return () => {
+  //       // remove when not viewing to save space
+  //       console.log("home screen not in view");
+  //     };
+  //   }, [])
+  // );
+  useEffect(() => {
+    getAllCocktails();
+  }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      // getting data when viewing screen
+  // get all from db
+  const getAllCocktails = async () => {
+    setRefreshing(true);
+    const allCocktails = await getAllCompetitionsFromCollection();
+    setCocktails(allCocktails);
+    setRefreshing(false);
+  };
 
-      return () => {
-        // remove when not viewing to save space
-      };
-    }, [])
-  );
   return (
     <View style={styles.resultsCon}>
-      <ScrollView>
+      <Text style={styles.heading}>Current competitions:</Text>
+
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={getAllCocktails} />
+        }
+      >
         {cocktails.map((cocktail, index) => (
           <TouchableOpacity
             key={index}
-            onPress={() => navigation.push("details", { cocktail })}
+            // onPress={() => navigation.push("details", { cocktail })}
             activeOpacity={0.8}
-          ></TouchableOpacity>
+          >
+            <CocktailCard data={cocktail} />
+          </TouchableOpacity>
         ))}
-        <Text style={styles.heading}>Here are the current competitions</Text>
       </ScrollView>
     </View>
   );
@@ -34,6 +60,7 @@ export default Results;
 
 const styles = StyleSheet.create({
   resultsCon: {
+    flex: 1,
     backgroundColor: "#E2B5B5",
     height: "100%",
   },
@@ -41,6 +68,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     margin: 20,
-    fontSize: 20,
+    fontSize: 18,
   },
 });

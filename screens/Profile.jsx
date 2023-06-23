@@ -6,15 +6,25 @@ import { getCurrentUser } from "../services/firebaseAuth";
 
 const Profile = () => {
   return (
-    <View>
-      <Text>Voting</Text>
+    <View style={styles.heading}>
+      <Text style={styles.heading}>hello</Text>
+
       <Text>Email: {firebaseAuth.currentUser.email}</Text>
       <Button onPress={() => firebaseAuth.signOut()} title="Sign out" />
-      <Image></Image>
     </View>
   );
 };
 
 export default Profile;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  heading: {
+    flex: 1,
+    backgroundColor: "#E2B5B5",
+    height: "100%",
+  },
+  profile: {
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+});

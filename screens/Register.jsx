@@ -29,13 +29,13 @@ const Register = ({ navigation }) => {
         email,
         password
       );
-      alert("Check your emails for verification");
+      Alert.alert("Check your emails for verification");
+
       console.log(response);
       await createUserInDB(email, user.uid);
       // <AnimatedLottieView
       //   source={require("../assets/104368-thank-you.json")}
       // />;
-      // createUserInDb(email, password, response.user.uid);
     } catch (error) {
       console.log(error);
     } finally {

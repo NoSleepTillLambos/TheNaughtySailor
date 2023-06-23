@@ -113,9 +113,9 @@ const Competitions = () => {
             setItems={setItems}
             disableBorderRadius={true}
           />
-          <Text style={styles.SkinNameLabel}>Cocktail name:</Text>
+          <Text style={styles.cocktailName}>Cocktail name:</Text>
           <TextInput
-            style={styles.SkinName}
+            style={styles.cocktailPick}
             keyboardType="default"
             defaultValue={name}
             onChangeText={(newValue) => setName(newValue)}
@@ -145,7 +145,7 @@ const Competitions = () => {
             ) : (
               <>
                 <Pressable
-                  style={styles.uploadImgaeButton}
+                  style={styles.uploadImageButton}
                   onPress={() => pickImageFromLibrary(1)}
                 >
                   <Ionicons name="images-outline" size={32} color="white" />
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     textAlign: "center",
   },
-  Followsteps: {
+  steps: {
     color: "white",
     marginBottom: 20,
   },
@@ -194,13 +194,13 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
 
-  SkinNameLabel: {
+  cocktailName: {
     fontSize: 12,
     marginTop: 20,
     paddingLeft: 30,
     marginBottom: 5,
   },
-  SkinName: {
+  cocktailPick: {
     backgroundColor: "#fff",
     height: 50,
     width: 300,
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 10,
   },
-  uploadImgaeButton: {
+  uploadImageButton: {
     marginBottom: 20,
   },
   inputGroup: {

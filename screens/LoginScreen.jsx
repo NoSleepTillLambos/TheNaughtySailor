@@ -15,6 +15,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import AnimatedLottieView from "lottie-react-native";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
