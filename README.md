@@ -67,9 +67,9 @@ is!
 
 ### Built With
 
-- [Angular](https://angular.io/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Angular material](https://material.angular.io/)
+- [Firebase](https://console.firebase.google.com/)
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
 
 <!-- GETTING STARTED -->
 
@@ -129,7 +129,7 @@ Login functionality that prevents a user from logging into without the correct c
 
 ## Concept Process
 
-The concept originated from my job. I work as a bartender at an upper class establlishment and always felt the need for customers to have the ability to visit the shop, 
+The concept originated from my job. I work as a bartender at a high end establishment and always felt the need for customers to have the ability to visit the shop,
 have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ### Road Map and conceptual process
@@ -164,7 +164,7 @@ Going above and beyond the brief
 
 <!-- stipulate functionality and improvements that can be implemented in the future. -->
 
-* In future i would like to publish the app to the app store, Firebase could be an issue however with calls to the db. I'd really like to create something real world ready
+- In future i would like to publish the app to the app store, Firebase could be an issue however with calls to the db. I'd really like to create something real world ready
 
 <!-- MOCKUPS -->
 
@@ -203,7 +203,7 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 ## Contact
 
 - **Liam Wedge** - [liamwedge00@gmail.com]()
-- **Project Link** - https://github.com/NoSleepTillLambos/BlockBabies
+- **Project Link** - https://github.com/NoSleepTillLambos/TheNaughtySailor
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -211,6 +211,6 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 <!-- all resources that you used and Acknowledgements here -->
 
-- [Angular](https://angular.io/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Angular material](https://material.angular.io/)
+- [Firebase](https://console.firebase.google.com/)
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
