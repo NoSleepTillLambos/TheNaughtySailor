@@ -58,7 +58,7 @@
 
 <!-- header image of project -->
 
-![image1](src/Assets/chartPage.png)
+![image1](assets/mockups/18837903.png)
 
 ### Project Description
 
