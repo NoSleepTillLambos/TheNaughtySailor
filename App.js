@@ -39,7 +39,11 @@ export default function App() {
               component={Login}
               options={{ headerShown: false }}
             />
-            <Drawer.Screen name="Register" component={Register} />
+            <Drawer.Screen
+              name="Register"
+              component={Register}
+              options={false}
+            />
           </>
         )}
       </Drawer.Navigator>
