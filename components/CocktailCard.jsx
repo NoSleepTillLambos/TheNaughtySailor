@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   cocktailName: {
     fontWeight: "bold",
     position: "absolute",
-    right: 65,
+    right: 40,
     padding: 30,
   },
   type: {

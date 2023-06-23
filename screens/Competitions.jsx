@@ -97,11 +97,11 @@ const Competitions = () => {
               </>
             }
           >
-            <Text style={{ textAlign: "center", fontSize: 18 }}>
+            <Text style={{ fontSize: 15, paddingLeft: 30 }}>
               Rules<Ionicons name="help-outline"></Ionicons>
             </Text>
           </Tooltip>
-          <Text style={styles.SkinNameLabel}>Cocktail type:</Text>
+          <Text style={styles.cocktailType}>Cocktail type:</Text>
           <DropDownPicker
             style={styles.dropdown}
             open={open}
@@ -120,10 +120,8 @@ const Competitions = () => {
             defaultValue={name}
             onChangeText={(newValue) => setName(newValue)}
           />
-          <Text style={styles.SkinUploadLabel}>
-            Select your cocktail image:
-          </Text>
-          <View style={styles.SkinImage}>
+          <Text style={styles.cocktailImage}>Select your cocktail image:</Text>
+          <View style={styles.cocktailImg}>
             {image && (
               <Image
                 source={{ uri: image }}
@@ -193,7 +191,12 @@ const styles = StyleSheet.create({
   steps: {
     textAlign: "left",
   },
-
+  cocktailType: {
+    fontSize: 12,
+    marginTop: 20,
+    paddingLeft: 30,
+    marginBottom: 5,
+  },
   cocktailName: {
     fontSize: 12,
     marginTop: 20,
@@ -208,13 +211,13 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     paddingLeft: 15,
   },
-  SkinUploadLabel: {
+  cocktailImage: {
     fontSize: 12,
     marginTop: 20,
     paddingLeft: 30,
     marginBottom: 15,
   },
-  SkinImage: {
+  cocktailImg: {
     backgroundColor: "#fff",
     height: 210,
     width: 300,

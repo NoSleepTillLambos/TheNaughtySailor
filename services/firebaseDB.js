@@ -38,16 +38,16 @@ export const addCocktailToCollection = async (cocktail) => {
 
 export const getAllCompetitionsFromCollection = async () => {
   try {
-    var cocktailCompetitions = [];
+    var cocktailComps = [];
 
-    const snapshot = await getDocs(collection(db, "competitions"));
+    const snapshot = await getDocs(collection(db, "cocktails"));
     snapshot.forEach((doc) => {
       // console.log(doc.id, "=>", doc.data())
 
-      cocktailCompetitions.push({ ...doc.data(), id: doc.id });
+      cocktailComps.push({ ...doc.data(), id: doc.id });
     });
 
-    return cocktailCompetitions;
+    return cocktailComps;
   } catch (error) {
     console.log("Something went wrong when returning collection: " + error);
     return [];

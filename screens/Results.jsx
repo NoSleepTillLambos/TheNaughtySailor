@@ -41,14 +41,14 @@ const Results = ({ navigation }) => {
 
   return (
     <View style={styles.resultsCon}>
-      <Text style={styles.heading}>Current cocktails:</Text>
+      <Text style={styles.heading}>Current cocktails competitions:</Text>
 
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={getAllCocktails} />
         }
       >
-        {dummy.map((cocktail, index) => (
+        {cocktails.map((cocktail, index) => (
           <TouchableOpacity
             style={styles.card}
             key={index}
