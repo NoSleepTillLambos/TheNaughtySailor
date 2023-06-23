@@ -13,7 +13,7 @@
 </br>
 <p align="center">
 
-  <a href="https://github.com/NoSleepTillLambos/BlockBabies">
+  <a href="https://github.com/NoSleepTillLambos/TheNaughtySailor">
     <img src="assets/logo/logo1.png" alt="Logo">
   </a>
   
@@ -27,7 +27,7 @@
    <br />
    <a href="https://drive.google.com/drive/folders/1bHFGq7nIGPdDqJGrCNNCiSqTUyPk-h7F">View Demo</a>
     ·
-    <a href="https://github.com/NoSleepTillLambos/BlockBabies">Report Bug</a>
+    <a href="https://github.com/NoSleepTillLambos/TheNaughtySailor">Report Bug</a>
     ·
     
 </p>
@@ -88,13 +88,13 @@ Ensure that you have the latest version of [NPM](https://www.npmjs.com/) install
 Here are a couple of ways to clone this repo:
 
 1.  GitHub Desktop </br>
-    Enter `https://github.com/NoSleepTillLambos/BlockBabies` into the URL field and press the `Clone` button.
+    Enter `https://github.com/NoSleepTillLambos/TheNaughtySailor` into the URL field and press the `Clone` button.
 
 2.  Clone Repository </br>
     Run the following in the command-line to clone the project:
 
     ```sh
-    git clone https://github.com/NoSleepTillLambos/BlockBabies
+    git clone https://github.com/NoSleepTillLambos/TheNaughtySailor
     ```
 
         Open `Software` and select `File | Open...` from the menu. Select cloned directory and press `Open` button
@@ -121,13 +121,13 @@ Here are a couple of ways to clone this repo:
 
 ### Feature 2
 
-![image6]()
+![image6](assets/mockups/home.JPG)
 
 - Home page, users are introduced to the app and can then move to the create entry screen where they can enter into a cocktail comp and compete
 
 ### Feature 3
 
-![image7]()
+![image7](assets/mockups/createEntry.JPG)
 
 - Users can create a cocktail entry by uploading the details and an image of their creation, along with some details about the ingredients and other important information so users can try the recipes at home for themselves!
 - Users being able to try the cocktails out is the entire premise of the app, teaching keen learners a new hobbie!
@@ -167,6 +167,7 @@ Going above and beyond the brief
 <!-- what did you learn outside of the classroom and implement into your project-->
 
 - Search functionality
+- Google login and verification (todo)
 
 ### Future Implementation
 
@@ -195,7 +196,7 @@ To see a run through of the application, please click below:
 
 [View Demonstration](https://drive.google.com/drive/folders/1IiMC4ZpDRhs8Q5RuAk9rlZmzaHfeihNa)
 
-See the [open issues](https://github.com/NoSleepTillLambos/BlockBabies) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/NoSleepTillLambos/TheNaughtySailor) for a list of proposed features (and known issues).
 
 <!-- AUTHORS -->
 
