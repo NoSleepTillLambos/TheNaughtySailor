@@ -1,12 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 
 const CocktailCard = (props) => {
   const { data } = props;
   return (
     <View style={styles.container}>
-      <Text>{data.name}</Text>
-      <Text>{data.value}</Text>
+      <Image
+        source={require("../assets/cocktails/mojito.png")}
+        style={styles.cocktailImage}
+      ></Image>
+      <Text style={styles.cocktailName}>Name: {data.name}</Text>
+      <Text style={styles.type}>Type: {data.value}</Text>
     </View>
   );
 };
@@ -20,5 +24,25 @@ const styles = StyleSheet.create({
     width: 300,
     backgroundColor: "#fff",
     borderRadius: 10,
+    fontWeight: "bold",
+  },
+  cocktailImage: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    margin: 20,
+  },
+  cocktailName: {
+    fontWeight: "bold",
+    position: "absolute",
+    right: 65,
+    padding: 30,
+  },
+  type: {
+    position: "absolute",
+    right: 30,
+    top: 30,
+    padding: 30,
+    fontWeight: "bold",
+    justifyContent: "flex-end",
   },
 });

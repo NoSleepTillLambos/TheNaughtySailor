@@ -7,8 +7,14 @@ import {
   getAllCompetitionsFromCollection,
 } from "../services/firebaseDB";
 import CocktailCard from "../components/CocktailCard";
+import { SearchBar } from "@rneui/themed";
 
-const Results = (props) => {
+const Results = ({ navigation }) => {
+  const dummy = [
+    { name: "mojito", value: "non-alcholic" },
+    { name: "mojito", value: "non-alcholic" },
+  ];
+
   const [cocktails, setCocktails] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   // useFocusEffect(
@@ -35,17 +41,18 @@ const Results = (props) => {
 
   return (
     <View style={styles.resultsCon}>
-      <Text style={styles.heading}>Current competitions:</Text>
+      <Text style={styles.heading}>Current cocktails:</Text>
 
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={getAllCocktails} />
         }
       >
-        {cocktails.map((cocktail, index) => (
+        {dummy.map((cocktail, index) => (
           <TouchableOpacity
+            style={styles.card}
             key={index}
-            // onPress={() => navigation.push("details", { cocktail })}
+            onPress={() => navigation.navigate("Details")}
             activeOpacity={0.8}
           >
             <CocktailCard data={cocktail} />
@@ -69,5 +76,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     margin: 20,
     fontSize: 18,
+  },
+  card: {
+    paddingLeft: 20,
+    paddingTop: 10,
   },
 });
