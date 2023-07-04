@@ -10,6 +10,8 @@ import Register from "./screens/Register";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "./firebase";
+import { Icon } from "@rneui/base";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function App() {
   const [user, setUser] = useState();
@@ -23,14 +25,57 @@ export default function App() {
   // const LoggedIn = false;
   const Drawer = createDrawerNavigator();
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Login">
+    <NavigationContainer styles={styles.container}>
+      <Drawer.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          drawerStyle: {
+            backgroundColor: "#7799CC",
+          },
+        }}
+      >
         {user ? (
           <>
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Competitions" component={CompetitionsScreen} />
-            <Drawer.Screen name="Results" component={Results} />
-            <Drawer.Screen name="Profile" component={Profile} />
+            <Drawer.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                title: "Home",
+                drawerIcon: ({ focus, size }) => (
+                  <Ionicons size={20} name="home-outline" />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Competitions"
+              component={CompetitionsScreen}
+              options={{
+                title: "Competitions",
+                drawerIcon: ({ focus, size }) => (
+                  <Ionicons size={20} name="trophy-outline" />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Results"
+              component={Results}
+              options={{
+                title: "Results",
+                drawerIcon: ({ focus, size }) => (
+                  <Ionicons size={20} name="analytics-outline" />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Profile"
+              component={Profile}
+              options={{
+                title: "Profile",
+                drawerIcon: ({ focus, size }) => (
+                  <Ionicons size={20} name="person-outline" />
+                ),
+              }}
+            />
           </>
         ) : (
           <>
