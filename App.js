@@ -42,7 +42,7 @@ export default function App() {
             <Drawer.Screen
               name="Register"
               component={Register}
-              options={false}
+              options={{ headerShown: false }}
             />
           </>
         )}

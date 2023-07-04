@@ -9,7 +9,7 @@ import {
   View,
   Alert,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { firebaseAuth } from "../firebase";
 import {
   signInWithEmailAndPassword,
@@ -18,8 +18,26 @@ import {
 import AnimatedLottieView from "lottie-react-native";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useFonts } from "expo-font";
+import * as Font from "expo-font";
 
 const Login = ({ navigation }) => {
+  useEffect(() => {
+    async function loadFont() {
+      await Font.loadAsync({
+        "custom-font": require("../assets/fonts/Pacifico-Regular.ttf"),
+      });
+
+      Text.defaultProps.style.fontFamily = "custom-font";
+    }
+
+    loadFont();
+  }, []);
+
+  // text input validation
+  const [seePassword, setSeePassword] = useState(true);
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -101,6 +119,7 @@ const styles = StyleSheet.create({
   tinyLogo: {
     width: 350,
     height: 350,
+    marginLeft: 10,
   },
   Button: {
     backgroundColor: "white",
@@ -108,14 +127,19 @@ const styles = StyleSheet.create({
   input: {
     marginVertical: 4,
     height: 50,
-    width: "100%",
-    textAlign: "center",
-    justifyContent: "center",
-    alignContent: "center",
     borderWidth: 1,
-    borderRadius: 4,
     padding: 10,
-    backgroundColor: "#fff",
+    marginVertical: 4,
+    height: 50,
+    fontFamily: "San Francisco",
+    width: "90%",
+    shadowColor: "#2b2b2b",
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: "#dd9a9a",
+    marginLeft: 20,
+    padding: 10,
+    backgroundColor: "#dd9a9a",
   },
   signIn: {
     backgroundColor: "white",
