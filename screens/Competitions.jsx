@@ -6,6 +6,7 @@ import {
   TextInput,
   Pressable,
   Image,
+  Button,
   Alert,
 } from "react-native";
 import React, { useState } from "react";
@@ -17,6 +18,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import { firebaseAuth } from "../firebase";
 import { addCocktailToCollection } from "../services/firebaseDB";
+import { uploadToStorage } from "../services/firebaseStorage";
 
 const Competitions = () => {
   const [openTip, setOpenTip] = useState(false);
@@ -26,15 +28,9 @@ const Competitions = () => {
     { label: "Alcoholic", value: "alc" },
   ]);
 
-  const [image, setImage] = useState(null);
-  const [image1, setImage1] = useState(null);
-
   const [open, setOpen] = useState(false);
 
   const [name, setName] = useState("");
-
-  const [cocktailOne, setCocktailOne] = useState("");
-  const [cocktailTwo, setCocktailTwo] = useState("");
 
   const createCocktailEntry = async () => {
     // do all inputs have value
@@ -47,7 +43,10 @@ const Competitions = () => {
         name,
       };
 
-      const success = await addCocktailToCollection(cocktail);
+      var features = [];
+      image && features.push({ imageUrl: image, title: image });
+
+      const success = await addCocktailToCollection(cocktail, features);
 
       if (success) {
         console.log("added cocktail successfully");
@@ -59,6 +58,12 @@ const Competitions = () => {
       Alert.alert("Please fill in all the fields");
     }
   };
+
+  const [image, setImage] = useState(null);
+  const [image1, setImage1] = useState(null);
+
+  const [cocktailOne, setCocktailOne] = useState("");
+  const [cocktailTwo, setCocktailTwo] = useState("");
 
   const pickImageFromLibrary = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({

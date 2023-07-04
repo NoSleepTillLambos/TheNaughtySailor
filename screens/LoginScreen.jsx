@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 4,
     height: 50,
-    fontFamily: "San Francisco",
+
     width: "90%",
     shadowColor: "#2b2b2b",
     borderWidth: 1,
