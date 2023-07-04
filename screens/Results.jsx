@@ -8,22 +8,35 @@ import {
 } from "../services/firebaseDB";
 import CocktailCard from "../components/CocktailCard";
 import { SearchBar } from "@rneui/themed";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  orderBy,
+} from "firebase/firestore";
+import { db } from "../firebase";
 
 const Results = ({ navigation }) => {
-  const dummy = [
-    { name: "mojito", value: "non-alcholic" },
-    { name: "mojito", value: "non-alcholic" },
-  ];
-
   const [cocktails, setCocktails] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  // IF YOU HAVE TIME TO REAL TIME DATA BINDING AND FETCHING
   // useFocusEffect(
   //   useCallback(() => {
-  //     // getting data when viewing screen
-  //     getAllCocktails();
+  //     // getting data in real time
+  //     const q = query(collection(db, "cocktails"));
+  //     const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //       const cities = [];
+  //       querySnapshot.forEach((doc) => {
+  //         cities.push(doc.data().name);
+  //       });
+  //       console.log("Current cities in CA: ", cities.join(", "));
+  //     });
+
   //     return () => {
   //       // remove when not viewing to save space
   //       console.log("home screen not in view");
+  //       unsubscribe();
   //     };
   //   }, [])
   // );

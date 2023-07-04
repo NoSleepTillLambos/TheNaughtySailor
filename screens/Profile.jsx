@@ -15,6 +15,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import CocktailCard from "../components/CocktailCard";
 import { updateUserInDb } from "../services/firebaseDB";
 import * as ImagePicker from "expo-image-picker";
+import { uploadToStorage } from "../services/firebaseStorage";
 
 const Profile = (navigation) => {
   const user = getCurrentUser();
@@ -24,11 +25,22 @@ const Profile = (navigation) => {
   const [email, setEmail] = useState(user.email);
 
   const updateProfileInfo = async () => {
+    var uploadedImageUrl = null;
     // update users profile information
-    const authSuccess = updateUserProfile(email, profileUrl);
+    if (profileUrl != user.photoUrl) {
+      uploadedImageUrl = await uploadToStorage(imageUrl, `users/${user.uid}`);
+    }
+
+    const authSuccess = updateUserProfile(
+      email,
+      uploadedImageUrl ? uploadedImageUrl : profileUrl
+    );
 
     // update user in db
-    await updateUserInDb(user.uid, { email, profileUrl });
+    await updateUserInDb(user.uid, {
+      email,
+      profileUrl: uploadedImageUrl ? uploadedImageUrl : profileUrl,
+    });
   };
 
   const [individualProjects, setIndividualCocktails] = useState([]);
@@ -107,7 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   submitButton: {
-    marginTop,
+    marginTop: 10,
     padding: 20,
     backgroundColor: "#2b2b2b",
     borderRadius: 5,

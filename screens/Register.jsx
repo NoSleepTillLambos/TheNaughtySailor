@@ -14,8 +14,20 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ScrollView } from "react-native-gesture-handler";
 import { createUserInDB } from "../services/firebaseDB";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+
+const fonts = () => {
+  let [fontsLoaded] = useFonts({
+    Quicksand: require("../assets/fonts/Quicksand-Light.ttf"),
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+};
 
 const Register = ({ navigation }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -66,14 +78,30 @@ const Register = ({ navigation }) => {
           source={require("../assets/logo/43341.png")}
         />
         <Text style={styles.register}>Register your account</Text>
+        <View style={styles.nameSurname}>
+          <TextInput
+            style={styles.shortInput}
+            placeholder="Name"
+            autoCapitalize="none"
+            value={name}
+            onChangeText={(text) => setName(text)}
+          />
+          <TextInput
+            style={styles.shortInput}
+            placeholder="Username"
+            autoCapitalize="none"
+            value={name}
+            onChangeText={(text) => setName(text)}
+          />
+        </View>
 
-        {checkValidEmail ? (
+        {/* {checkValidEmail ? (
           <TextInput style={styles.emailMsg}>
             Incorrect Email format, try again
           </TextInput>
         ) : (
           <TextInput style={styles.emailMsg}></TextInput>
-        )}
+        )} */}
         <TextInput
           style={styles.input}
           required
@@ -83,17 +111,22 @@ const Register = ({ navigation }) => {
           onChangeText={(text) => setEmail(text)}
           onChange={(text) => handleCheckEmail(text)}
         />
-
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          autoCapitalize="none"
-          value={password}
-          secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
-        >
-          <Ionicons name="eye-outline"></Ionicons>
-        </TextInput>
+        <View style={styles.passwordCon}>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            autoCapitalize="none"
+            value={password}
+            secureTextEntry={seePassword}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <Ionicons
+            name={seePassword ? "eye-outline" : "eye-off-outline"}
+            onPress={() => setSeePassword(!seePassword)}
+            size={25}
+            style={{ padding: 20 }}
+          />
+        </View>
 
         <Button title="Create account" onPress={signUp} style={styles.create} />
         <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
@@ -112,16 +145,32 @@ const styles = StyleSheet.create({
     padding: 7,
     marginLeft: 13,
   },
-  input: {
+  nameSurname: {
+    flexDirection: "row",
+  },
+  shortInput: {
     marginVertical: 4,
     height: 50,
-    width: "90%",
+    width: "42%",
     shadowColor: "#2b2b2b",
     borderWidth: 1,
     borderRadius: 10,
     borderColor: "#dd9a9a",
     marginLeft: 20,
-    padding: 10,
+    padding: 20,
+    backgroundColor: "#dd9a9a",
+  },
+  input: {
+    marginVertical: 8,
+    height: 50,
+    width: "90%",
+    shadowColor: "#2b2b2b",
+    borderWidth: 1,
+    borderRadius: 10,
+    flex: 1,
+    borderColor: "#dd9a9a",
+    marginLeft: 20,
+    padding: 20,
     backgroundColor: "#dd9a9a",
   },
   register: {
@@ -129,6 +178,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: -20,
     textAlign: "center",
+    fontFamily: "Quicksand",
   },
 
   tinyLogo: {
@@ -149,5 +199,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     marginTop: 15,
+  },
+  passwordCon: {
+    flex: 1,
+    flexDirection: "row",
   },
 });

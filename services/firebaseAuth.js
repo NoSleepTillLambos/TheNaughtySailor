@@ -23,3 +23,5 @@ export const updateUserProfile = (email, imageUrl = "") => {
       return false;
     });
 };
+
+// TODO(you): prompt the user to re-provide their sign-in credentials
