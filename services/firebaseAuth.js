@@ -8,17 +8,18 @@ import { auth } from "../firebase";
 import { createUserInDb } from "./firebaseDB";
 import AnimatedLottieView from "lottie-react-native";
 
-export const updateUserProfile = (email) => {
+export const updateUserProfile = (email, imageUrl = "") => {
   updateProfile(auth.currentUser, {
     displayName: email,
-    photoURL: "https://example.com/jane-q-user/profile.jpg",
+    photoURL: imageUrl,
   })
     .then(() => {
-      // Profile updated!
-      // ...
+      return true;
+      console.log("Update correctly");
     })
     .catch((error) => {
       // An error occurred
-      // ...
+      console.log("Something went wrong" + error);
+      return false;
     });
 };

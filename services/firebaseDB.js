@@ -7,6 +7,7 @@ import {
   getDocs,
   orderBy,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { uploadToStorage } from "./firebaseStorage";
@@ -24,6 +25,13 @@ export const createUserInDb = async (email, uid) => {
 };
 
 // cocktails collection
+export const updateUserInDb = async (uid, userInfo) => {
+  try {
+    const docRef = await updateDoc(doc(db, "users", uid), userInfo);
+  } catch {
+    console.log("Something went wrong with db update");
+  }
+};
 
 export const addCocktailToCollection = async (cocktail, features = []) => {
   try {
