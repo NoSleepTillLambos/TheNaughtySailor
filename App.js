@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import CompetitionsScreen from "./screens/Competitions";
 import Results from "./screens/Results";
@@ -23,10 +23,10 @@ export default function App() {
   }, []);
   // CHECK IF THE USER IS LOGGED IN
   // const LoggedIn = false;
-  const Drawer = createDrawerNavigator();
+  const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer styles={styles.container}>
-      <Drawer.Navigator
+      <Tab.Navigator
         initialRouteName="Login"
         screenOptions={{
           drawerStyle: {
@@ -36,43 +36,46 @@ export default function App() {
       >
         {user ? (
           <>
-            <Drawer.Screen
+            <Tab.Screen
               name="Home"
               component={HomeScreen}
               options={{
                 title: "Home",
-                drawerIcon: ({ focus, size }) => (
+                headerShown: false,
+                tabBarIcon: ({ focus, size }) => (
                   <Ionicons size={20} name="home-outline" />
                 ),
               }}
             />
-            <Drawer.Screen
+            <Tab.Screen
               name="Competitions"
               component={CompetitionsScreen}
               options={{
                 title: "Competitions",
-                drawerIcon: ({ focus, size }) => (
+                headerShown: false,
+                tabBarIcon: ({ focus, size }) => (
                   <Ionicons size={20} name="trophy-outline" />
                 ),
               }}
             />
-            <Drawer.Screen
+            <Tab.Screen
               name="Results"
               component={Results}
               options={{
                 title: "Results",
-                drawerIcon: ({ focus, size }) => (
+                headerShown: false,
+                tabBarIcon: ({ focus, size }) => (
                   <Ionicons size={20} name="analytics-outline" />
                 ),
               }}
             />
-            <Drawer.Screen
+            <Tab.Screen
               name="Profile"
               component={Profile}
               options={{
-                header: "#fff",
                 title: "Profile",
-                drawerIcon: ({ focus, size }) => (
+                headerShown: false,
+                tabBarIcon: ({ focus, size }) => (
                   <Ionicons size={20} name="person-outline" />
                 ),
               }}
@@ -81,19 +84,19 @@ export default function App() {
           </>
         ) : (
           <>
-            <Drawer.Screen
+            <Tab.Screen
               name="LoginScreen"
               component={Login}
-              options={{ headerShown: false }}
+              options={{ tabBarStyle: { display: "none" }, headerShown: false }}
             />
-            <Drawer.Screen
+            <Tab.Screen
               name="Register"
               component={Register}
-              options={{ headerShown: false }}
+              options={{ tabBarStyle: { display: "none" }, headerShown: false }}
             />
           </>
         )}
-      </Drawer.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
