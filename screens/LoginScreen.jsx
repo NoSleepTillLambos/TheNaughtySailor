@@ -152,7 +152,7 @@ const Login = ({ navigation }) => {
                 style={styles.button}
                 onPress={signIn}
               >
-                <Text style={styles.create}>Create account</Text>
+                <Text style={styles.create}>Login</Text>
               </TouchableHighlight>
             </>
           )}

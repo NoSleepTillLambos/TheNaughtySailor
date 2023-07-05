@@ -42,6 +42,7 @@ export default function App() {
               options={{
                 title: "Home",
                 headerShown: false,
+
                 tabBarIcon: ({ focus, size }) => (
                   <Ionicons size={20} name="home-outline" />
                 ),
