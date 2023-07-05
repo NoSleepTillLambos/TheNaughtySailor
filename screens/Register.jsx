@@ -3,10 +3,10 @@ import {
   Text,
   View,
   TextInput,
-  Button,
+  Modal,
   Image,
   TouchableOpacity,
-  Pressable,
+  Alert,
   TouchableHighlight,
 } from "react-native";
 import { firebaseAuth } from "../firebase";
@@ -54,7 +54,7 @@ const Register = ({ navigation }) => {
         password
       );
       Alert.alert("Check your emails for verification");
-
+      setModalVisible(true);
       console.log(response);
       await createUserInDB(email, user.uid);
       // <AnimatedLottieView
@@ -68,12 +68,21 @@ const Register = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      ></Modal>
       <ScrollView>
         <Image
           style={styles.tinyLogo}
           source={require("../assets/logo/43341.png")}
         />
         <Text style={styles.register}>Register your account</Text>
+
         <View style={styles.nameSurname}>
           <TextInput
             style={styles.shortInput}

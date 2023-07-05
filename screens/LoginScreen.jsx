@@ -8,6 +8,8 @@ import {
   TextInput,
   View,
   Alert,
+  Modal,
+  Pressable,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { firebaseAuth } from "../firebase";
@@ -21,22 +23,9 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from "react-native-gesture-handler";
-import { useFonts } from "expo-font";
-import * as Font from "expo-font";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Login = ({ navigation }) => {
-  useEffect(() => {
-    async function loadFont() {
-      await Font.loadAsync({
-        "custom-font": require("../assets/fonts/Quicksand-Bold.ttf"),
-      });
-
-      Text.defaultProps.style.fontFamily = "custom-font";
-    }
-
-    loadFont();
-  }, []);
-
   // text input validation
   const [seePassword, setSeePassword] = useState(true);
   const [checkValidEmail, setCheckValidEmail] = useState(false);
@@ -48,10 +37,12 @@ const Login = ({ navigation }) => {
 
   const auth = firebaseAuth;
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   const signIn = async () => {
     setLoading(true);
     if (!email || !password) {
-      Alert.alert("All details must be filled in");
+      setModalVisible(true);
     }
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
@@ -74,6 +65,32 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Ionicons
+              name="alert-circle-outline"
+              size={30}
+              style={{ paddingBottom: 25 }}
+            />
+            <Text style={styles.modalText}>All fields must be filled in!</Text>
+            <Pressable
+              style={[styles.ModalButton, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Try again</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
       <Image
         style={styles.tinyLogo}
         source={require("../assets/logo/43341.png")}
@@ -130,9 +147,6 @@ const styles = StyleSheet.create({
     height: 350,
     marginLeft: 10,
   },
-  Button: {
-    backgroundColor: "white",
-  },
   input: {
     marginVertical: 4,
     height: 50,
@@ -140,7 +154,6 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 4,
     height: 50,
-    fontFamily: "QuickSand-Light",
     width: "90%",
     shadowColor: "#2b2b2b",
     borderWidth: 1,
@@ -177,5 +190,43 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     marginTop: 15,
+  },
+
+  // modal views
+
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  textStyle: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  ModalButton: {
+    borderRadius: 10,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: "#dd9a9a",
   },
 });
