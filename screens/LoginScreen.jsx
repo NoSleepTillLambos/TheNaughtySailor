@@ -11,7 +11,7 @@ import {
   Modal,
   Pressable,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { firebaseAuth } from "../firebase";
 import {
   signInWithEmailAndPassword,
@@ -22,8 +22,10 @@ import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import {
   TouchableOpacity,
   TouchableHighlight,
+  ScrollView,
 } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Lottie from "lottie-react-native";
 
 const Login = ({ navigation }) => {
   // text input validation
@@ -63,73 +65,102 @@ const Login = ({ navigation }) => {
     }
   });
 
+  const animationRef = useRef < AnimatedLottieView > null;
+
+  useEffect(() => {
+    animationRef.current?.play();
+
+    // Or set a specific startFrame and endFrame with:
+    animationRef.current?.play(30, 120);
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Ionicons
-              name="alert-circle-outline"
-              size={30}
-              style={{ paddingBottom: 25 }}
-            />
-            <Text style={styles.modalText}>All fields must be filled in!</Text>
-            <Pressable
-              style={[styles.ModalButton, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Try again</Text>
-            </Pressable>
+      <ScrollView>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Ionicons
+                name="alert-circle-outline"
+                size={30}
+                style={{ paddingBottom: 25 }}
+              />
+              <Text style={styles.modalText}>
+                All fields must be filled in!
+              </Text>
+              <Pressable
+                style={[styles.ModalButton, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>Try again</Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </Modal>
-      <Image
-        style={styles.tinyLogo}
-        source={require("../assets/logo/43341.png")}
-      />
-      <KeyboardAvoidingView behavior="padding">
-        <TextInput
-          style={styles.input}
-          required
-          placeholder="Email"
-          autoCapitalize="none"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          autoCapitalize="none"
-          value={password}
-          secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
-        />
+        </Modal>
+        {/* <AnimatedLottieView
+          source={require("../assets/104368-thank-you.json")}
+          autoPlay
+          style={{ width: "80%", aspectRatio: 1 }}
+          loop
+        /> */}
 
-        {loading ? (
-          <ActivityIndicator size="large" color="#fff" />
-        ) : (
-          <>
-            <TouchableHighlight
-              underlayColor="#E2B5B5"
-              style={styles.button}
-              onPress={signIn}
-            >
-              <Text style={styles.create}>Create account</Text>
-            </TouchableHighlight>
-          </>
-        )}
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <Text style={styles.noAccount}>Don't have an account? Sign Up</Text>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+        <Image
+          style={styles.tinyLogo}
+          source={require("../assets/logo/43341.png")}
+        />
+        <Text style={styles.login}>Login</Text>
+        <KeyboardAvoidingView behavior="padding">
+          <TextInput
+            style={styles.input}
+            required
+            placeholder="Email"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+          <View style={styles.passwordCon}>
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              autoCapitalize="none"
+              value={password}
+              secureTextEntry={seePassword}
+              onChangeText={(text) => setPassword(text)}
+            />
+            <Ionicons
+              name={seePassword ? "eye-outline" : "eye-off-outline"}
+              onPress={() => setSeePassword(!seePassword)}
+              size={25}
+              style={{ padding: 20 }}
+            />
+          </View>
+
+          {loading ? (
+            <ActivityIndicator size="large" color="#fff" />
+          ) : (
+            <>
+              <TouchableHighlight
+                underlayColor="#E2B5B5"
+                style={styles.button}
+                onPress={signIn}
+              >
+                <Text style={styles.create}>Create account</Text>
+              </TouchableHighlight>
+            </>
+          )}
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <Text style={styles.noAccount}>Don't have an account? Sign Up</Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </View>
   );
 };
@@ -147,6 +178,14 @@ const styles = StyleSheet.create({
     height: 350,
     marginLeft: 10,
   },
+  login: {
+    fontSize: 20,
+    marginBottom: 20,
+    marginTop: -20,
+    textAlign: "center",
+    color: "#2b2b2b",
+    fontWeight: "bold",
+  },
   input: {
     marginVertical: 4,
     height: 50,
@@ -160,6 +199,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: "#dd9a9a",
     marginLeft: 20,
+    flex: 1,
     padding: 10,
     backgroundColor: "#dd9a9a",
   },
@@ -190,6 +230,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     marginTop: 15,
+    textDecorationLine: "underline",
+  },
+  passwordCon: {
+    flex: 1,
+    flexDirection: "row",
   },
 
   // modal views

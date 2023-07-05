@@ -70,11 +70,13 @@ export default function App() {
               name="Profile"
               component={Profile}
               options={{
+                header: "#fff",
                 title: "Profile",
                 drawerIcon: ({ focus, size }) => (
                   <Ionicons size={20} name="person-outline" />
                 ),
               }}
+              r
             />
           </>
         ) : (

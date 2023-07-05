@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Alert,
   TouchableHighlight,
+  KeyboardAvoidingView,
 } from "react-native";
 import { firebaseAuth } from "../firebase";
 import React from "react";
@@ -51,6 +52,8 @@ const Register = ({ navigation }) => {
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
+        name,
+        username,
         password
       );
       Alert.alert("Check your emails for verification");
@@ -81,7 +84,7 @@ const Register = ({ navigation }) => {
           style={styles.tinyLogo}
           source={require("../assets/logo/43341.png")}
         />
-        <Text style={styles.register}>Register your account</Text>
+        <Text style={styles.register}>Register</Text>
 
         <View style={styles.nameSurname}>
           <TextInput
@@ -99,39 +102,33 @@ const Register = ({ navigation }) => {
             onChangeText={(text) => setUsername(text)}
           />
         </View>
-
-        {/* {checkValidEmail ? (
-          <TextInput style={styles.emailMsg}>
-            Incorrect Email format, try again
-          </TextInput>
-        ) : (
-          <TextInput style={styles.emailMsg}></TextInput>
-        )} */}
-        <TextInput
-          style={styles.input}
-          required
-          placeholder="Email"
-          autoCapitalize="none"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          onChange={(text) => handleCheckEmail(text)}
-        />
-        <View style={styles.passwordCon}>
+        <KeyboardAvoidingView>
           <TextInput
             style={styles.input}
-            placeholder="Password"
+            required
+            placeholder="Email"
             autoCapitalize="none"
-            value={password}
-            secureTextEntry={seePassword}
-            onChangeText={(text) => setPassword(text)}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            onChange={(text) => handleCheckEmail(text)}
           />
-          <Ionicons
-            name={seePassword ? "eye-outline" : "eye-off-outline"}
-            onPress={() => setSeePassword(!seePassword)}
-            size={25}
-            style={{ padding: 20 }}
-          />
-        </View>
+          <View style={styles.passwordCon}>
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              autoCapitalize="none"
+              value={password}
+              secureTextEntry={seePassword}
+              onChangeText={(text) => setPassword(text)}
+            />
+            <Ionicons
+              name={seePassword ? "eye-outline" : "eye-off-outline"}
+              onPress={() => setSeePassword(!seePassword)}
+              size={25}
+              style={{ padding: 20 }}
+            />
+          </View>
+        </KeyboardAvoidingView>
 
         <TouchableHighlight
           underlayColor="#E2B5B5"
@@ -191,6 +188,7 @@ const styles = StyleSheet.create({
     marginTop: -20,
     textAlign: "center",
     color: "#2b2b2b",
+    fontWeight: "bold",
   },
   tinyLogo: {
     width: 350,
