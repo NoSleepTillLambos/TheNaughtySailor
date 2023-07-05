@@ -17,7 +17,10 @@ import {
 } from "firebase/auth";
 import AnimatedLottieView from "lottie-react-native";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  TouchableOpacity,
+  TouchableHighlight,
+} from "react-native-gesture-handler";
 import { useFonts } from "expo-font";
 import * as Font from "expo-font";
 
@@ -25,7 +28,7 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
-        "custom-font": require("../assets/fonts/Pacifico-Regular.ttf"),
+        "custom-font": require("../assets/fonts/Quicksand-Bold.ttf"),
       });
 
       Text.defaultProps.style.fontFamily = "custom-font";
@@ -97,7 +100,13 @@ const Login = ({ navigation }) => {
           <ActivityIndicator size="large" color="#fff" />
         ) : (
           <>
-            <Button title="Login" onPress={signIn} style={styles.signIn} />
+            <TouchableHighlight
+              underlayColor="#E2B5B5"
+              style={styles.button}
+              onPress={signIn}
+            >
+              <Text style={styles.create}>Create account</Text>
+            </TouchableHighlight>
           </>
         )}
         <TouchableOpacity onPress={() => navigation.navigate("Register")}>
@@ -131,7 +140,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 4,
     height: 50,
-
+    fontFamily: "QuickSand-Light",
     width: "90%",
     shadowColor: "#2b2b2b",
     borderWidth: 1,
@@ -140,6 +149,25 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     padding: 10,
     backgroundColor: "#dd9a9a",
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 4,
+    backgroundColor: "#dd9a9a",
+    width: "30%",
+    height: 40,
+    width: 180,
+    marginLeft: 95,
+    marginTop: 20,
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  create: {
+    fontSize: 15,
+    color: "#2b2b2b",
   },
   signIn: {
     backgroundColor: "white",

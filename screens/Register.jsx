@@ -6,6 +6,8 @@ import {
   Button,
   Image,
   TouchableOpacity,
+  Pressable,
+  TouchableHighlight,
 } from "react-native";
 import { firebaseAuth } from "../firebase";
 import React from "react";
@@ -17,20 +19,14 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
-const fonts = () => {
-  let [fontsLoaded] = useFonts({
-    Quicksand: require("../assets/fonts/Quicksand-Light.ttf"),
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-};
-
 const Register = ({ navigation }) => {
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleCheckEmail = (text) => {
     let regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -90,8 +86,8 @@ const Register = ({ navigation }) => {
             style={styles.shortInput}
             placeholder="Username"
             autoCapitalize="none"
-            value={name}
-            onChangeText={(text) => setName(text)}
+            value={username}
+            onChangeText={(text) => setUsername(text)}
           />
         </View>
 
@@ -128,7 +124,14 @@ const Register = ({ navigation }) => {
           />
         </View>
 
-        <Button title="Create account" onPress={signUp} style={styles.create} />
+        <TouchableHighlight
+          underlayColor="#E2B5B5"
+          style={styles.button}
+          onPress={signUp}
+        >
+          <Text style={styles.create}>Create account</Text>
+        </TouchableHighlight>
+
         <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
           <Text style={styles.noAccount}>Have an account? Login</Text>
         </TouchableOpacity>
@@ -151,13 +154,13 @@ const styles = StyleSheet.create({
   shortInput: {
     marginVertical: 4,
     height: 50,
-    width: "42%",
+    width: "42.4%",
     shadowColor: "#2b2b2b",
     borderWidth: 1,
     borderRadius: 10,
     borderColor: "#dd9a9a",
     marginLeft: 20,
-    padding: 20,
+    padding: 10,
     backgroundColor: "#dd9a9a",
   },
   input: {
@@ -170,7 +173,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderColor: "#dd9a9a",
     marginLeft: 20,
-    padding: 20,
+    padding: 10,
     backgroundColor: "#dd9a9a",
   },
   register: {
@@ -178,13 +181,27 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: -20,
     textAlign: "center",
-    fontFamily: "Quicksand",
+    color: "#2b2b2b",
   },
-
   tinyLogo: {
     width: 350,
     height: 350,
     marginLeft: 10,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 4,
+    backgroundColor: "#dd9a9a",
+    width: "30%",
+    height: 40,
+    width: 180,
+    marginLeft: 95,
+    marginTop: 20,
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   container: {
     flex: 1,
@@ -192,11 +209,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#E2B5B5",
   },
   create: {
-    marginTop: 30,
+    fontSize: 15,
+    color: "#2b2b2b",
   },
   noAccount: {
-    color: "black",
+    color: "#2b2b2b",
     textAlign: "center",
+    textDecorationLine: "underline",
     fontSize: 15,
     marginTop: 15,
   },

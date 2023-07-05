@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Button, Image, Modal } from "react-native";
 import React from "react";
 import { firebaseAuth } from "../firebase";
 import { TouchableOpacity } from "react-native-gesture-handler";
