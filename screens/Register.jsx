@@ -27,22 +27,22 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
 
-  const handleCheckEmail = (text) => {
-    let regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  // const handleCheckEmail = (text) => {
+  //   let regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-    setEmail(text);
-    if (regex.test(text)) {
-      setCheckValidEmail(false);
-    } else {
-      setCheckValidEmail(true);
-    }
-  };
+  //   setEmail(text);
+  //   if (regex.test(text)) {
+  //     setCheckValidEmail(false);
+  //   } else {
+  //     setCheckValidEmail(true);
+  //   }
+  // };
 
   // text input validation
   const [seePassword, setSeePassword] = useState(true);
-  const [checkValidEmail, setCheckValidEmail] = useState(false);
+  // const [checkValidEmail, setCheckValidEmail] = useState(false);
 
   const auth = firebaseAuth;
 
@@ -52,14 +52,12 @@ const Register = ({ navigation }) => {
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
-        name,
-        username,
         password
       );
       Alert.alert("Check your emails for verification");
       setModalVisible(true);
       console.log(response);
-      await createUserInDB(email, user.uid);
+      // await createUserInDB(name, username, email, user.uid);
       // <AnimatedLottieView
       //   source={require("../assets/104368-thank-you.json")}
       // />;
@@ -71,14 +69,14 @@ const Register = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <Modal
+      {/* <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
         }}
-      ></Modal>
+      ></Modal> */}
       <ScrollView>
         <Image
           style={styles.tinyLogo}
@@ -110,7 +108,7 @@ const Register = ({ navigation }) => {
             autoCapitalize="none"
             value={email}
             onChangeText={(text) => setEmail(text)}
-            onChange={(text) => handleCheckEmail(text)}
+            // onChange={(text) => handleCheckEmail(text)}
           />
           <View style={styles.passwordCon}>
             <TextInput

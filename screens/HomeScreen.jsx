@@ -3,6 +3,7 @@ import React from "react";
 import { firebaseAuth } from "../firebase";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import LottieView from "lottie-react-native";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -21,10 +22,20 @@ const HomeScreen = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
 
-      <Image
-        style={styles.homeImg}
-        source={require("../assets/martini.png")}
-      ></Image>
+      <View>
+        <LottieView
+          loop
+          autoPlay
+          style={{
+            height: 600,
+            justifyContent: "center",
+            alignItems: "center",
+            aspectRatio: 1,
+            marginRight: 110,
+          }}
+          source={require("../assets/newScene.json")}
+        />
+      </View>
     </View>
   );
 };
@@ -33,7 +44,8 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   enterBtn: {
-    padding: 30,
+    paddingLeft: 30,
+    paddingTop: 30,
   },
   HomeCon: {
     height: "100%",
@@ -47,7 +59,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 20,
-    marginTop: 20,
+    marginTop: 70,
     marginLeft: 30,
     color: "#2b2b2b",
     fontWeight: "bold",

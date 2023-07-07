@@ -12,13 +12,16 @@ import {
 import { db } from "../firebase";
 import { uploadToStorage } from "./firebaseStorage";
 
-export const createUserInDb = async (email, uid) => {
+export const createUserInDb = async (name, username, email, uid) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
+      name,
+      username,
       email,
       role: "Judge",
       createdAt: Timestamp.now(),
     });
+    console.log("User not added to db: " + docRef.id);
   } catch (e) {
     console.log("Something has gone wrong" + e);
   }

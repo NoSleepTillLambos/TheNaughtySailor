@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     margin: 20,
     fontSize: 18,
+    marginTop: 70,
   },
   card: {
     paddingLeft: 20,

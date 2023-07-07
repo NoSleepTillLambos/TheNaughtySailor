@@ -1,6 +1,5 @@
 import {
   ActivityIndicator,
-  Button,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
@@ -11,26 +10,19 @@ import {
   Modal,
   Pressable,
 } from "react-native";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { firebaseAuth } from "../firebase";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
-import AnimatedLottieView from "lottie-react-native";
-import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import {
   TouchableOpacity,
   TouchableHighlight,
   ScrollView,
 } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import Lottie from "lottie-react-native";
 
 const Login = ({ navigation }) => {
   // text input validation
   const [seePassword, setSeePassword] = useState(true);
-  const [checkValidEmail, setCheckValidEmail] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,7 +36,7 @@ const Login = ({ navigation }) => {
   const signIn = async () => {
     setLoading(true);
     if (!email || !password) {
-      setModalVisible(true);
+      Alert.alert("All details must be filled in");
     }
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
@@ -64,15 +56,6 @@ const Login = ({ navigation }) => {
       // ...
     }
   });
-
-  const animationRef = useRef < AnimatedLottieView > null;
-
-  useEffect(() => {
-    animationRef.current?.play();
-
-    // Or set a specific startFrame and endFrame with:
-    animationRef.current?.play(30, 120);
-  }, []);
 
   return (
     <View style={styles.container}>
@@ -144,7 +127,7 @@ const Login = ({ navigation }) => {
           </View>
 
           {loading ? (
-            <ActivityIndicator size="large" color="#fff" />
+            <ActivityIndicator size="large" />
           ) : (
             <>
               <TouchableHighlight

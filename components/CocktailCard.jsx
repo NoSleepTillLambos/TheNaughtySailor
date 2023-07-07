@@ -25,6 +25,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 10,
     fontWeight: "bold",
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 5 },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
   },
   cocktailImage: {
     flexDirection: "row",

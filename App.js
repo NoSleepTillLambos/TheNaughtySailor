@@ -13,6 +13,11 @@ import { firebaseAuth } from "./firebase";
 import { Icon } from "@rneui/base";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+// TODO: CHANGE FONTS IN APP
+// TODO: CREATE PROFILE PAGE AND MAKE THE USERNAME AND PROFILE PICTURE UPDATEABLE
+// TODO: ENTER COMPETITION AND DISPLAY COMPS BASED ON WHETHER YOU ARE A JUDE OR A CONTESTANT
+// TODO: IMAGE ANIMATIONS
+
 export default function App() {
   const [user, setUser] = useState();
 
@@ -26,14 +31,7 @@ export default function App() {
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer styles={styles.container}>
-      <Tab.Navigator
-        initialRouteName="Login"
-        screenOptions={{
-          drawerStyle: {
-            backgroundColor: "#7799CC",
-          },
-        }}
-      >
+      <Tab.Navigator initialRouteName="Login">
         {user ? (
           <>
             <Tab.Screen
@@ -42,9 +40,9 @@ export default function App() {
               options={{
                 title: "Home",
                 headerShown: false,
-
+                tabBarActiveTintColor: "#dd9a9a",
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={20} name="home-outline" />
+                  <Ionicons size={23} name="home-outline" />
                 ),
               }}
             />
@@ -54,8 +52,9 @@ export default function App() {
               options={{
                 title: "Competitions",
                 headerShown: false,
+                tabBarActiveTintColor: "#dd9a9a",
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={20} name="trophy-outline" />
+                  <Ionicons size={23} name="trophy-outline" />
                 ),
               }}
             />
@@ -65,8 +64,9 @@ export default function App() {
               options={{
                 title: "Results",
                 headerShown: false,
+                tabBarActiveTintColor: "#dd9a9a",
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={20} name="analytics-outline" />
+                  <Ionicons size={23} name="analytics-outline" />
                 ),
               }}
             />
@@ -76,8 +76,9 @@ export default function App() {
               options={{
                 title: "Profile",
                 headerShown: false,
+                tabBarActiveTintColor: "#dd9a9a",
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={20} name="person-outline" />
+                  <Ionicons size={23} name="person-outline" />
                 ),
               }}
               r

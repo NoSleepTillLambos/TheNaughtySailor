@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   },
   EnterDetails: {
     alignSelf: "flex-start",
-    marginTop: 10,
+    marginTop: 60,
   },
   heading: {
     color: "white",
@@ -235,6 +235,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 50,
     backgroundColor: "#fff",
+
     marginLeft: 30,
     marginTop: 20,
     borderRadius: 10,
