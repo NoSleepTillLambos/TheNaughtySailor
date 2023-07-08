@@ -5,23 +5,20 @@ import {
   collection,
   doc,
   getDocs,
-  orderBy,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { uploadToStorage } from "./firebaseStorage";
 
-export const createUserInDb = async (name, username, email, uid) => {
+export const createUserInDb = async (email, uid) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
-      name,
-      username,
       email,
       role: "Judge",
       createdAt: Timestamp.now(),
     });
-    console.log("User not added to db: " + docRef.id);
+    console.log("User added to db: " + docRef.id);
   } catch (e) {
     console.log("Something has gone wrong" + e);
   }

@@ -36,7 +36,7 @@ const Login = ({ navigation }) => {
   const signIn = async () => {
     setLoading(true);
     if (!email || !password) {
-      Alert.alert("All details must be filled in");
+      setModalVisible(true);
     }
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
@@ -76,9 +76,7 @@ const Login = ({ navigation }) => {
                 size={30}
                 style={{ paddingBottom: 25 }}
               />
-              <Text style={styles.modalText}>
-                All fields must be filled in!
-              </Text>
+              <Text style={styles.modalText}>Please fill in all fields!</Text>
               <Pressable
                 style={[styles.ModalButton, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}

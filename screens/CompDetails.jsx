@@ -12,32 +12,72 @@ const CompDetails = ({ route, navigation }) => {
   }, []);
 
   const getCurrentCocktails = async () => {
-    const result = await getCocktailFeatures(project.id);
+    const result = await getCocktailFeatures(cocktail.id);
     setCocktails(result);
   };
   return (
-    <View>
-      <Text>The Durban July</Text>
-      <Text>Submitted by: </Text>
-      {features ? (
-        <ScrollView horizontal={true}>
-          {cocktails.map((cocktail, index) => {
-            <View key={index}>
-              <Text>{cocktail.title}</Text>
-              <Image
-                source={{ uri: cocktail.imageUrl }}
-                style={{ height: 150, width: 150 }}
-              />
-            </View>;
-          })}
-        </ScrollView>
-      ) : (
-        <Text>Competition has not been adjusted </Text>
-      )}
+    <View style={styles.container}>
+      <View style={styles.compView}>
+        <Text style={styles.compTitle}>The Durban July</Text>
+        <Text style={styles.compSub}>Submitted by: </Text>
+        <Image
+          style={styles.compImg}
+          source={require("../assets/cocktails/1.png")}
+        />
+        <Text style={styles.compTime}>Time remaining: </Text>
+        {cocktails ? (
+          <ScrollView horizontal={true}>
+            {cocktails.map((cocktail, index) => {
+              <View key={index}>
+                <Text>{cocktail.title}</Text>
+                <Image
+                  source={{ uri: cocktails.imageUrl }}
+                  style={{ height: 150, width: 150 }}
+                />
+              </View>;
+            })}
+          </ScrollView>
+        ) : (
+          <Text>Competition has not been adjusted </Text>
+        )}
+      </View>
     </View>
   );
 };
 
 export default CompDetails;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "#7799CC",
+  },
+  compTitle: {
+    fontSize: 40,
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  compView: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 100,
+  },
+  compSub: {
+    fontWeight: "bold",
+    fontSize: 20,
+    justifyContent: "space-between",
+    color: "#fff",
+  },
+  compImg: {
+    height: 300,
+    marginTop: 60,
+    width: 250,
+  },
+  compTime: {
+    fontSize: 15,
+    justifyContent: "space-between",
+    color: "#fff",
+    marginTop: 50,
+  },
+});

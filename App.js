@@ -7,6 +7,7 @@ import Results from "./screens/Results";
 import Profile from "./screens/Profile";
 import Login from "./screens/LoginScreen";
 import Register from "./screens/Register";
+import CompDetails from "./screens/CompDetails";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "./firebase";
@@ -69,6 +70,19 @@ export default function App() {
                   <Ionicons size={23} name="analytics-outline" />
                 ),
               }}
+            />
+            <Tab.Screen
+              name="CompDetails"
+              component={CompDetails}
+              options={({ route }) => ({
+                title: route.params.title,
+
+                // hides this tab bar from the stack, that way the component is still part of the stack
+                // --> but is just not visible on the frontend
+                tabBarButton: () => null,
+                headerShown: false,
+              })}
+              initialParams={{ title: "testing" }}
             />
             <Tab.Screen
               name="Profile"

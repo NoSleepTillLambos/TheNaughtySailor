@@ -9,6 +9,7 @@ import {
   Alert,
   TouchableHighlight,
   KeyboardAvoidingView,
+  Pressable,
 } from "react-native";
 import { firebaseAuth } from "../firebase";
 import React from "react";
@@ -27,56 +28,70 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const [modalVisible, setModalVisible] = useState(false);
-
-  // const handleCheckEmail = (text) => {
-  //   let regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-  //   setEmail(text);
-  //   if (regex.test(text)) {
-  //     setCheckValidEmail(false);
-  //   } else {
-  //     setCheckValidEmail(true);
-  //   }
-  // };
+  const [modalVisible, setModalVisible] = useState(false);
 
   // text input validation
   const [seePassword, setSeePassword] = useState(true);
+  const [emptyErrorMessage, setEmptyErrorMessage] = useState("");
+  const [firebaseError, setFirebaseError] = useState("");
   // const [checkValidEmail, setCheckValidEmail] = useState(false);
 
   const auth = firebaseAuth;
+  const userAuth = firebaseAuth.currentUser;
+  console.log(userAuth);
 
   const signUp = async () => {
     setLoading(true);
+    if (!email || !password) {
+      setModalVisible(true);
+      setEmptyErrorMessage("Please fill in all fields!");
+    }
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      Alert.alert("Check your emails for verification");
-      setModalVisible(true);
+
       console.log(response);
-      // await createUserInDB(name, username, email, user.uid);
-      // <AnimatedLottieView
-      //   source={require("../assets/104368-thank-you.json")}
-      // />;
+      await createUserInDB(auth, email);
     } catch (error) {
-      console.log(error);
+      setModalVisible(true);
+      setFirebaseError("Your email or password is incorrect");
     } finally {
       setLoading(false);
     }
   };
   return (
     <View style={styles.container}>
-      {/* <Modal
+      <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
-      ></Modal> */}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Ionicons
+              name="alert-circle-outline"
+              size={30}
+              style={{ paddingBottom: 25 }}
+            />
+            <Text style={styles.modalText}>
+              {emptyErrorMessage} {firebaseError}
+            </Text>
+            <Pressable
+              style={[styles.ModalButton, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Try again</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
       <ScrollView>
         <Image
           style={styles.tinyLogo}
@@ -227,5 +242,43 @@ const styles = StyleSheet.create({
   passwordCon: {
     flex: 1,
     flexDirection: "row",
+  },
+
+  // MODAL VIEWS
+
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  textStyle: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  ModalButton: {
+    borderRadius: 10,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: "#dd9a9a",
   },
 });

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { RefreshControl, ScrollView } from "react-native-gesture-handler";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   getAllCocktails,
   getAllCompetitionsFromCollection,
@@ -17,7 +17,9 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 
-const Results = ({ navigation }) => {
+const Results = () => {
+  const navigation = useNavigation();
+
   const [cocktails, setCocktails] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   // IF YOU HAVE TIME TO REAL TIME DATA BINDING AND FETCHING
@@ -54,7 +56,7 @@ const Results = ({ navigation }) => {
 
   return (
     <View style={styles.resultsCon}>
-      <Text style={styles.heading}>Current cocktails competitions:</Text>
+      <Text style={styles.heading}>Current cocktail competitions:</Text>
 
       <ScrollView
         refreshControl={
@@ -65,7 +67,7 @@ const Results = ({ navigation }) => {
           <TouchableOpacity
             style={styles.card}
             key={index}
-            onPress={() => navigation.navigate("Details")}
+            onPress={() => navigation.navigate("CompDetails", { cocktail })}
             activeOpacity={0.8}
           >
             <CocktailCard data={cocktail} />
