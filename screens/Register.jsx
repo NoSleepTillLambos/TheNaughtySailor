@@ -14,7 +14,7 @@ import {
 import { firebaseAuth } from "../firebase";
 import React from "react";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { ScrollView } from "react-native-gesture-handler";
 import { createUserInDB } from "../services/firebaseDB";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -22,6 +22,17 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
 const Register = ({ navigation }) => {
+  let [fontsLoaded] = useFonts({
+    "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
+    "Quicksand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
+    "Quicksand-Light": require("../assets/fonts/Quicksand-Light.ttf"),
+
+    // cursive font
+  });
+
+  if (!fontsLoaded) {
+    <AppLoading />;
+  }
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -37,8 +48,6 @@ const Register = ({ navigation }) => {
   // const [checkValidEmail, setCheckValidEmail] = useState(false);
 
   const auth = firebaseAuth;
-  const userAuth = firebaseAuth.currentUser;
-  console.log(userAuth);
 
   const signUp = async () => {
     setLoading(true);
@@ -51,10 +60,21 @@ const Register = ({ navigation }) => {
         auth,
         email,
         password
-      );
+      )
+        .then(async (userCredential) => {
+          // Signed in
 
-      console.log(response);
-      await createUserInDB(auth, email);
+          const user = userCredential.user;
+          console.log("New user is :" + user);
+
+          await createUserInDB(email, user.uid);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + ": " + errorMessage);
+          // ..
+        });
     } catch (error) {
       setModalVisible(true);
       setFirebaseError("Your email or password is incorrect");
@@ -201,7 +221,7 @@ const styles = StyleSheet.create({
     marginTop: -20,
     textAlign: "center",
     color: "#2b2b2b",
-    fontWeight: "bold",
+    fontFamily: "Quicksand-Bold",
   },
   tinyLogo: {
     width: 350,
@@ -231,6 +251,7 @@ const styles = StyleSheet.create({
   create: {
     fontSize: 15,
     color: "#2b2b2b",
+    fontFamily: "Quicksand-Medium",
   },
   noAccount: {
     color: "#2b2b2b",
@@ -238,6 +259,7 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     fontSize: 15,
     marginTop: 15,
+    fontFamily: "Quicksand-Medium",
   },
   passwordCon: {
     flex: 1,

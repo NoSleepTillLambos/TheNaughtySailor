@@ -14,6 +14,7 @@ import { uploadToStorage } from "./firebaseStorage";
 export const createUserInDb = async (email, uid) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
+      uid,
       email,
       role: "Judge",
       createdAt: Timestamp.now(),

@@ -14,10 +14,10 @@ import { firebaseAuth } from "./firebase";
 import { Icon } from "@rneui/base";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-// TODO: CHANGE FONTS IN APP
 // TODO: CREATE PROFILE PAGE AND MAKE THE USERNAME AND PROFILE PICTURE UPDATEABLE
 // TODO: ENTER COMPETITION AND DISPLAY COMPS BASED ON WHETHER YOU ARE A JUDE OR A CONTESTANT
-// TODO: IMAGE ANIMATIONS
+// TODO: HIDE ENTERING COMPETITIONS FROM ANYONE BUT ME
+// TODO: GET GLOBAL STYLES SHEET TO WORK
 
 export default function App() {
   const [user, setUser] = useState();

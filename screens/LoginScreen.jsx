@@ -19,8 +19,22 @@ import {
   ScrollView,
 } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 const Login = ({ navigation }) => {
+  // loading fonts
+  let [fontsLoaded] = useFonts({
+    "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
+    "Quicksand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
+    "Quicksand-Light": require("../assets/fonts/Quicksand-Light.ttf"),
+
+    // cursive font
+  });
+
+  if (!fontsLoaded) {
+    <AppLoading />;
+  }
   // text input validation
   const [seePassword, setSeePassword] = useState(true);
 
@@ -166,6 +180,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#2b2b2b",
     fontWeight: "bold",
+    fontFamily: "Quicksand-Bold",
   },
   input: {
     marginVertical: 4,
@@ -202,6 +217,7 @@ const styles = StyleSheet.create({
   create: {
     fontSize: 15,
     color: "#2b2b2b",
+    fontFamily: "Quicksand-Bold",
   },
   signIn: {
     backgroundColor: "white",
@@ -210,8 +226,9 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     fontSize: 15,
-    marginTop: 15,
+    marginTop: 20,
     textDecorationLine: "underline",
+    fontFamily: "Quicksand-Medium",
   },
   passwordCon: {
     flex: 1,

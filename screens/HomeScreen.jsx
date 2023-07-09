@@ -4,20 +4,42 @@ import { firebaseAuth } from "../firebase";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import LottieView from "lottie-react-native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 const HomeScreen = ({ navigation }) => {
+  // loading fonts
+  let [fontsLoaded] = useFonts({
+    // QUICKSAND FONTS
+    "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
+    "Quicksand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
+    "Quicksand-Light": require("../assets/fonts/Quicksand-Light.ttf"),
+
+    // cursive font
+    "Dancing-SemiBold": require("../assets/fonts/DancingScript-SemiBold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    <AppLoading />;
+  }
   return (
     <View style={styles.HomeCon}>
-      <Text style={styles.header}>It's time for a drink</Text>
+      <Text style={styles.header}>It's time for a</Text>
+      <Text style={styles.drink}>Drink</Text>
 
       <Text style={styles.desc}>
-        Naughty Sailor is your all in one cocktail app
+        Your all in one cocktail app for every occasion
       </Text>
       <TouchableOpacity
         style={styles.enterBtn}
         onPress={() => navigation.navigate("Competitions")}
       >
-        <Text style={{ fontSize: 20 }}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontFamily: "Quicksand-Medium",
+          }}
+        >
           Enter now <Ionicons name="enter-outline" size={18}></Ionicons>
         </Text>
       </TouchableOpacity>
@@ -27,11 +49,11 @@ const HomeScreen = ({ navigation }) => {
           loop
           autoPlay
           style={{
-            height: 600,
+            height: 500,
             justifyContent: "center",
             alignItems: "center",
             aspectRatio: 1,
-            marginRight: 110,
+            marginRight: 60,
           }}
           source={require("../assets/newScene.json")}
         />
@@ -45,10 +67,9 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   enterBtn: {
     paddingLeft: 30,
-    paddingTop: 30,
+    paddingTop: 20,
   },
   HomeCon: {
-    height: "100%",
     backgroundColor: "#fff",
     color: "white",
   },
@@ -64,15 +85,14 @@ const styles = StyleSheet.create({
     color: "#2b2b2b",
     fontWeight: "bold",
     paddingTop: 20,
+    fontFamily: "Quicksand-Medium",
   },
-  intro: {
-    marginTop: 20,
-    textAlign: "center",
-    backgroundColor: "white",
-    height: "30%",
-    width: "80%",
+  drink: {
+    fontSize: 50,
     marginLeft: 30,
-    borderRadius: 10,
+    color: "#2b2b2b",
+    fontFamily: "Dancing-SemiBold",
+    paddingTop: 20,
   },
   desc: {
     marginLeft: 30,
@@ -80,5 +100,6 @@ const styles = StyleSheet.create({
     color: "#7799CC",
     fontSize: 17,
     fontWeight: "bold",
+    fontFamily: "Quicksand-Bold",
   },
 });
