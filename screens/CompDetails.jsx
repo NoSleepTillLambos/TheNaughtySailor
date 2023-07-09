@@ -4,6 +4,18 @@ import { getCocktailFeatures } from "../services/firebaseDB";
 import { ScrollView } from "react-native-gesture-handler";
 
 const CompDetails = ({ route, navigation }) => {
+  let [fontsLoaded] = useFonts({
+    // QUICKSAND FONTS
+    "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
+    "Quicksand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
+    "Quicksand-Light": require("../assets/fonts/Quicksand-Light.ttf"),
+
+    // cursive font
+    "Dancing-SemiBold": require("../assets/fonts/DancingScript-SemiBold.ttf"),
+  });
+
+  // entering a competition
+  const enterComp = () => {};
   const { cocktail } = route.params;
   const [cocktails, setCocktails] = useState("");
 

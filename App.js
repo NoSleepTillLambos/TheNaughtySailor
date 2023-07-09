@@ -27,8 +27,7 @@ export default function App() {
       setUser(user);
     });
   }, []);
-  // CHECK IF THE USER IS LOGGED IN
-  // const LoggedIn = false;
+
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer styles={styles.container}>

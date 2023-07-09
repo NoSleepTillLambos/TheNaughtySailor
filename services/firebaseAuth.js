@@ -3,27 +3,33 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { createUserInDB } from "../services/firebaseDB";
+import { firebaseAuth } from "../firebase";
 
 export const registerNewUser = async (email, password) => {
-  await createUserWithEmailAndPassword(auth, email, password)
+  const response = await createUserWithEmailAndPassword(
+    firebaseAuth,
+    email,
+    password
+  )
     .then(async (userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log("New User: " + user);
-      updateAuthProfile(username);
+      // updateAuthProfile(username);
 
-      await createUserInDb(username, email, user.uid);
+      await createUserInDB(email, user.uid);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode + ": " + errorMessage);
     });
+  console.log(response);
 };
 
-export const signinUser = async (email, password) => {
-  await signInWithEmailAndPassword(auth, email, password)
+export const signInUser = async (email, password) => {
+  await signInWithEmailAndPassword(firebaseAuth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;

@@ -14,12 +14,12 @@ import {
 import { firebaseAuth } from "../firebase";
 import React from "react";
 import { useState } from "react";
-import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { ScrollView } from "react-native-gesture-handler";
-import { createUserInDB } from "../services/firebaseDB";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { registerNewUser } from "../services/firebaseAuth";
+import LottieView from "lottie-react-native";
 
 const Register = ({ navigation }) => {
   let [fontsLoaded] = useFonts({
@@ -47,7 +47,7 @@ const Register = ({ navigation }) => {
   const [firebaseError, setFirebaseError] = useState("");
   // const [checkValidEmail, setCheckValidEmail] = useState(false);
 
-  const auth = firebaseAuth;
+  const [accountSuccessful, setAccountSuccessful] = useState("");
 
   const signUp = async () => {
     setLoading(true);
@@ -56,30 +56,16 @@ const Register = ({ navigation }) => {
       setEmptyErrorMessage("Please fill in all fields!");
     }
     try {
-      const response = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      )
-        .then(async (userCredential) => {
-          // Signed in
-
-          const user = userCredential.user;
-          console.log("New user is :" + user);
-
-          await createUserInDB(email, user.uid);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode + ": " + errorMessage);
-          // ..
-        });
+      await registerNewUser(email, password);
+      console.log(response);
     } catch (error) {
       setModalVisible(true);
-      setFirebaseError("Your email or password is incorrect");
+      setFirebaseError(
+        "Ensure your Email is correct and your password contains 6 characters"
+      );
     } finally {
       setLoading(false);
+      Alert.alert("Your account has been created successfully!");
     }
   };
   return (
@@ -89,7 +75,6 @@ const Register = ({ navigation }) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >

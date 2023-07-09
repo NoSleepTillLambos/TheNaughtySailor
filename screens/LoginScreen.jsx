@@ -41,6 +41,7 @@ const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [emptyErrorMessage, setEmptyErrorMessage] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
 
   const auth = firebaseAuth;
@@ -51,12 +52,14 @@ const Login = ({ navigation }) => {
     setLoading(true);
     if (!email || !password) {
       setModalVisible(true);
+      setEmptyErrorMessage("Please fill in all fields!");
     }
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
     } catch (error) {
       console.log(error);
+      setModalVisible(true);
     } finally {
       setLoading(false);
     }
@@ -79,7 +82,6 @@ const Login = ({ navigation }) => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
             setModalVisible(!modalVisible);
           }}
         >
@@ -90,7 +92,7 @@ const Login = ({ navigation }) => {
                 size={30}
                 style={{ paddingBottom: 25 }}
               />
-              <Text style={styles.modalText}>Please fill in all fields!</Text>
+              <Text style={styles.modalText}>{emptyErrorMessage}</Text>
               <Pressable
                 style={[styles.ModalButton, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
