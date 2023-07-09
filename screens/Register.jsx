@@ -47,8 +47,6 @@ const Register = ({ navigation }) => {
   const [firebaseError, setFirebaseError] = useState("");
   // const [checkValidEmail, setCheckValidEmail] = useState(false);
 
-  const [accountSuccessful, setAccountSuccessful] = useState("");
-
   const signUp = async () => {
     setLoading(true);
     if (!email || !password) {
@@ -65,7 +63,6 @@ const Register = ({ navigation }) => {
       );
     } finally {
       setLoading(false);
-      Alert.alert("Your account has been created successfully!");
     }
   };
   return (

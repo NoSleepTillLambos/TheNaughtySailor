@@ -55,7 +55,7 @@ const HomeScreen = ({ navigation }) => {
             aspectRatio: 1,
             marginRight: 60,
           }}
-          source={require("../assets/newScene.json")}
+          source={require("../assets/animations/newScene.json")}
         />
       </View>
     </View>

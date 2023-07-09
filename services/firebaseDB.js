@@ -1,4 +1,3 @@
-// user collection
 import {
   Timestamp,
   addDoc,
@@ -10,11 +9,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { uploadToStorage } from "./firebaseStorage";
+// code for firestore and adding to db
 
-export const createUserInDb = async (email, uid) => {
+export const createUserInDB = async (email, uid) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
-      uid,
       email,
       role: "Judge",
       createdAt: Timestamp.now(),
