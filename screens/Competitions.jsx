@@ -13,80 +13,43 @@ import React, { useState } from "react";
 import { Tooltip, useTheme } from "@rneui/themed";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
-import { getCurrentUser } from "../services/firebaseAuth";
 import DropDownPicker from "react-native-dropdown-picker";
 import { ScrollView } from "react-native-gesture-handler";
-import { firebaseAuth } from "../firebase";
-import { addCocktailToCollection } from "../services/firebaseDB";
-import { uploadToStorage } from "../services/firebaseStorage";
+import { addCocktailCompetition } from "../services/firebaseDB";
 
 const Competitions = () => {
   const [openTip, setOpenTip] = useState(false);
   const [value, setValue] = useState(null);
+  const [alcoholOne, setAlcoholOne] = useState("");
+  const [alcoholTwo, setAlcoholTwo] = useState("");
   const [items, setItems] = useState([
     { label: "Non Alcoholic", value: "non" },
     { label: "Alcoholic", value: "alc" },
   ]);
 
   const [open, setOpen] = useState(false);
-
   const [name, setName] = useState("");
-
-  const createCocktailEntry = async () => {
-    // do all inputs have value
-
-    if (name && value) {
-      var creatorInfo = firebaseAuth.currentUser;
-
-      var cocktail = {
-        value,
-        name,
-      };
-
-      var features = [];
-      image && features.push({ imageUrl: image, title: image });
-
-      const success = await addCocktailToCollection(cocktail, features);
-
-      if (success) {
-        console.log("added cocktail successfully");
-        NavigationPreloadManager.goBack();
-      } else {
-        console.log("not added");
-      }
-    } else {
-      Alert.alert("Please fill in all the fields");
-    }
-  };
-
   const [image, setImage] = useState(null);
-  const [image1, setImage1] = useState(null);
-
-  const [cocktailOne, setCocktailOne] = useState("");
-  const [cocktailTwo, setCocktailTwo] = useState("");
 
   const pickImageFromLibrary = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [6, 4],
+      aspect: [4, 3],
       quality: 0.7,
     });
-
-    console.log(result);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
+    console.log(image);
   };
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.EnterDetails}>
-          <Text style={styles.heading}>
-            Take your shot at the best cocktail!
-          </Text>
+          <Text style={styles.heading}>Create competition</Text>
           {/* // tooltip for entering comp */}
           <Tooltip
             visible={openTip}
@@ -98,7 +61,9 @@ const Competitions = () => {
                   1. Choose a name {"\n"} 2.Enter the category
                 </Text>
                 <Text style={{ color: "#fff" }}>2. Choose a category</Text>
-                <Text style={{ color: "#fff" }}>2. Select an image</Text>
+                <Text style={{ color: "#fff" }}>
+                  3. Upload a picture of your cocktail
+                </Text>
               </>
             }
           >
@@ -130,20 +95,14 @@ const Competitions = () => {
             {image && (
               <Image
                 source={{ uri: image }}
-                style={{
-                  alignSelf: "center",
-                  width: 290,
-                  height: 200,
-                  marginTop: 5,
-                  borderRadius: 20,
-                }}
+                style={{ height: 130, width: 130 }}
               />
             )}
           </View>
           <View style={styles.inputGroup}>
             {image ? (
               <Pressable onPress={() => setImage(null)}>
-                <Ionicons name="trash-outline" size={32} color="red" />
+                <Ionicons name="trash-outline" size={20} color="red" />
               </Pressable>
             ) : (
               <>
@@ -159,8 +118,31 @@ const Competitions = () => {
               </>
             )}
           </View>
-          <TouchableOpacity style={styles.upload} onPress={createCocktailEntry}>
-            <Text style={styles.Enter}>Enter Cocktail competition!</Text>
+          <Text style={{ paddingLeft: 30, fontSize: 10, marginBottom: 5 }}>
+            What type of alcohol does your cocktail have?
+          </Text>
+          <View style={styles.alcoholType}>
+            <TextInput
+              style={styles.alcohol}
+              keyboardType="default"
+              defaultValue={alcoholOne}
+              onChangeText={(newValue) => setAlcoholOne(newValue)}
+            />
+            <TextInput
+              style={styles.alcohol}
+              keyboardType="default"
+              defaultValue={alcoholTwo}
+              onChangeText={(newValue) => setAlcoholTwo(newValue)}
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.upload}
+            onPress={() =>
+              addCocktailCompetition(name, value, image, alcoholOne, alcoholTwo)
+            }
+          >
+            <Text style={styles.Enter}>Create Competition</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -172,16 +154,27 @@ export default Competitions;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#E2B5B5",
-    height: "100%",
     flex: 1,
+  },
+  alcohol: {
+    height: 50,
+    width: 135,
+    borderRadius: 10,
+    marginLeft: 30,
+    paddingLeft: 15,
+    marginVertical: 4,
+    shadowColor: "#2b2b2b",
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: "#dd9a9a",
+    padding: 10,
+    backgroundColor: "#fff",
   },
   EnterDetails: {
     alignSelf: "flex-start",
     marginTop: 60,
   },
   heading: {
-    color: "white",
     marginBottom: 10,
     textAlignVertical: "center",
     fontWeight: "bold",
@@ -202,6 +195,10 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     marginBottom: 5,
   },
+  alcoholType: {
+    flex: 1,
+    flexDirection: "row",
+  },
   cocktailName: {
     fontSize: 12,
     marginTop: 20,
@@ -212,6 +209,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: 50,
     width: 300,
+    borderWidth: 1,
+    borderColor: "#dd9a9a",
     borderRadius: 10,
     marginLeft: 30,
     paddingLeft: 15,
@@ -224,8 +223,8 @@ const styles = StyleSheet.create({
   },
   cocktailImg: {
     backgroundColor: "#fff",
-    height: 210,
-    width: 300,
+    height: 120,
+    width: 120,
     borderRadius: 10,
     color: "black",
     marginLeft: 30,
@@ -235,25 +234,20 @@ const styles = StyleSheet.create({
     width: 300,
     height: 50,
     backgroundColor: "#fff",
-
     marginLeft: 30,
-    marginTop: 20,
+    marginTop: 15,
     borderRadius: 10,
   },
   uploadImageButton: {
     marginBottom: 20,
   },
   inputGroup: {
-    display: "flex",
     flexDirection: "row",
-    // justifyContent: "space-between",
     gap: 15,
     alignItems: "left",
     marginLeft: 50,
   },
-  Ionicons: {
-    size: "32px",
-  },
+
   Enter: {
     textAlign: "center",
     marginTop: 15,
@@ -262,6 +256,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     width: 300,
     height: 50,
+    border: 1,
     marginLeft: 30,
   },
 });

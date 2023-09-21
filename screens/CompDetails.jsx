@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getCocktailFeatures } from "../services/firebaseDB";
 import { ScrollView } from "react-native-gesture-handler";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 const CompDetails = ({ route, navigation }) => {
   let [fontsLoaded] = useFonts({
@@ -13,6 +15,9 @@ const CompDetails = ({ route, navigation }) => {
     // cursive font
     "Dancing-SemiBold": require("../assets/fonts/DancingScript-SemiBold.ttf"),
   });
+  if (!fontsLoaded) {
+    <AppLoading />;
+  }
 
   // entering a competition
   const enterComp = () => {};
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
   compTitle: {
     fontSize: 40,
     color: "#fff",
-    fontWeight: "bold",
+    fontFamily: "Quicksand-Bold",
   },
   compView: {
     justifyContent: "center",
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
   },
   compSub: {
-    fontWeight: "bold",
+    fontFamily: "Quicksand-Bold",
     fontSize: 20,
     justifyContent: "space-between",
     color: "#fff",

@@ -55,7 +55,7 @@ const Results = () => {
   };
 
   return (
-    <View style={styles.resultsCon}>
+    <View style={styles.container}>
       <Text style={styles.heading}>Current cocktail competitions:</Text>
 
       <ScrollView
@@ -63,16 +63,18 @@ const Results = () => {
           <RefreshControl refreshing={refreshing} onRefresh={getAllCocktails} />
         }
       >
-        {cocktails.map((cocktail, index) => (
-          <TouchableOpacity
-            style={styles.card}
-            key={index}
-            onPress={() => navigation.navigate("CompDetails", { cocktail })}
-            activeOpacity={0.8}
-          >
-            <CocktailCard data={cocktail} />
-          </TouchableOpacity>
-        ))}
+        <View style={{ flexDirection: "row", flex: 1, gap: -240 }}>
+          {cocktails.map((cocktail, index) => (
+            <TouchableOpacity
+              style={styles.card}
+              key={index}
+              onPress={() => navigation.navigate("CompDetails", { cocktail })}
+              activeOpacity={0.8}
+            >
+              <CocktailCard data={cocktail} />
+            </TouchableOpacity>
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
@@ -81,20 +83,16 @@ const Results = () => {
 export default Results;
 
 const styles = StyleSheet.create({
-  resultsCon: {
+  container: {
     flex: 1,
-    backgroundColor: "#E2B5B5",
-    height: "100%",
   },
   heading: {
-    color: "#fff",
-    fontWeight: "bold",
     margin: 20,
-    fontSize: 18,
+    fontSize: 15,
     marginTop: 70,
   },
   card: {
-    paddingLeft: 20,
-    paddingTop: 10,
+    width: 400,
+    marginLeft: 20,
   },
 });

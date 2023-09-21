@@ -14,7 +14,7 @@ import {
 import { firebaseAuth } from "../firebase";
 import React from "react";
 import { useState } from "react";
-import { ScrollView } from "react-native-gesture-handler";
+import { FlatList, ScrollView } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
@@ -45,6 +45,7 @@ const Register = ({ navigation }) => {
   const [seePassword, setSeePassword] = useState(true);
   const [emptyErrorMessage, setEmptyErrorMessage] = useState("");
   const [firebaseError, setFirebaseError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   // const [checkValidEmail, setCheckValidEmail] = useState(false);
 
   const signUp = async () => {
@@ -53,14 +54,18 @@ const Register = ({ navigation }) => {
       setModalVisible(true);
       setEmptyErrorMessage("Please fill in all fields!");
     }
+    if (!email.includes("@")) {
+      setModalVisible(true);
+      setFirebaseError("Please make sure the email you are entering is valid");
+    }
+    if (password.length < 6) {
+      setPasswordError("Password must contain 6 characters");
+    }
     try {
       await registerNewUser(email, password);
       console.log(response);
     } catch (error) {
-      setModalVisible(true);
-      setFirebaseError(
-        "Ensure your Email is correct and your password contains 6 characters"
-      );
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -83,7 +88,7 @@ const Register = ({ navigation }) => {
               style={{ paddingBottom: 25 }}
             />
             <Text style={styles.modalText}>
-              {emptyErrorMessage} {firebaseError}
+              {emptyErrorMessage} {firebaseError} {passwordError}
             </Text>
             <Pressable
               style={[styles.ModalButton, styles.buttonClose]}

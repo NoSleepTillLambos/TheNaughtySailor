@@ -31,7 +31,23 @@ export default function App() {
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer styles={styles.container}>
-      <Tab.Navigator initialRouteName="Login">
+      <Tab.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            position: "absolute",
+            bottom: 20,
+            left: 15,
+            right: 15,
+            elevation: 0,
+            backgroundColor: "#ffffff",
+            borderRadius: 20,
+            height: 90,
+            padding: 25,
+          },
+        }}
+      >
         {user ? (
           <>
             <Tab.Screen
@@ -41,8 +57,9 @@ export default function App() {
                 title: "Home",
                 headerShown: false,
                 tabBarActiveTintColor: "#dd9a9a",
+
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={23} name="home-outline" />
+                  <Ionicons size={25} name="home-outline" />
                 ),
               }}
             />
@@ -54,7 +71,7 @@ export default function App() {
                 headerShown: false,
                 tabBarActiveTintColor: "#dd9a9a",
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={23} name="trophy-outline" />
+                  <Ionicons size={25} name="trophy-outline" />
                 ),
               }}
             />
@@ -65,8 +82,9 @@ export default function App() {
                 title: "Results",
                 headerShown: false,
                 tabBarActiveTintColor: "#dd9a9a",
+
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={23} name="analytics-outline" />
+                  <Ionicons size={25} name="analytics-outline" />
                 ),
               }}
             />
@@ -119,7 +137,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2b2b2b",
+    backgroundColor: "transparent",
     fontFamily: "sans-bold",
   },
   content: {

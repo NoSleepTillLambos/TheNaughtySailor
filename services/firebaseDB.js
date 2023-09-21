@@ -33,39 +33,27 @@ export const updateUserInDb = async (uid, userInfo) => {
   }
 };
 
-export const addCocktailToCollection = async (cocktail, features = []) => {
+export const addCocktailCompetition = async (
+  name,
+  value,
+  image,
+  alcoholOne,
+  alcoholTwo
+) => {
   try {
-    console.log(features);
-    const docRef = await addDoc(collection(db, "cocktails"), cocktail);
+    const docRef = await addDoc(collection(db, "cocktails"), {
+      name: name,
+      cocktailImg: await uploadToStorage(
+        image,
+        `cocktailImages/${Math.floor(Math.random() * 6) + 1}`
+      ),
+      value: value,
+      alcoholOne: alcoholOne,
+      alcoholTwo: alcoholTwo,
+    });
     console.log("Successfully added project");
-    if (docRef.id) {
-      // project successfully created
-      // upload the cocktails
-      features.forEach(async (feature) => {
-        // upload image
-        const imageUrl = await uploadToStorage(
-          feature.imageUrl,
-          `cocktails/${docRef.id}_${feature.title}`
-        );
-
-        // add as a sub collection
-        const featureRef = await addDoc(
-          collection(db, `cocktails/${docRef.id}/features`),
-          {
-            title: feature.title,
-            imageUrl: imageUrl,
-          }
-        );
-
-        console.log("Successfully added cocktail" + featureRef.id);
-      });
-
-      return true;
-    } else {
-      return false;
-    }
-  } catch (e) {
-    console.log("This went wrong: " + e);
+  } catch (err) {
+    console.log("This is the error: " + err);
   }
 };
 

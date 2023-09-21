@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View, Button, Image, Modal } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { firebaseAuth } from "../firebase";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import LottieView from "lottie-react-native";
@@ -10,13 +9,12 @@ import AppLoading from "expo-app-loading";
 const HomeScreen = ({ navigation }) => {
   // loading fonts
   let [fontsLoaded] = useFonts({
+    // cursive font
+    "Dancing-SemiBold": require("../assets/fonts/DancingScript-SemiBold.ttf"),
     // QUICKSAND FONTS
     "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
     "Quicksand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
     "Quicksand-Light": require("../assets/fonts/Quicksand-Light.ttf"),
-
-    // cursive font
-    "Dancing-SemiBold": require("../assets/fonts/DancingScript-SemiBold.ttf"),
   });
 
   if (!fontsLoaded) {

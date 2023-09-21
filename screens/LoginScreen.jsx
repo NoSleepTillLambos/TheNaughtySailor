@@ -21,6 +21,7 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { signInUser } from "../services/firebaseAuth";
 
 const Login = ({ navigation }) => {
   // loading fonts
@@ -55,8 +56,7 @@ const Login = ({ navigation }) => {
       setEmptyErrorMessage("Please fill in all fields!");
     }
     try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log(response);
+      await signInUser(email, password);
     } catch (error) {
       console.log(error);
       setModalVisible(true);
@@ -64,15 +64,6 @@ const Login = ({ navigation }) => {
       setLoading(false);
     }
   };
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
 
   return (
     <View style={styles.container}>
