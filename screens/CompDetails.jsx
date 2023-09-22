@@ -4,6 +4,7 @@ import { getCocktailFeatures } from "../services/firebaseDB";
 import { ScrollView } from "react-native-gesture-handler";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import CompetitionEntry from "../components/CompetitionEntry";
 
 const CompDetails = ({ route, navigation }) => {
   let [fontsLoaded] = useFonts({
@@ -34,30 +35,18 @@ const CompDetails = ({ route, navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.compView}>
-        <Text style={styles.compTitle}>The Durban July</Text>
-        <Text style={styles.compSub}>Submitted by: </Text>
-        <Image
-          style={styles.compImg}
-          source={require("../assets/cocktails/1.png")}
-        />
-        <Text style={styles.compTime}>Time remaining: </Text>
-        {cocktails ? (
-          <ScrollView horizontal={true}>
-            {cocktails.map((cocktail, index) => {
-              <View key={index}>
-                <Text>{cocktail.title}</Text>
-                <Image
-                  source={{ uri: cocktails.imageUrl }}
-                  style={{ height: 150, width: 150 }}
-                />
-              </View>;
-            })}
-          </ScrollView>
-        ) : (
-          <Text>Competition has not been adjusted </Text>
-        )}
-      </View>
+      <ScrollView>
+        <View style={styles.compView}>
+          <Text style={styles.compTitle}>{cocktail.name}</Text>
+
+          <Image
+            style={styles.compImg}
+            source={{ uri: cocktail.cocktailImg }}
+          />
+          <Text style={styles.compTime}>Current Entries: </Text>
+          <CompetitionEntry />
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -87,14 +76,15 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   compImg: {
-    height: 300,
-    marginTop: 60,
+    height: 250,
+    marginTop: 30,
     width: 250,
+    borderRadius: 10,
   },
   compTime: {
-    fontSize: 15,
-    justifyContent: "space-between",
+    fontSize: 20,
     color: "#fff",
-    marginTop: 50,
+    marginTop: 30,
+    fontFamily: "Quicksand-Medium",
   },
 });

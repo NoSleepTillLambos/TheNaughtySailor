@@ -23,8 +23,8 @@ const Competitions = () => {
   const [alcoholOne, setAlcoholOne] = useState("");
   const [alcoholTwo, setAlcoholTwo] = useState("");
   const [items, setItems] = useState([
-    { label: "Non Alcoholic", value: "non" },
-    { label: "Alcoholic", value: "alc" },
+    { label: "Non Alcoholic", value: "non-alcoholic" },
+    { label: "Alcoholic", value: "alcoholic" },
   ]);
 
   const [open, setOpen] = useState(false);
@@ -76,7 +76,7 @@ const Competitions = () => {
             style={styles.dropdown}
             open={open}
             value={value}
-            placeholder="Alcoholic or non"
+            placeholder="Alcoholic or non-alcoholic"
             items={items}
             setOpen={setOpen}
             setValue={setValue}

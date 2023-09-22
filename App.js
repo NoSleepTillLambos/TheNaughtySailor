@@ -92,8 +92,12 @@ export default function App() {
               name="CompDetails"
               component={CompDetails}
               options={({ route }) => ({
-                title: route.params.title,
-
+                name: route.params.name,
+                // creator: route.params., getting current users name and email
+                image: route.params.imageUrl,
+                value: route.params.value,
+                alcoholOne: route.params.alcoholOne,
+                alcoholTwo: route.params.alcoholTwo,
                 // hides this tab bar from the stack, that way the component is still part of the stack
                 // --> but is just not visible on the frontend
                 tabBarButton: () => null,

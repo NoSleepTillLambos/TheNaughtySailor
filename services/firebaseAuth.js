@@ -2,6 +2,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  updateEmail,
 } from "firebase/auth";
 import { createUserInDB } from "../services/firebaseDB";
 import { firebaseAuth } from "../firebase";
@@ -41,13 +42,13 @@ export const signInUser = async (email, password) => {
       ]);
     });
 };
-export const updateAuthProfile = async (username, imageUrl = "") => {
+export const updateAuthProfile = async (email, imageUrl = "") => {
   try {
-    await updateProfile(auth.currentUser, {
-      displayName: username,
+    await updateProfile(firebaseAuth.currentUser, {
+      displayName: email,
       photoURL: imageUrl,
     });
-    console.log("Profile updated in Auth Successfully");
+    console.log("Profile updated success mf");
     return true;
   } catch (error) {
     console.log("Something went wrong in Update Auth: " + error);
@@ -55,4 +56,16 @@ export const updateAuthProfile = async (username, imageUrl = "") => {
   }
 };
 
-// TODO(you): prompt the user to re-provide their sign-in credentials
+export const getCurrentUser = () => {
+  return firebaseAuth.currentUser;
+};
+
+export const changeEmail = async (email) => {
+  try {
+    await updateEmail(firebaseAuth.currentUser, {
+      email: email,
+    });
+  } catch (e) {
+    console.log("Your error is" + e);
+  }
+};

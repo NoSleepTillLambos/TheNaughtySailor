@@ -33,14 +33,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: 200,
-    width: "40%",
-    marginTop: 5,
+    width: 150,
+
     borderRadius: 10,
-    fontWeight: "bold",
     shadowColor: "#171717",
     shadowOffset: { width: -2, height: 5 },
     shadowOpacity: 0.2,
-    shadowRadius: 12,
+    shadowRadius: 5,
     backgroundColor: "#dd9a9a",
   },
   desc: {

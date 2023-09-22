@@ -80,8 +80,6 @@ export const getAllCompetitionsFromCollection = async () => {
 
     const snapshot = await getDocs(collection(db, "cocktails"));
     snapshot.forEach((doc) => {
-      // console.log(doc.id, "=>", doc.data())
-
       cocktailComps.push({ ...doc.data(), id: doc.id });
     });
 
