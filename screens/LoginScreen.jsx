@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 4,
+    borderRadius: 10,
     backgroundColor: "#dd9a9a",
     width: "30%",
     height: 40,
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",

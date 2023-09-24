@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 20,
-    marginLeft: 30,
+    marginLeft: 20,
   },
   heading: {
     margin: 20,

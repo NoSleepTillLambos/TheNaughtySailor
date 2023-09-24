@@ -17,9 +17,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 // TODO: CREATE PROFILE PAGE AND MAKE THE USERNAME AND PROFILE PICTURE UPDATEABLE
 // TODO: ENTER COMPETITION AND DISPLAY COMPS BASED ON WHETHER YOU ARE A JUDE OR A CONTESTANT
 // TODO: HIDE ENTERING COMPETITIONS FROM ANYONE BUT ME
-// TODO: GET GLOBAL STYLES SHEET TO WORK
+// TODO: TAB BAR BADGE WHEN CLICKING NEW COMP IS ADDED
 
-export default function App() {
+export default function App({ cocktail }) {
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function App() {
   return (
     <NavigationContainer styles={styles.container}>
       <Tab.Navigator
-        initialRouteName="Login"
+        initialRouteName="Register"
         screenOptions={{
           tabBarShowLabel: false,
           tabBarStyle: {
@@ -43,7 +43,7 @@ export default function App() {
             elevation: 0,
             backgroundColor: "#ffffff",
             borderRadius: 20,
-            height: 90,
+            height: 80,
             padding: 25,
           },
         }}
@@ -71,7 +71,7 @@ export default function App() {
                 headerShown: false,
                 tabBarActiveTintColor: "#dd9a9a",
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={25} name="trophy-outline" />
+                  <Ionicons size={25} name="analytics-outline" />
                 ),
               }}
             />
@@ -84,7 +84,7 @@ export default function App() {
                 tabBarActiveTintColor: "#dd9a9a",
 
                 tabBarIcon: ({ focus, size }) => (
-                  <Ionicons size={25} name="analytics-outline" />
+                  <Ionicons size={25} name="trophy-outline" />
                 ),
               }}
             />
@@ -92,18 +92,11 @@ export default function App() {
               name="CompDetails"
               component={CompDetails}
               options={({ route }) => ({
-                name: route.params.name,
-                // creator: route.params., getting current users name and email
-                image: route.params.imageUrl,
-                value: route.params.value,
-                alcoholOne: route.params.alcoholOne,
-                alcoholTwo: route.params.alcoholTwo,
                 // hides this tab bar from the stack, that way the component is still part of the stack
                 // --> but is just not visible on the frontend
                 tabBarButton: () => null,
                 headerShown: false,
               })}
-              initialParams={{ title: "testing" }}
             />
             <Tab.Screen
               name="Profile"

@@ -49,8 +49,11 @@ const styles = StyleSheet.create({
     height: 80,
     marginTop: 10,
     backgroundColor: "#fff",
-    borderRadius: 10,
     padding: 5,
+    borderRadius: 10,
+    borderBottomStartRadius: 70,
+
+    borderColor: "#2b2b2b",
   },
   name: {
     marginLeft: 70,

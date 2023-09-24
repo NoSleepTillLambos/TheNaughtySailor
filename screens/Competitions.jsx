@@ -7,6 +7,7 @@ import {
   Pressable,
   Image,
   Button,
+  Modal,
   Alert,
 } from "react-native";
 import React, { useState } from "react";
@@ -16,6 +17,7 @@ import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import { addCocktailCompetition } from "../services/firebaseDB";
+import { useRef } from "react";
 
 const Competitions = () => {
   const [openTip, setOpenTip] = useState(false);
@@ -30,6 +32,7 @@ const Competitions = () => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [image, setImage] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const pickImageFromLibrary = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -47,105 +50,103 @@ const Competitions = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.EnterDetails}>
-          <Text style={styles.heading}>Create competition</Text>
-          {/* // tooltip for entering comp */}
-          <Tooltip
-            visible={openTip}
-            onOpen={() => setOpenTip(true)}
-            onClose={() => setOpenTip(false)}
-            popover={
-              <>
-                <Text style={{ color: "#fff" }}>
-                  1. Choose a name {"\n"} 2.Enter the category
-                </Text>
-                <Text style={{ color: "#fff" }}>2. Choose a category</Text>
-                <Text style={{ color: "#fff" }}>
-                  3. Upload a picture of your cocktail
-                </Text>
-              </>
-            }
-          >
-            <Text style={{ fontSize: 15, paddingLeft: 30 }}>
-              Rules<Ionicons name="help-outline"></Ionicons>
-            </Text>
-          </Tooltip>
-          <Text style={styles.cocktailType}>Cocktail type:</Text>
-          <DropDownPicker
-            style={styles.dropdown}
-            open={open}
-            value={value}
-            placeholder="Alcoholic or non-alcoholic"
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-            disableBorderRadius={true}
-          />
-          <Text style={styles.cocktailName}>Cocktail name:</Text>
-          <TextInput
-            style={styles.cocktailPick}
-            keyboardType="default"
-            defaultValue={name}
-            onChangeText={(newValue) => setName(newValue)}
-          />
-          <Text style={styles.cocktailImage}>Select your cocktail image:</Text>
-          <View style={styles.cocktailImg}>
-            {image && (
-              <Image
-                source={{ uri: image }}
-                style={{ height: 130, width: 130 }}
-              />
-            )}
-          </View>
-          <View style={styles.inputGroup}>
-            {image ? (
-              <Pressable onPress={() => setImage(null)}>
-                <Ionicons name="trash-outline" size={20} color="red" />
-              </Pressable>
-            ) : (
-              <>
-                <Pressable
-                  style={styles.uploadImageButton}
-                  onPress={() => pickImageFromLibrary(1)}
-                >
-                  <Ionicons name="images-outline" size={32} color="white" />
-                </Pressable>
-                <Pressable onPress={() => {}}>
-                  <Ionicons name="camera-outline" size={34} color="white" />
-                </Pressable>
-              </>
-            )}
-          </View>
-          <Text style={{ paddingLeft: 30, fontSize: 10, marginBottom: 5 }}>
-            What type of alcohol does your cocktail have?
+      <View style={styles.EnterDetails}>
+        <Text style={styles.heading}>Create competition</Text>
+        {/* // tooltip for entering comp */}
+        <Tooltip
+          visible={openTip}
+          onOpen={() => setOpenTip(true)}
+          onClose={() => setOpenTip(false)}
+          popover={
+            <>
+              <Text style={{ color: "#fff" }}>
+                1. Choose a name {"\n"} 2.Enter the category
+              </Text>
+              <Text style={{ color: "#fff" }}>2. Choose a category</Text>
+              <Text style={{ color: "#fff" }}>
+                3. Upload a picture of your cocktail
+              </Text>
+            </>
+          }
+        >
+          <Text style={{ fontSize: 15, paddingLeft: 30 }}>
+            Rules<Ionicons name="help-outline"></Ionicons>
           </Text>
-          <View style={styles.alcoholType}>
-            <TextInput
-              style={styles.alcohol}
-              keyboardType="default"
-              defaultValue={alcoholOne}
-              onChangeText={(newValue) => setAlcoholOne(newValue)}
+        </Tooltip>
+        <Text style={styles.cocktailType}>Cocktail type:</Text>
+        <DropDownPicker
+          style={styles.dropdown}
+          open={open}
+          value={value}
+          placeholder="Alcoholic or non-alcoholic"
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          disableBorderRadius={true}
+        />
+        <Text style={styles.cocktailName}>Cocktail name:</Text>
+        <TextInput
+          style={styles.cocktailPick}
+          keyboardType="default"
+          defaultValue={name}
+          onChangeText={(newValue) => setName(newValue)}
+        />
+        <Text style={styles.cocktailImage}>Select your cocktail image:</Text>
+        <View style={styles.cocktailImg}>
+          {image && (
+            <Image
+              source={{ uri: image }}
+              style={{ height: 130, width: 130 }}
             />
-            <TextInput
-              style={styles.alcohol}
-              keyboardType="default"
-              defaultValue={alcoholTwo}
-              onChangeText={(newValue) => setAlcoholTwo(newValue)}
-            />
-          </View>
-
-          <TouchableOpacity
-            style={styles.upload}
-            onPress={() =>
-              addCocktailCompetition(name, value, image, alcoholOne, alcoholTwo)
-            }
-          >
-            <Text style={styles.Enter}>Create Competition</Text>
-          </TouchableOpacity>
+          )}
         </View>
-      </ScrollView>
+        <View style={styles.inputGroup}>
+          {image ? (
+            <Pressable onPress={() => setImage(null)}>
+              <Ionicons name="trash-outline" size={20} color="red" />
+            </Pressable>
+          ) : (
+            <>
+              <Pressable
+                style={styles.uploadImageButton}
+                onPress={() => pickImageFromLibrary(1)}
+              >
+                <Ionicons name="images-outline" size={32} color="white" />
+              </Pressable>
+              <Pressable onPress={() => {}}>
+                <Ionicons name="camera-outline" size={34} color="white" />
+              </Pressable>
+            </>
+          )}
+        </View>
+        <Text style={{ paddingLeft: 30, fontSize: 10, marginBottom: 5 }}>
+          What type of alcohol does your cocktail have?
+        </Text>
+        <View style={styles.alcoholType}>
+          <TextInput
+            style={styles.alcohol}
+            keyboardType="default"
+            defaultValue={alcoholOne}
+            onChangeText={(newValue) => setAlcoholOne(newValue)}
+          />
+          <TextInput
+            style={styles.alcohol}
+            keyboardType="default"
+            defaultValue={alcoholTwo}
+            onChangeText={(newValue) => setAlcoholTwo(newValue)}
+          />
+        </View>
+
+        <TouchableOpacity
+          style={styles.upload}
+          onPress={() =>
+            addCocktailCompetition(name, value, image, alcoholOne, alcoholTwo)
+          }
+        >
+          <Text style={styles.Enter}>Create Competition</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -233,9 +234,10 @@ const styles = StyleSheet.create({
   upload: {
     width: 300,
     height: 50,
+    left: 30,
     backgroundColor: "#fff",
-    marginLeft: 30,
-    marginTop: 15,
+    position: "absolute",
+    bottom: 130,
     borderRadius: 10,
   },
   uploadImageButton: {

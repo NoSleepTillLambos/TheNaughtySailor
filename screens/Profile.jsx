@@ -97,7 +97,7 @@ const Profile = (navigation) => {
           ></TextInput>
         </View>
 
-        <Text style={styles.text}>Your Entries</Text>
+        <Text style={styles.text}>Your Entries:</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => firebaseAuth.signOut()}
@@ -143,13 +143,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     marginTop: 30,
-    fontFamily: "Quicksand-light",
+    fontFamily: "Quicksand-Bold",
   },
   updateBtn: {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "#dd9a9a",
+    backgroundColor: "#7799CC",
     height: 40,
     left: 20,
     top: 640,
@@ -170,11 +170,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "#dd9a9a",
+    backgroundColor: "#7799CC",
     height: 40,
     bottom: 0,
     right: 20,
-
     top: 640,
     position: "absolute",
     width: 150,

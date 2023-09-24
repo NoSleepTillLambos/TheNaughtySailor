@@ -34,7 +34,7 @@ const Register = ({ navigation }) => {
     <AppLoading />;
   }
   const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -62,7 +62,7 @@ const Register = ({ navigation }) => {
       setPasswordError("Password must contain 6 characters");
     }
     try {
-      await registerNewUser(email, password);
+      await registerNewUser(email, password, role);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -116,10 +116,10 @@ const Register = ({ navigation }) => {
           />
           <TextInput
             style={styles.shortInput}
-            placeholder="Username"
+            placeholder="Judge or User?"
             autoCapitalize="none"
-            value={username}
-            onChangeText={(text) => setUsername(text)}
+            value={role}
+            onChangeText={(text) => setRole(text)}
           />
         </View>
         <KeyboardAvoidingView>
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 4,
+    borderRadius: 10,
     backgroundColor: "#dd9a9a",
     width: "30%",
     height: 40,
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",

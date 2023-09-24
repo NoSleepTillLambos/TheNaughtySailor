@@ -9,13 +9,14 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { uploadToStorage } from "./firebaseStorage";
+
 // code for firestore and adding to db
 
-export const createUserInDB = async (email, uid) => {
+export const createUserInDB = async (email, uid, role) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
       email,
-      role: "Judge",
+      role: role,
       createdAt: Timestamp.now(),
     });
     console.log("User added to db: " + docRef.id);

@@ -7,15 +7,15 @@ import {
 import { createUserInDB } from "../services/firebaseDB";
 import { firebaseAuth } from "../firebase";
 
-export const registerNewUser = async (email, password) => {
-  createUserWithEmailAndPassword(firebaseAuth, email, password)
+export const registerNewUser = async (email, password, role) => {
+  createUserWithEmailAndPassword(firebaseAuth, email, password, role)
     .then(async (userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log("New User: " + user.uid);
       // updateAuthProfile(username);
 
-      await createUserInDB(email, user.uid);
+      await createUserInDB(email, user.uid, role);
     })
     .catch((error) => {
       console.log(error);
