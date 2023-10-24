@@ -17,7 +17,7 @@
   </a>
   
   <h3 align="center">The Naughty Sailor</h3>
-
+ A project developed around the bartending & service industry with emphasis on bartending and mixology<br/>
 <br/>  
 <a href="https://drive.google.com/drive/folders/1bHFGq7nIGPdDqJGrCNNCiSqTUyPk-h7F">Demo</a>
 <a href="https://github.com/NoSleepTillLambos/TheNaughtySailor">Report Bug</a>
@@ -26,8 +26,6 @@
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
-
-- This project is developed around the bartending & service industry, a lot of inspiration came from my time as a bartender <br/>
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [How to install](#how-to-install)
