@@ -20,7 +20,7 @@
   <h3 align="center">The Naughty Sailor</h3>
 
   <p align="center">
-    <p>**Built with**</p>
+    
     This project was developed using React-native, Firebase and React Native elements <br>
     
     
