@@ -116,7 +116,7 @@ Here are a couple of ways to clone this repo:
 
 ![image2](assets/mockups/fetch.JPG)
 
-🏆 **Users can discover newly listed competitions, read up about them and their requirements and enter from there** <br/>
+🏆 <h4 style="font-weight: bold">Users can discover newly listed competitions, read up about them and their requirements and enter from there</h4>
 🍸 **Users can also search for their desired competition if they don't see one they are interested in entering straight away**
 
 ### Feature 2
