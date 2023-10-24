@@ -18,15 +18,10 @@
   
   <h3 align="center">The Naughty Sailor</h3>
 
-    
-  This project was developed using React-native & Firebase
-   <br />
-  
-   <a href="https://drive.google.com/drive/folders/1bHFGq7nIGPdDqJGrCNNCiSqTUyPk-h7F">View Demo</a>
-    ·
-    <a href="https://github.com/NoSleepTillLambos/TheNaughtySailor">Report Bug</a>
-    ·
-    
+<br/>  
+<a href="https://drive.google.com/drive/folders/1bHFGq7nIGPdDqJGrCNNCiSqTUyPk-h7F">Demo</a>
+<a href="https://github.com/NoSleepTillLambos/TheNaughtySailor">Report Bug</a>
+
 </p>
 <!-- TABLE OF CONTENTS -->
 
