@@ -62,7 +62,7 @@
 
 ### Project Description
 
-<p align="center">**Naughty sailor is based off one of my favourite cocktails, it allows users to vote on certain drinks and enter into competitions where they can face off and determine the best mixologist around**</p>
+**Naughty sailor is based off one of my favourite cocktails, it allows users to vote on certain drinks and enter into competitions where they can face off and determine the best mixologist around**
 
 ### Built With
 
@@ -119,7 +119,8 @@ Here are a couple of ways to clone this repo:
 
 ![image2](assets/mockups/fetch.JPG)
 
-- Users can select a pre existing competition where they can go on to vote and comment on other entries
+🏆 **Users can discover newly listed competitions, read up about them and their requirements and enter from there**
+🍸 **Users can also search for their desired competition if they don't see one they are interested in entering straight away**
 
 ### Feature 2
 
@@ -151,9 +152,9 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ## Development Process
 
-- I spent a lot of time on apps that were in line with what i was trying to create, i.e restaurants, bars etc and went through the functionality and how the app flowed
-
-- There is still a lot of work to do however but being that it's something i am passionate about im excited for the future of it
+- I spent a lot of time on apps that were in line with what i was trying to create, i.e restaurants, bars etc and went through the functionality and how the app was going to work
+- A lot of the process went towards and was guided around the question of **how can i make this a real world application?** **what do i need to do for this app to be world ready?**
+- I also accepted this as a growing project, one i can keep bettering and working on, there are so many options and ideas i have to add to this project
 
 ### Implementation Process
 
@@ -164,12 +165,14 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 #### Above And Beyond
 
-Going above and beyond the brief
+**Going above and beyond the brief**
 
 <!-- what did you learn outside of the classroom and implement into your project-->
 
 - Search functionality
+- Comment section where users can visit the individual entries and leave comments on their fellow competitors drinks
 - Google login and verification (todo)
+- Lottie animations
 
 ### Future Implementation
 
@@ -177,8 +180,7 @@ Going above and beyond the brief
 
 - In future i would like to publish the app to the app store, Firebase could be an issue however with calls to the db. I'd really like to create something real world ready.
 - Functionality to login with a Google account
-- Google reviews
-- Posting comments to the db
+- Google reviews?
 
 <!-- MOCKUPS -->
 
