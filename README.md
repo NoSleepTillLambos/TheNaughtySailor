@@ -21,7 +21,7 @@
 
   <p align="center">
     
-    This project was developed using React-native, Firebase and React Native elements <br>
+    This project was developed using React-native & Firebase  <br>
     
     
    <br />
@@ -36,8 +36,7 @@
 
 ## Table of Contents
 
-- The project is centred around the world of Block babies, a fictional world I have developed based on the game <br/>
-  <a href="https://axieinfinity.com/">Axie infinity</a>
+- This project is developed around the bartending & service industry, a lot of inspiration came from my time as a bartender <br/>
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [How to install](#how-to-install)
@@ -63,16 +62,19 @@
 
 ### Project Description
 
-Naughty sailor is based off one of my favourite cocktails, it allows users to vote on certain drinks and enter into competitions themselves to prove who the best cocktail maker around
-is!
+<p align="center">**Naughty sailor is based off one of my favourite cocktails, it allows users to vote on certain drinks and enter into competitions where they can face off and determine the best mixologist around**</p>
 
 ### Built With
 
-- [Firebase](https://console.firebase.google.com/)
-- [React Native](https://reactnative.dev/)
-- [Expo](https://expo.dev/)
+<p>
+- [Firebase](	https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
+- [React-Native](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+- [Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
+- [NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+</p>
 
-<!-- GETTING STARTED -->
+
+**<!-- GETTING STARTED -->**
 
 ## Getting Started
 
@@ -110,7 +112,6 @@ Here are a couple of ways to clone this repo:
 4.  An API key is not required for this installation
 
 <!-- FEATURES AND FUNCTIONALITY-->
-<!-- You can add the links to all of your imagery at the bottom of the file as references -->
 
 ## Features and Functionality
 
@@ -121,8 +122,8 @@ Here are a couple of ways to clone this repo:
 - Users can select a pre existing competition where they can go on to vote and comment on other entries
 
 ### Feature 2
-<img height="300" width="300" src="assets/mockups/home.JPG" alt="Logo">
 
+![image2](assets/mockups/home.JPG)
 
 - Home page, users are introduced to the app and can then move to the create entry screen where they can enter into a cocktail comp and compete
 
