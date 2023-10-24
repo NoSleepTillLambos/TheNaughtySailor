@@ -121,8 +121,8 @@ Here are a couple of ways to clone this repo:
 - Users can select a pre existing competition where they can go on to vote and comment on other entries
 
 ### Feature 2
+<img height="300" width="300" src="assets/mockups/home.JPG" alt="Logo">
 
-![image6](assets/mockups/home.JPG)
 
 - Home page, users are introduced to the app and can then move to the create entry screen where they can enter into a cocktail comp and compete
 
