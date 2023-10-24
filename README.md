@@ -119,7 +119,7 @@ Here are a couple of ways to clone this repo:
 **🏆 Users can discover newly listed competitions, read up about them and their requirements and enter from there** </br>
 **🔎 Users can search for their desired competition if they don't see one they are interested in entering straight away**
 
-### Feature 2
+<h3 style="font-weight:bold">Feature 1</h3>
 
 ![image2](assets/mockups/home.JPG)
 
