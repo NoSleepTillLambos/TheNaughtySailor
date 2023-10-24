@@ -1,4 +1,3 @@
-<!-- Repository Information & Links-->
 <br />
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/MikeMaynard14/termoneexample)
@@ -7,9 +6,9 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/MikeMaynard14/termoneexample)
 
 <!-- HEADER SECTION -->
-<h3 align="center" style="padding:0;margin:0;font-weight:bold">Liam Wedge</h5>
-<h3 align="center" style="padding:0;margin:0;font-weight:bold">21100218</h5>
-<h5 align="center" style="font-weight:bold">DV300 - Term 2 Project | 2023</h6>
+<h3 align="center" style="padding:0;margin:0;font-weight:bold">Liam Wedge</h3>
+<h3 align="center" style="padding:0;margin:0;font-weight:bold">21100218</h3>
+<h5 align="center" style="font-weight:bold">DV300 - Term 2 Project | 2023</h5>
 </br>
 <p align="center">
 
