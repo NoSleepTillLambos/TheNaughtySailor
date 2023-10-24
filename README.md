@@ -19,11 +19,8 @@
   
   <h3 align="center">The Naughty Sailor</h3>
 
-  <p align="center">
     
-    This project was developed using React-native & Firebase  <br>
-    
-    
+  This project was developed using React-native & Firebase
    <br />
   
    <a href="https://drive.google.com/drive/folders/1bHFGq7nIGPdDqJGrCNNCiSqTUyPk-h7F">View Demo</a>
