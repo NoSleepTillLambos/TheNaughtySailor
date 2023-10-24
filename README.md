@@ -59,7 +59,7 @@
 
 ### Project Description
 
-**Naughty sailor is based off one of my favourite cocktails, it allows users to vote on certain drinks and enter into competitions where they can face off and determine the best mixologist around**
+**Naughty sailor is based off one of my favourite cocktails from a popular bar i used to work at and where i got the inspiration for my app. It allows users to vote on certain drinks and enter into competitions where they can face off and determine the best mixologist around**
 
 ### Built With
 
@@ -110,14 +110,14 @@ Here are a couple of ways to clone this repo:
 
 <!-- FEATURES AND FUNCTIONALITY-->
 
-## Features and Functionality
+**Features and Functionality**
 
 <!-- note how you can use your gitHub link. Just make a path to your assets folder -->
 
 ![image2](assets/mockups/fetch.JPG)
 
 <h3 style="font-weight:bold"> 🏆 Users can discover newly listed competitions, read up about them and their requirements and enter from there</h3>
-<h3 style="font-weight:bold"> 🔎 Users can also search for their desired competition if they don't see one they are interested in entering straight away</h3>
+<h3 style="font-weight:bold"> 🔎 Users can search for their desired competition if they don't see one they are interested in entering straight away</h3>
 
 ### Feature 2
 
