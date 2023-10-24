@@ -20,11 +20,12 @@
   <h3 align="center">The Naughty Sailor</h3>
 
   <p align="center">
+    <p>**Built with**</p>
     This project was developed using React-native, Firebase and React Native elements <br>
     
     
    <br />
-   <br />
+  
    <a href="https://drive.google.com/drive/folders/1bHFGq7nIGPdDqJGrCNNCiSqTUyPk-h7F">View Demo</a>
     ·
     <a href="https://github.com/NoSleepTillLambos/TheNaughtySailor">Report Bug</a>
