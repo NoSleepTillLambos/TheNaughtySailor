@@ -47,7 +47,7 @@
 
 <!-- header image of project -->
 
-<img align="center" height="300" width="300" src="assets/mockups/homeGif.gif"></img>
+<img style="display: block; margin: 0 auto" height="500" width="500" src="assets/mockups/homeGif.gif"></img>
 
 ### Project Description
 
