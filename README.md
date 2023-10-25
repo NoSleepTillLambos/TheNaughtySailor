@@ -46,8 +46,10 @@
 - [Acknowledgements](#acknowledgements)
 
 <!-- header image of project -->
+<p align="center">
+  <img height="500" width="500" src="assets/mockups/homeGif.gif"></img>
+</p>
 
-<img style="display: block; margin: 0 auto" height="500" width="500" src="assets/mockups/homeGif.gif"></img>
 
 ### Project Description
 
