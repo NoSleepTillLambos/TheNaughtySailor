@@ -47,7 +47,7 @@
 
 <!-- header image of project -->
 <p align="center">
-  <img height="500" width="500" src="assets/mockups/homeGif.gif"></img>
+  <img height="500" width="800" src="assets/mockups/homeGif.gif"></img>
 </p>
 
 
