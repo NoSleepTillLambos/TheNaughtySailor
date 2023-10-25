@@ -13,7 +13,7 @@
 <p align="center">
 
   <a href="https://github.com/NoSleepTillLambos/TheNaughtySailor">
-    <img height="180" width="170" src="assets/logo/logo1.png" alt="Logo">
+    <img height="140" width="120" src="assets/logo/logo1.png" alt="Logo">
   </a>
   
   <h3 align="center">The Naughty Sailor</h3>
@@ -47,7 +47,7 @@
 
 <!-- header image of project -->
 
-![image1](assets/mockups/homeGif.gif)
+<img align="center" height="300" width="300" src="assets/mockups/homeGif.gif"></img>
 
 ### Project Description
 
