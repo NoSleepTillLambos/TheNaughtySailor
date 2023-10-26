@@ -1,9 +1,9 @@
 <br />
 
-![GitHub repo size](https://img.shields.io/github/repo-size/MikeMaynard14/termoneexample)
-![GitHub watchers](https://img.shields.io/github/watchers/MikeMaynard14/termoneexample)
-![GitHub language count](https://img.shields.io/github/languages/count/MikeMaynard14/termoneexample)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/MikeMaynard14/termoneexample)
+![GitHub repo size](https://img.shields.io/github/repo-size/NoSleepTillLambos/TheNaughtySailor)
+![GitHub watchers](https://img.shields.io/github/watchers/NoSleepTillLambos/TheNaughtySailor)
+![GitHub language count](https://img.shields.io/github/languages/count/NoSleepTillLambos/TheNaughtySailor)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/NoSleepTillLambos/TheNaughtySailor)
 
 <!-- HEADER SECTION -->
 <h3 align="center" style="padding:0;margin:0;font-weight:bold">Liam Wedge</h3>
