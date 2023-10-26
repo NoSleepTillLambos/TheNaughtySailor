@@ -1,9 +1,8 @@
 <br />
-
-![GitHub repo size](https://img.shields.io/github/repo-size/MikeMaynard14/termoneexample)
-![GitHub watchers](https://img.shields.io/github/watchers/MikeMaynard14/termoneexample)
-![GitHub language count](https://img.shields.io/github/languages/count/MikeMaynard14/termoneexample)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/MikeMaynard14/termoneexample)
+![GitHub repo size](https://img.shields.io/github/repo-size/NoSleepTillLambos/TheNaughtySailor)
+![GitHub watchers](https://img.shields.io/github/watchers/NoSleepTillLambos/TheNaughtySailor)
+![GitHub language count](https://img.shields.io/github/languages/count/NoSleepTillLambos/TheNaughtySailor)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/NoSleepTillLambos/TheNaughtySailor)
 
 <!-- HEADER SECTION -->
 <h3 align="center" style="padding:0;margin:0;font-weight:bold">Liam Wedge</h3>
@@ -18,6 +17,7 @@
   
   <h3 align="center">The Naughty Sailor</h3>
   <h5 align="center">A project developed around the bartending & service industry with emphasis on bartending and mixology</h5>
+  
 <br/>  
 <a href="https://drive.google.com/drive/folders/1bHFGq7nIGPdDqJGrCNNCiSqTUyPk-h7F">Demo</a>
 <a href="https://github.com/NoSleepTillLambos/TheNaughtySailor">Report Bug</a>
@@ -104,30 +104,23 @@ Here are a couple of ways to clone this repo:
 
 <!-- FEATURES AND FUNCTIONALITY-->
 
-**Features and Functionality**
+**Old Features**
 
-<!-- note how you can use your gitHub link. Just make a path to your assets folder -->
-
-![image2](assets/mockups/fetch.JPG)
+![image2](assets/mockups/previousFeatures.png)
 
 **🏆 Users can discover newly listed competitions, read up about them and their requirements and enter from there** </br>
 **🔎 Users can search for their desired competition if they don't see one they are interested in entering straight away**
 
-<h3 style="font-weight:bold">Feature 1</h3>
-
-![image2](assets/mockups/home.JPG)
+**New features & functionality**
 
 - Home page, users are introduced to the app and can then move to the create entry screen where they can enter into a cocktail comp and compete
 
 ### Feature 3
 
-![image7](assets/mockups/createEntry.JPG)
-
 - Users can create a cocktail entry by uploading the details and an image of their creation, along with some details about the ingredients and other important information so users can try the recipes at home for themselves!
 - Users being able to try the cocktails out is the entire premise of the app, teaching keen learners a new hobbie!
 
 <!-- CONCEPT PROCESS -->
-<!-- Briefly explain your concept ideation process -->
 <!-- here you will add things like wireframing, data structure planning, anything that shows your process. You need to include images-->
 
 ## Concept Process
