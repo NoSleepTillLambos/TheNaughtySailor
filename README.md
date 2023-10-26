@@ -173,6 +173,10 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 - Functionality to login with a Google account
 - Google reviews?
 
+### Issues
+
+- The biggest issue i faced off the bat was getting to know Firebase and all its nuances, their are a lot of different features & additions to something like node and mongoDb and it took me some time to figure out the syntax
+- Fonts!, fonts were a problem, there was the issue of reloads and breaks which resulted in the app reverting to default fonts and vice versa which took me some time to work out. 
 <!-- MOCKUPS -->
 
 ## Final Outcome
