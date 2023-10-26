@@ -47,7 +47,7 @@
 
 <!-- header image of project -->
 <p align="center">
-  <img height="500" width="800" src="assets/mockups/homeGif.gif"></img>
+  <img width="600" src="assets/mockups/homeGif.gif"></img>
 </p>
 
 
@@ -59,7 +59,7 @@
 
 
 ![Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
-![React-Native](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![React-Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
 ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
@@ -173,6 +173,10 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 - Functionality to login with a Google account
 - Google reviews?
 
+### Issues
+
+- The biggest issue i faced off the bat was getting to know Firebase and all its nuances, their are a lot of different features & additions to something like node and mongoDb and it took me some time to figure out the syntax
+- Fonts!, fonts were a problem, there was the issue of reloads and breaks which resulted in the app reverting to default fonts and vice versa which took me some time to work out. 
 <!-- MOCKUPS -->
 
 ## Final Outcome
