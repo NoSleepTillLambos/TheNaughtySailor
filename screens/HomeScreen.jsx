@@ -41,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
           Enter now <Ionicons name="enter-outline" size={18}></Ionicons>
         </Text>
       </TouchableOpacity>
-      {/* // users online  */}
+
       <View>
         <LottieView
           loop

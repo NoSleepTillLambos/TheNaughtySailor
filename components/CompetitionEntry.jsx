@@ -4,8 +4,7 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-const CompetitionEntry = (props) => {
-  const { entryData } = props;
+const CompetitionEntry = () => {
   let [fontsLoaded] = useFonts({
     // QUICKSAND FONTS
     "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
@@ -18,15 +17,15 @@ const CompetitionEntry = (props) => {
   if (!fontsLoaded) {
     <AppLoading />;
   }
-
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: entryData.entryImg }}
+        source={require("../assets/cocktails/cosmo.png")}
         style={styles.entryImg}
-      ></Image>
-      <Text style={styles.name}>{entryData.name}</Text>
-      <Text style={styles.person}>{entryData.user}</Text>
+      />
+      <Text style={styles.name}>The Mojito Special</Text>
+      <Text style={styles.person}>Liam Wedge</Text>
+      <Text style={styles.text}></Text>
 
       <View style={styles.voteBlock}>
         <Pressable>
@@ -45,36 +44,34 @@ export default CompetitionEntry;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     width: "80%",
     height: 80,
     marginTop: 10,
-    marginLeft: 40,
     backgroundColor: "#fff",
     padding: 5,
     borderRadius: 10,
-    borderBottomStartRadius: 40,
+    borderBottomStartRadius: 70,
+
     borderColor: "#2b2b2b",
   },
   name: {
-    marginLeft: 90,
+    marginLeft: 70,
     marginTop: 10,
     fontFamily: "Quicksand-Bold",
   },
   person: {
     fontFamily: "Quicksand-Medium",
-    marginLeft: 90,
+    marginLeft: 70,
     marginTop: 10,
   },
   voteN: {
     textAlign: "center",
   },
   entryImg: {
-    height: "80%",
-    width: "20%",
-    top: 10,
-    left: 20,
     position: "absolute",
-    borderRadius: 6,
+    left: 10,
+    top: 10,
   },
   voteBlock: {
     position: "absolute",

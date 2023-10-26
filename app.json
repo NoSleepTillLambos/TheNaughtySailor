@@ -4,7 +4,7 @@
     "slug": "firstProject",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "NaughtySailor/assets/logo/logo1.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/logo/43341.png",

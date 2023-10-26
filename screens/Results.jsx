@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { RefreshControl, ScrollView } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   getAllCocktails,
   getAllCompetitionsFromCollection,

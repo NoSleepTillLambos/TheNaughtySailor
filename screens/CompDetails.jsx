@@ -1,46 +1,22 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Pressable,
-  Modal,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, Pressable, Modal } from "react-native";
 import React, { useEffect, useState } from "react";
-import {
-  createCocktailEntry,
-  getAllEntries,
-  getCocktailFeatures,
-} from "../services/firebaseDB";
-import {
-  RefreshControl,
-  ScrollView,
-  TextInput,
-} from "react-native-gesture-handler";
+import { getCocktailFeatures } from "../services/firebaseDB";
+import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CompetitionEntry from "../components/CompetitionEntry";
 import DropDownPicker from "react-native-dropdown-picker";
 import * as ImagePicker from "expo-image-picker";
-import { getCurrentUser } from "../services/firebaseAuth";
 
 const CompDetails = ({ route, navigation }) => {
-  const user = getCurrentUser().email;
   const [modalVisible, setModalVisible] = useState(false);
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [alcohol, setAlcohol] = useState("");
   const [value, setValue] = useState(null);
-  const [imageEntry, setImageEntry] = useState(null); // set entry image
   const [items, setItems] = useState([
     { label: "Non Alcoholic", value: "non-alcoholic" },
     { label: "Alcoholic", value: "alcoholic" },
   ]);
-  const [cocktails, setCocktails] = useState("");
-  const [cocktailEntries, setCocktailEntries] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);
   let [fontsLoaded] = useFonts({
     // QUICKSAND FONTS
     "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
@@ -54,7 +30,10 @@ const CompDetails = ({ route, navigation }) => {
     <AppLoading />;
   }
 
+  // entering a competition
+  const enterComp = () => {};
   const { cocktail } = route.params;
+  const [cocktails, setCocktails] = useState("");
 
   useEffect(() => {
     getCurrentCocktails();
@@ -74,19 +53,8 @@ const CompDetails = ({ route, navigation }) => {
     });
 
     if (!result.canceled) {
-      setImageEntry(result.assets[0].uri);
+      setProfileImg(result.assets[0].uri);
     }
-  };
-
-  useEffect(() => {
-    getEntries();
-  }, []);
-  // get all from db
-  const getEntries = async () => {
-    setRefreshing(true);
-    const allEntries = await getAllEntries();
-    setCocktailEntries(allEntries);
-    setRefreshing(false);
   };
   return (
     <View
@@ -107,19 +75,17 @@ const CompDetails = ({ route, navigation }) => {
           <View style={styles.modalView}>
             <Ionicons
               name="add-circle-outline"
-              size={30}
+              size={25}
               style={styles.addDrink}
               onPress={pickCocktail}
             />
             <TextInput
-              placeholder="Your cocktails name"
+              placeholder="Cocktail name"
               style={styles.cocktailName}
-              onChangeText={(newValue) => setName(newValue)}
             ></TextInput>
             <TextInput
               style={styles.alcoholType}
-              placeholder="What alcohol does it have?"
-              onChangeText={(newValue) => setAlcohol(newValue)}
+              placeholder="Alcohol Type"
             ></TextInput>
             <DropDownPicker
               style={styles.dropdown}
@@ -132,12 +98,7 @@ const CompDetails = ({ route, navigation }) => {
               setItems={setItems}
               disableBorderRadius={false}
             />
-            {imageEntry ? (
-              <Image source={{ uri: imageEntry }} style={styles.imageEntry} />
-            ) : (
-              <Ionicons name="image-outline" size={50} style={styles.image} />
-            )}
-
+            <Ionicons name="image-outline" size={50} style={styles.image} />
             <Ionicons
               name="close-circle"
               size={20}
@@ -145,12 +106,7 @@ const CompDetails = ({ route, navigation }) => {
               onPress={() => setModalVisible(false)}
             />
 
-            <Pressable
-              style={styles.enter}
-              onPress={() =>
-                createCocktailEntry(user, name, value, imageEntry, alcohol)
-              }
-            >
+            <Pressable style={styles.enter}>
               <Text style={{ textAlign: "center", color: "#fff" }}>
                 Enter cocktail
               </Text>
@@ -159,11 +115,7 @@ const CompDetails = ({ route, navigation }) => {
         </Modal>
       </View>
 
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={getEntries} />
-        }
-      >
+      <ScrollView>
         <View style={styles.compView}>
           <Text style={styles.compTitle}>{cocktail.name}</Text>
 
@@ -171,7 +123,7 @@ const CompDetails = ({ route, navigation }) => {
             style={styles.compImg}
             source={{ uri: cocktail.cocktailImg }}
           />
-          <Pressable style={styles.enterComp}>
+          <Pressable style={styles.enterComp} onPress={enterComp}>
             <Text
               style={styles.enterText}
               onPress={() => setModalVisible(true)}
@@ -180,12 +132,8 @@ const CompDetails = ({ route, navigation }) => {
             </Text>
           </Pressable>
           <Text style={styles.entryTitle}>Current Entries: </Text>
+          <CompetitionEntry />
         </View>
-        {cocktailEntries.map((entry, index) => (
-          <TouchableOpacity key={index}>
-            <CompetitionEntry entryData={entry} />
-          </TouchableOpacity>
-        ))}
       </ScrollView>
     </View>
   );
@@ -277,8 +225,8 @@ const styles = StyleSheet.create({
   },
   addDrink: {
     position: "absolute",
-    top: 50,
-    left: 40,
+    top: 60,
+    left: 80,
   },
   image: {
     position: "absolute",
@@ -309,13 +257,7 @@ const styles = StyleSheet.create({
     top: 180,
     paddingLeft: 10,
     height: 50,
+
     borderRadius: 5,
-  },
-  imageEntry: {
-    borderRadius: 100 / 2,
-    width: 100,
-    position: "absolute",
-    height: 100,
-    top: 10,
   },
 });
