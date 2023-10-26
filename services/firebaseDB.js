@@ -90,3 +90,45 @@ export const getAllCompetitionsFromCollection = async () => {
     return [];
   }
 };
+
+// CREATE COMP ENTRIES
+export const createCocktailEntry = async (
+  user,
+  name,
+  value,
+  imageEntry,
+  alcohol
+) => {
+  try {
+    const ref = await addDoc(collection(db, "entries"), {
+      user,
+      name: name,
+      entryImg: await uploadToStorage(
+        imageEntry,
+        `cocktailEntries/${Math.floor(Math.random() * 6) + 1}`
+      ),
+      value: value,
+      alcoholOne: alcohol,
+    });
+    console.log("Successfully entered comp");
+  } catch (error) {
+    console.log("Could not add the entry" + error);
+  }
+};
+
+// RETRIEVING COMP ENTRIES
+export const getAllEntries = async () => {
+  try {
+    var cocktailEntries = [];
+
+    const snapshot = await getDocs(collection(db, "entries"));
+    snapshot.forEach((doc) => {
+      cocktailEntries.push({ ...doc.data(), id: doc.id });
+    });
+
+    return cocktailEntries;
+  } catch (error) {
+    console.log("Something went wrong when returning collection: " + error);
+    return [];
+  }
+};

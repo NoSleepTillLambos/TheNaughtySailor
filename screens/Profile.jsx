@@ -71,6 +71,7 @@ const Profile = (navigation) => {
     }
   };
 
+  // TO DO: GET ALL USERS ENTRIES AND THERE AWARDS
   return (
     <View style={styles.container}>
       <ScrollView>
