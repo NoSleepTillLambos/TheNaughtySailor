@@ -1,4 +1,9 @@
 <br />
+![GitHub repo size](https://img.shields.io/github/repo-size/NoSleepTillLambos/TheNaughtySailor)
+![GitHub watchers](https://img.shields.io/github/watchers/NoSleepTillLambos/TheNaughtySailor)
+![GitHub language count](https://img.shields.io/github/languages/count/NoSleepTillLambos/TheNaughtySailor)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/NoSleepTillLambos/TheNaughtySailor)
+
 <!-- HEADER SECTION -->
 <h3 align="center" style="padding:0;margin:0;font-weight:bold">Liam Wedge</h3>
 <h3 align="center" style="padding:0;margin:0;font-weight:bold">21100218</h3>
@@ -12,12 +17,6 @@
   
   <h3 align="center">The Naughty Sailor</h3>
   <h5 align="center">A project developed around the bartending & service industry with emphasis on bartending and mixology</h5>
-  
-![GitHub repo size](https://img.shields.io/github/repo-size/NoSleepTillLambos/TheNaughtySailor)
-![GitHub watchers](https://img.shields.io/github/watchers/NoSleepTillLambos/TheNaughtySailor)
-![GitHub language count](https://img.shields.io/github/languages/count/NoSleepTillLambos/TheNaughtySailor)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/NoSleepTillLambos/TheNaughtySailor)
-
   
 <br/>  
 <a href="https://drive.google.com/drive/folders/1bHFGq7nIGPdDqJGrCNNCiSqTUyPk-h7F">Demo</a>
