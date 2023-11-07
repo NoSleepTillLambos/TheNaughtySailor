@@ -1,4 +1,4 @@
-<br />
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/NoSleepTillLambos/TheNaughtySailor)
 ![GitHub watchers](https://img.shields.io/github/watchers/NoSleepTillLambos/TheNaughtySailor)
 ![GitHub language count](https://img.shields.io/github/languages/count/NoSleepTillLambos/TheNaughtySailor)
@@ -59,7 +59,7 @@
 
 
 ![Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
-![React-Native](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![React-Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
 ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
@@ -170,7 +170,7 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ## Final Outcome
 
-### Mockups
+### Previous Mockups
 
 ![image2](assets/mockups/2.png)
 <br>
@@ -210,7 +210,8 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 ## Acknowledgements
 
 <!-- all resources that you used and Acknowledgements here -->
-
-- [Firebase](https://console.firebase.google.com/)
-- [React Native](https://reactnative.dev/)
-- [Expo](https://expo.dev/)
+![Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
+![React-Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
+![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![StackOverflow](https://img.shields.io/badge/Stack_Overflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)
