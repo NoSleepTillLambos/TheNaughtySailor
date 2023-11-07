@@ -28,7 +28,7 @@ const Results = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Current cocktail competitions:</Text>
+      <Text style={styles.heading}>Live Competitions</Text>
 
       <ScrollView
         refreshControl={
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     margin: 20,
-    marginLeft: 30,
+    marginLeft: 20,
     fontSize: 20,
     marginTop: 70,
   },

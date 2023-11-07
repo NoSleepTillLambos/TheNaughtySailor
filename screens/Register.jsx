@@ -149,10 +149,18 @@ const Register = ({ navigation }) => {
             />
           </View>
         </KeyboardAvoidingView>
+        {/* sign in with google */}
+        <TouchableOpacity style={styles.googleBtn}>
+          <Image
+            style={styles.google}
+            source={require("../assets/google.png")}
+          />
+          <Text style={styles.googleTxt}>Use Google</Text>
+        </TouchableOpacity>
 
         <TouchableHighlight
-          underlayColor="#E2B5B5"
           style={styles.button}
+          underlayColor="#E2B5B5"
           onPress={signUp}
         >
           <Text style={styles.create}>Create account</Text>
@@ -207,7 +215,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: -20,
     textAlign: "center",
-    color: "#2b2b2b",
+    color: "#D07474",
+    fontWeight: "bold",
     fontFamily: "Quicksand-Bold",
   },
   tinyLogo: {
@@ -219,25 +228,41 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "#dd9a9a",
-    width: "30%",
+    borderWidth: 1,
+    borderColor: "#D07474",
+    width: "45%",
     height: 40,
-    width: 180,
-    marginLeft: 95,
+    width: 150,
+    marginLeft: 200,
     marginTop: 20,
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
+  },
+  googleBtn: {
+    position: "absolute",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#D07474",
+    width: "45%",
+    padding: 7,
+    height: 40,
+    bottom: 35,
+    left: 20,
   },
   container: {
     flex: 1,
     justifyContent: "center",
     backgroundColor: "#E2B5B5",
   },
+  googleTxt: {
+    fontSize: 15,
+    color: "#D07474",
+    position: "absolute",
+    fontFamily: "Quicksand-Medium",
+    left: 47,
+    top: 10,
+  },
   create: {
     fontSize: 15,
-    color: "#2b2b2b",
+    color: "#D07474",
     fontFamily: "Quicksand-Medium",
   },
   noAccount: {
@@ -254,7 +279,10 @@ const styles = StyleSheet.create({
   },
 
   // MODAL VIEWS
-
+  google: {
+    height: 25,
+    width: 25,
+  },
   modalView: {
     margin: 20,
     backgroundColor: "white",

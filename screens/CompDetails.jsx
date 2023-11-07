@@ -8,11 +8,19 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import CompetitionEntry from "../components/CompetitionEntry";
 import DropDownPicker from "react-native-dropdown-picker";
 import * as ImagePicker from "expo-image-picker";
+import { getCurrentUser } from "../services/firebaseAuth";
 
 const CompDetails = ({ route, navigation }) => {
+  const user = getCurrentUser().email;
   const [modalVisible, setModalVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
+  const [name, setName] = useState("");
+  const [alcohol, setAlcohol] = useState("");
+  const [cocktails, setCocktails] = useState("");
+  const [imageEntry, setImageEntry] = useState(null); // set entry image
+  const [cocktailEntries, setCocktailEntries] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
   const [items, setItems] = useState([
     { label: "Non Alcoholic", value: "non-alcoholic" },
     { label: "Alcoholic", value: "alcoholic" },
@@ -33,7 +41,6 @@ const CompDetails = ({ route, navigation }) => {
   // entering a competition
   const enterComp = () => {};
   const { cocktail } = route.params;
-  const [cocktails, setCocktails] = useState("");
 
   useEffect(() => {
     getCurrentCocktails();
@@ -53,8 +60,19 @@ const CompDetails = ({ route, navigation }) => {
     });
 
     if (!result.canceled) {
-      setProfileImg(result.assets[0].uri);
+      setImageEntry(result.assets[0].uri);
     }
+  };
+
+  useEffect(() => {
+    getEntries();
+  }, []);
+  // get all from db
+  const getEntries = async () => {
+    setRefreshing(true);
+    const allEntries = await getAllEntries();
+    setCocktailEntries(allEntries);
+    setRefreshing(false);
   };
   return (
     <View
@@ -75,17 +93,19 @@ const CompDetails = ({ route, navigation }) => {
           <View style={styles.modalView}>
             <Ionicons
               name="add-circle-outline"
-              size={25}
+              size={30}
               style={styles.addDrink}
               onPress={pickCocktail}
             />
             <TextInput
-              placeholder="Cocktail name"
+              placeholder="Your cocktails name"
               style={styles.cocktailName}
+              onChangeText={(newValue) => setName(newValue)}
             ></TextInput>
             <TextInput
               style={styles.alcoholType}
-              placeholder="Alcohol Type"
+              placeholder="What alcohol does it have?"
+              onChangeText={(newValue) => setAlcohol(newValue)}
             ></TextInput>
             <DropDownPicker
               style={styles.dropdown}
@@ -98,7 +118,11 @@ const CompDetails = ({ route, navigation }) => {
               setItems={setItems}
               disableBorderRadius={false}
             />
-            <Ionicons name="image-outline" size={50} style={styles.image} />
+            {imageEntry ? (
+              <Image source={{ uri: imageEntry }} style={styles.imageEntry} />
+            ) : (
+              <Ionicons name="image-outline" size={50} style={styles.image} />
+            )}
             <Ionicons
               name="close-circle"
               size={20}
@@ -115,7 +139,11 @@ const CompDetails = ({ route, navigation }) => {
         </Modal>
       </View>
 
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={getEntries} />
+        }
+      >
         <View style={styles.compView}>
           <Text style={styles.compTitle}>{cocktail.name}</Text>
 
@@ -132,7 +160,11 @@ const CompDetails = ({ route, navigation }) => {
             </Text>
           </Pressable>
           <Text style={styles.entryTitle}>Current Entries: </Text>
-          <CompetitionEntry />
+          {cocktailEntries.map((entry, index) => (
+            <TouchableOpacity key={index}>
+              <CompetitionEntry entryData={entry} />
+            </TouchableOpacity>
+          ))}
         </View>
       </ScrollView>
     </View>
@@ -259,5 +291,12 @@ const styles = StyleSheet.create({
     height: 50,
 
     borderRadius: 5,
+  },
+  imageEntry: {
+    borderRadius: 100 / 2,
+    width: 100,
+    position: "absolute",
+    height: 100,
+    top: 10,
   },
 });

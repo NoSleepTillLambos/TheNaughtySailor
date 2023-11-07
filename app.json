@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "firstProject",
-    "slug": "firstProject",
+    "name": "Naughty Sailor",
+    "slug": "Naughty Sailor",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "/assets/logo/logo1.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/logo/43341.png",
