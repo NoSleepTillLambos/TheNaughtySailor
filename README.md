@@ -106,13 +106,17 @@ Here are a couple of ways to clone this repo:
 
 **Old Features**
 
-![image2](assets/mockups/previousFeatures.png)
-
-**🏆 Users can discover newly listed competitions, read up about them and their requirements and enter from there** </br>
-**🔎 Users can search for their desired competition if they don't see one they are interested in entering straight away**
+![image2](assets/mockups/olderFeatures.png)
 
 **New features & functionality**
 
+### Feature 1
+
+
+### Feature 2
+
+**🏆 Users can discover newly listed competitions, read up about them and their requirements and enter from there** </br>
+**🔎 Users can search for their desired competition if they don't see one they are interested in entering straight away**
 - Home page, users are introduced to the app and can then move to the create entry screen where they can enter into a cocktail comp and compete
 
 ### Feature 3
