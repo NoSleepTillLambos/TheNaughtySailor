@@ -1,8 +1,13 @@
 import { StyleSheet, Text, View, Image, Pressable, Modal } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getCocktailFeatures } from "../services/firebaseDB";
-import { ScrollView, TextInput } from "react-native-gesture-handler";
+import {
+  RefreshControl,
+  ScrollView,
+  TextInput,
+} from "react-native-gesture-handler";
 import { useFonts } from "expo-font";
+import { Card, Button, Icon } from "@rneui/themed";
 import AppLoading from "expo-app-loading";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CompetitionEntry from "../components/CompetitionEntry";
@@ -10,7 +15,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import * as ImagePicker from "expo-image-picker";
 import { getCurrentUser } from "../services/firebaseAuth";
 
-const CompDetails = ({ route, navigation }) => {
+const CompDetails = ({ route }) => {
   const user = getCurrentUser().email;
   const [modalVisible, setModalVisible] = useState(false);
   const [open, setOpen] = useState(false);

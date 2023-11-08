@@ -6,18 +6,13 @@ import {
   TextInput,
   Pressable,
   Image,
-  Button,
-  Modal,
-  Alert,
 } from "react-native";
 import React, { useState } from "react";
-import { Tooltip, useTheme } from "@rneui/themed";
+import { Tooltip } from "@rneui/themed";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
-import { ScrollView } from "react-native-gesture-handler";
 import { addCocktailCompetition } from "../services/firebaseDB";
-import { useRef } from "react";
 
 const Competitions = () => {
   const [openTip, setOpenTip] = useState(false);
@@ -52,7 +47,7 @@ const Competitions = () => {
     <View style={styles.container}>
       <View style={styles.EnterDetails}>
         <Text style={styles.heading}>Create competition</Text>
-        {/* // tooltip for entering comp */}
+
         <Tooltip
           visible={openTip}
           onOpen={() => setOpenTip(true)}
@@ -97,7 +92,7 @@ const Competitions = () => {
           {image && (
             <Image
               source={{ uri: image }}
-              style={{ height: 130, width: 130 }}
+              style={{ height: 130, width: 130, borderRadius: 130 / 2 }}
             />
           )}
         </View>
@@ -176,10 +171,10 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   heading: {
-    marginBottom: 10,
+    marginBottom: 2,
     textAlignVertical: "center",
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 15,
     marginLeft: 20,
     textAlign: "center",
   },
@@ -224,13 +219,15 @@ const styles = StyleSheet.create({
   },
   cocktailImg: {
     backgroundColor: "#fff",
-    height: 120,
-    width: 120,
-    borderRadius: 10,
+    height: 130,
+
+    width: 130,
+    borderRadius: 130 / 2,
     color: "black",
     marginLeft: 30,
     marginBottom: 20,
   },
+
   upload: {
     width: 300,
     height: 50,

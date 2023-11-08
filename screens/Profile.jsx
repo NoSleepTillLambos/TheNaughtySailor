@@ -1,13 +1,5 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Image,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
-import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import { firebaseAuth } from "../firebase";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AppLoading from "expo-app-loading";
@@ -18,7 +10,6 @@ import { useFonts } from "expo-font";
 import { updateUserInDb } from "../services/firebaseDB";
 import * as ImagePicker from "expo-image-picker";
 import { uploadToStorage } from "../services/firebaseStorage";
-import { updateEmail } from "firebase/auth";
 
 const Profile = (navigation) => {
   const user = getCurrentUser();
@@ -149,16 +140,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "#7799CC",
+    borderColor: "#7799CC",
+    borderWidth: 1,
     height: 40,
     left: 20,
     top: 640,
     position: "absolute",
     width: 150,
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
   },
   submitButtonText: {
     color: "white",
@@ -170,17 +158,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "#7799CC",
+    borderColor: "#7799CC",
+    borderWidth: 1,
     height: 40,
     bottom: 0,
     right: 20,
     top: 640,
     position: "absolute",
     width: 150,
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
   },
   profileBlock: {
     textAlign: "center",
@@ -192,7 +177,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 15,
-    color: "#fff",
+    color: "#7799CC",
     fontFamily: "Quicksand-Medium",
   },
 });

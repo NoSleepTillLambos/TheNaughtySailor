@@ -39,7 +39,8 @@ export const addCocktailCompetition = async (
   value,
   image,
   alcoholOne,
-  alcoholTwo
+  alcoholTwo,
+  entries
 ) => {
   try {
     const docRef = await addDoc(collection(db, "cocktails"), {
@@ -50,6 +51,7 @@ export const addCocktailCompetition = async (
       ),
       value: value,
       alcoholOne: alcoholOne,
+      entries: [],
       alcoholTwo: alcoholTwo,
     });
     console.log("Successfully added project");
@@ -90,31 +92,6 @@ export const getAllCompetitionsFromCollection = async () => {
     return [];
   }
 };
-
-// CREATE COMP ENTRIES
-// export const createCocktailEntry = async (
-//   user,
-//   name,
-//   value,
-//   imageEntry,
-//   alcohol
-// ) => {
-//   try {
-//     const ref = await addDoc(collection(db, "entries"), {
-//       user,
-//       name: name,
-//       entryImg: await uploadToStorage(
-//         imageEntry,
-//         `cocktailEntries/${Math.floor(Math.random() * 6) + 1}`
-//       ),
-//       value: value,
-//       alcoholOne: alcohol,
-//     });
-//     console.log("Successfully entered comp");
-//   } catch (error) {
-//     console.log("Could not add the entry" + error);
-//   }
-// };
 
 // // RETRIEVING COMP ENTRIES
 // export const getAllEntries = async () => {

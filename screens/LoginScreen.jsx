@@ -6,13 +6,11 @@ import {
   Image,
   TextInput,
   View,
-  Alert,
   Modal,
   Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import { firebaseAuth } from "../firebase";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import {
   TouchableOpacity,
   TouchableHighlight,
@@ -22,6 +20,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { signInUser } from "../services/firebaseAuth";
+import AnimatedLottieView from "lottie-react-native";
 
 const Login = ({ navigation }) => {
   // loading fonts
@@ -132,7 +131,20 @@ const Login = ({ navigation }) => {
           </View>
 
           {loading ? (
-            <ActivityIndicator size="large" />
+            <AnimatedLottieView
+              loop
+              autoPlay
+              style={{
+                position: "absolute",
+                height: 200,
+                justifyContent: "center",
+                alignItems: "center",
+                aspectRatio: 1,
+                left: 30,
+                top: 10,
+              }}
+              source={require("../assets/animations/loading.json")}
+            />
           ) : (
             <>
               <TouchableHighlight
@@ -216,8 +228,7 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     fontSize: 15,
-    marginTop: 20,
-    textDecorationLine: "underline",
+    marginTop: 25,
     fontFamily: "Quicksand-Medium",
   },
   passwordCon: {

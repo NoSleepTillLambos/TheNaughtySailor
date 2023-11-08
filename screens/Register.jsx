@@ -6,15 +6,14 @@ import {
   Modal,
   Image,
   TouchableOpacity,
-  Alert,
   TouchableHighlight,
   KeyboardAvoidingView,
   Pressable,
 } from "react-native";
-import { firebaseAuth } from "../firebase";
+
 import React from "react";
 import { useState } from "react";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
@@ -167,7 +166,7 @@ const Register = ({ navigation }) => {
         </TouchableHighlight>
 
         <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
-          <Text style={styles.noAccount}>Have an account? Login</Text>
+          <Text style={styles.noAccount}>Already Have an account? Login</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -244,7 +243,7 @@ const styles = StyleSheet.create({
     width: "45%",
     padding: 7,
     height: 40,
-    bottom: 35,
+    bottom: 33,
     left: 20,
   },
   container: {
@@ -268,7 +267,7 @@ const styles = StyleSheet.create({
   noAccount: {
     color: "#2b2b2b",
     textAlign: "center",
-    textDecorationLine: "underline",
+
     fontSize: 15,
     marginTop: 15,
     fontFamily: "Quicksand-Medium",

@@ -1,11 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { RefreshControl, ScrollView } from "react-native-gesture-handler";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import {
-  getAllCocktails,
-  getAllCompetitionsFromCollection,
-} from "../services/firebaseDB";
+import { useNavigation } from "@react-navigation/native";
+import { getAllCompetitionsFromCollection } from "../services/firebaseDB";
 import CocktailCard from "../components/CocktailCard";
 
 const Results = () => {
