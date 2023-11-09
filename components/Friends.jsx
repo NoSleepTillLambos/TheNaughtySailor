@@ -1,25 +1,56 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import { useCollection } from "../hooks/useCollection";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
-const Friends = () => {
-  const { isPending, error, documents } = useCollection("users");
+const Friends = (props) => {
+  // loading fonts
+  let [fontsLoaded] = useFonts({
+    // cursive font
+    "Dancing-SemiBold": require("../assets/fonts/DancingScript-SemiBold.ttf"),
+    // QUICKSAND FONTS
+    "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
+    "Quicksand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
+    "Quicksand-Light": require("../assets/fonts/Quicksand-Light.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    <AppLoading />;
+  }
+  const { data } = props;
+
   return (
-    <View>
-      <Text>Your friends</Text>
-      {isPending && <View>Loading users...</View>}
-      {error && <View>{error}</View>}
-      {documents &&
-        documents.map((user) => (
-          <View key={user.id}>
-            {user.online && <Text></Text>}
-            <Text>{user.email}</Text>
-          </View>
-        ))}
+    <View style={styles.Friends}>
+      <Image
+        source={{ uri: data.profileImg }}
+        style={styles.cocktailImage}
+      ></Image>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  Friends: {
+    height: 100,
+    width: "80%",
+    margin: "auto",
+    paddingTop: 10,
+    marginLeft: 30,
+    marginBottom: 100,
+    borderRadius: 10,
+  },
+
+  email: {
+    marginLeft: 30,
+  },
+  cocktailImage: {
+    height: 90,
+    width: 90,
+
+    marginTop: 10,
+    borderRadius: 90 / 2,
+  },
+});
 
 export default Friends;

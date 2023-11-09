@@ -54,9 +54,7 @@ const Competitions = () => {
           onClose={() => setOpenTip(false)}
           popover={
             <>
-              <Text style={{ color: "#fff" }}>
-                1. Choose a name {"\n"} 2.Enter the category
-              </Text>
+              <Text style={{ color: "#fff" }}>1. Choose a name {"\n"}</Text>
               <Text style={{ color: "#fff" }}>2. Choose a category</Text>
               <Text style={{ color: "#fff" }}>
                 3. Upload a picture of your cocktail
@@ -87,7 +85,7 @@ const Competitions = () => {
           defaultValue={name}
           onChangeText={(newValue) => setName(newValue)}
         />
-        <Text style={styles.cocktailImage}>Select your cocktail image:</Text>
+        <Text style={styles.cocktailImage}>Select the competition image:</Text>
         <View style={styles.cocktailImg}>
           {image && (
             <Image
@@ -116,7 +114,7 @@ const Competitions = () => {
           )}
         </View>
         <Text style={{ paddingLeft: 30, fontSize: 10, marginBottom: 5 }}>
-          What type of alcohol does your cocktail have?
+          What type of alcohol must it contain?
         </Text>
         <View style={styles.alcoholType}>
           <TextInput

@@ -25,6 +25,7 @@ import CompetitionEntry from "../components/CompetitionEntry";
 import DropDownPicker from "react-native-dropdown-picker";
 import * as ImagePicker from "expo-image-picker";
 import { getCurrentUser } from "../services/firebaseAuth";
+import { CardDivider } from "@rneui/base/dist/Card/Card.Divider";
 
 const CompDetails = ({ route }) => {
   const user = getCurrentUser().email;
@@ -74,9 +75,7 @@ const CompDetails = ({ route }) => {
       setImageEntry(result.assets[0].uri);
     }
   };
-  useEffect(() => {
-    getAllEntries();
-  }, []);
+
   // get all from db
   const getAllEntries = async () => {
     const allEntries = await getAllCocktailEntries(compId);
@@ -84,7 +83,9 @@ const CompDetails = ({ route }) => {
     setRefreshing(false);
     console.log(allEntries);
   };
-
+  useEffect(() => {
+    getAllEntries();
+  }, []);
   return (
     <View
       style={[
@@ -156,13 +157,18 @@ const CompDetails = ({ route }) => {
         </View>
 
         <View style={styles.compView}>
-          <Text style={styles.compTitle}>{cocktail.name}</Text>
+          <Card containerStyle={{ borderRadius: 10, width: "90%" }}>
+            <Card.Title style={styles.compTitle}>{cocktail.name}</Card.Title>
+            <CardDivider />
 
-          <Image
-            style={styles.compImg}
-            source={{ uri: cocktail.cocktailImg }}
-          />
-          <Pressable style={styles.enterComp} onPress={enterComp}>
+            <Image
+              resizeMode="contain"
+              style={styles.compImg}
+              source={{ uri: cocktail.cocktailImg }}
+            />
+          </Card>
+
+          <Pressable style={styles.enterComp}>
             <Text
               style={styles.enterText}
               onPress={() => setModalVisible(true)}
@@ -194,9 +200,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#2b2b2b",
   },
   compTitle: {
-    fontSize: 40,
-    color: "#fff",
+    fontSize: 25,
+    color: "#7799CC",
     fontFamily: "Quicksand-Bold",
+    fontWeight: "normal",
   },
   compView: {
     justifyContent: "center",
@@ -214,6 +221,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
   },
+  compRequire: {
+    alignItems: "flex-end",
+  },
   compSub: {
     fontFamily: "Quicksand-Bold",
     fontSize: 20,
@@ -221,10 +231,8 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   compImg: {
-    height: 250,
-    marginTop: 30,
-    width: 250,
-    borderRadius: 10,
+    height: 150,
+    width: 150,
     borderColor: "#fff",
     borderRadius: 10,
   },

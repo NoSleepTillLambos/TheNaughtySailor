@@ -11,8 +11,7 @@ import {
 import { db } from "../firebase";
 import { uploadToStorage } from "./firebaseStorage";
 
-// code for firestore and adding to db
-
+// creating user in db
 export const createUserInDB = async (email, uid, role) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
@@ -24,6 +23,23 @@ export const createUserInDB = async (email, uid, role) => {
     console.log("User added to db: " + docRef.id);
   } catch (e) {
     console.log("Something has gone wrong" + e);
+  }
+};
+
+// fetching all users
+export const getAllUsersFromCollection = async () => {
+  try {
+    var users = [];
+
+    const snapshot = await getDocs(collection(db, "users"));
+    snapshot.forEach((doc) => {
+      users.push({ ...doc.data(), id: doc.id });
+    });
+
+    return users;
+  } catch (error) {
+    console.log("Something went wrong when fetching users:" + error);
+    return [];
   }
 };
 

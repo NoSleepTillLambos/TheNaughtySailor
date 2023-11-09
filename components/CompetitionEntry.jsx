@@ -44,16 +44,13 @@ export default CompetitionEntry;
 
 const styles = StyleSheet.create({
   container: {
-    width: "80%",
+    width: 300,
     height: 80,
     marginTop: 10,
-    marginLeft: 40,
     backgroundColor: "#fff",
     padding: 5,
     borderRadius: 10,
-    borderBottomStartRadius: 40,
-
-    borderColor: "#2b2b2b",
+    borderBottomStartRadius: 30,
   },
   name: {
     marginLeft: 90,

@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import LottieView from "lottie-react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import Friends from "../components/Friends";
+import { getAllUsersFromCollection } from "../services/firebaseDB";
 
 const HomeScreen = ({ navigation }) => {
   // loading fonts
@@ -21,6 +22,23 @@ const HomeScreen = ({ navigation }) => {
   if (!fontsLoaded) {
     <AppLoading />;
   }
+
+  // state
+  const [users, setUsers] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
+  // get all from db
+  const getAllUsers = async () => {
+    setRefreshing(true);
+    const allUsers = await getAllUsersFromCollection();
+    setUsers(allUsers);
+    setRefreshing(false);
+  };
+
   return (
     <View style={styles.HomeCon}>
       <Text style={styles.header}>It's time for a</Text>
@@ -48,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
           loop
           autoPlay
           style={{
-            height: 500,
+            height: 200,
             justifyContent: "center",
             alignItems: "center",
             aspectRatio: 1,
@@ -57,6 +75,10 @@ const HomeScreen = ({ navigation }) => {
           source={require("../assets/animations/newScene.json")}
         />
       </View>
+      <Text style={styles.friendsTitle}>Users</Text>
+      {users.map((cocktail, index) => (
+        <Friends key={index} data={cocktail} />
+      ))}
     </View>
   );
 };
@@ -71,6 +93,13 @@ const styles = StyleSheet.create({
   HomeCon: {
     backgroundColor: "#fff",
     color: "white",
+  },
+
+  friendsTitle: {
+    fontSize: 20,
+    marginLeft: 30,
+    fontWeight: "bold",
+    fontFamily: "Quicksand-Medium",
   },
   homeImg: {
     paddingLeft: 30,
