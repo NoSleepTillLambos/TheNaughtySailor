@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  RefreshControl,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import LottieView from "lottie-react-native";
 import { useFonts } from "expo-font";
@@ -76,9 +80,16 @@ const HomeScreen = ({ navigation }) => {
         />
       </View>
       <Text style={styles.friendsTitle}>Users</Text>
-      {users.map((cocktail, index) => (
-        <Friends key={index} data={cocktail} />
-      ))}
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={getAllUsers} />
+        }
+        horizontal={true}
+      >
+        {users.map((cocktail, index) => (
+          <Friends key={index} data={cocktail} />
+        ))}
+      </ScrollView>
     </View>
   );
 };

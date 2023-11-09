@@ -26,6 +26,7 @@ export const signInUser = async (email, password) => {
   await signInWithEmailAndPassword(firebaseAuth, email, password)
     .then((userCredential) => {
       // Signed in
+
       const user = userCredential.user;
       console.log("User logged in: " + user.email);
     })

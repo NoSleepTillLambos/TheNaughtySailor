@@ -34,20 +34,17 @@ const styles = StyleSheet.create({
   Friends: {
     height: 100,
     width: "80%",
-    margin: "auto",
+
     paddingTop: 10,
     marginLeft: 30,
     marginBottom: 100,
     borderRadius: 10,
   },
 
-  email: {
-    marginLeft: 30,
-  },
   cocktailImage: {
     height: 90,
+    marginRight: -70,
     width: 90,
-
     marginTop: 10,
     borderRadius: 90 / 2,
   },

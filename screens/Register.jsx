@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     width: "45%",
     padding: 7,
     height: 40,
-    bottom: 36,
+    bottom: 35,
     left: 20,
   },
   container: {

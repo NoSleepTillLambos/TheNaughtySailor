@@ -141,7 +141,7 @@ const Login = ({ navigation }) => {
                 alignItems: "center",
                 aspectRatio: 1,
                 left: 30,
-                top: 10,
+                top: 15,
               }}
               source={require("../assets/animations/loading.json")}
             />
