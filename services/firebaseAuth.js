@@ -4,7 +4,7 @@ import {
   updateProfile,
   updateEmail,
 } from "firebase/auth";
-import { createUserInDB } from "../services/firebaseDB";
+import { createUserInDB } from "./firebaseDB";
 import { firebaseAuth } from "../firebase";
 
 export const registerNewUser = async (email, password, role) => {

@@ -25,7 +25,7 @@ const CompetitionEntry = (props) => {
         style={styles.entryImg}
       ></Image>
       <Text style={styles.name}>{entryData.name}</Text>
-      <Text style={styles.person}>{entryData.user}</Text>
+      <Text style={styles.person}>{entryData.value}</Text>
 
       <View style={styles.voteBlock}>
         <Pressable>

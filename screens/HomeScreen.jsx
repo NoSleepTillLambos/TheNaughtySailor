@@ -5,6 +5,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import LottieView from "lottie-react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import Friends from "../components/Friends";
 
 const HomeScreen = ({ navigation }) => {
   // loading fonts

@@ -40,7 +40,7 @@ const Results = () => {
               onPress={() => navigation.navigate("CompDetails", { cocktail })}
               activeOpacity={0.8}
             >
-              <CocktailCard data={cocktail} />
+              <CocktailCard key={cocktail.id} data={cocktail} />
             </TouchableOpacity>
           ))}
         </View>

@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     fontSize: 15,
-    marginTop: 25,
+    marginTop: 40,
     fontFamily: "Quicksand-Medium",
   },
   passwordCon: {

@@ -10,7 +10,6 @@ import {
   KeyboardAvoidingView,
   Pressable,
 } from "react-native";
-
 import React from "react";
 import { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
@@ -18,7 +17,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { registerNewUser } from "../services/firebaseAuth";
-import LottieView from "lottie-react-native";
 
 const Register = ({ navigation }) => {
   let [fontsLoaded] = useFonts({
@@ -243,7 +241,7 @@ const styles = StyleSheet.create({
     width: "45%",
     padding: 7,
     height: 40,
-    bottom: 33,
+    bottom: 36,
     left: 20,
   },
   container: {

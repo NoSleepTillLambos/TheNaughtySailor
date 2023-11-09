@@ -3,6 +3,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
   getDocs,
   setDoc,
   updateDoc,
@@ -17,6 +18,7 @@ export const createUserInDB = async (email, uid, role) => {
     const docRef = await setDoc(doc(db, "users", uid), {
       email,
       role: role,
+      online: false,
       createdAt: Timestamp.now(),
     });
     console.log("User added to db: " + docRef.id);
@@ -34,13 +36,13 @@ export const updateUserInDb = async (uid, userInfo) => {
   }
 };
 
+// adding cocktail to collection
 export const addCocktailCompetition = async (
   name,
   value,
   image,
   alcoholOne,
-  alcoholTwo,
-  entries
+  alcoholTwo
 ) => {
   try {
     const docRef = await addDoc(collection(db, "cocktails"), {
@@ -51,7 +53,6 @@ export const addCocktailCompetition = async (
       ),
       value: value,
       alcoholOne: alcoholOne,
-      entries: [],
       alcoholTwo: alcoholTwo,
     });
     console.log("Successfully added project");
@@ -60,23 +61,7 @@ export const addCocktailCompetition = async (
   }
 };
 
-export const getCocktailFeatures = async (cocktailId) => {
-  try {
-    var features = [];
-    const snapshot = await getDocs(
-      collection(db, `cocktails/${cocktailId}/features`)
-    );
-    snapshot.forEach((doc) => {
-      features.push(doc.data());
-    });
-
-    return features;
-  } catch (e) {
-    console.log("Something went wrong" + e);
-    return [];
-  }
-};
-
+// adding cocktail to collection
 export const getAllCompetitionsFromCollection = async () => {
   try {
     var cocktailComps = [];
@@ -93,19 +78,67 @@ export const getAllCompetitionsFromCollection = async () => {
   }
 };
 
-// // RETRIEVING COMP ENTRIES
-// export const getAllEntries = async () => {
-//   try {
-//     var cocktailEntries = [];
+// adding cocktail to collection
+export const getAllUsers = async () => {
+  try {
+    var users = [];
 
-//     const snapshot = await getDocs(collection(db, "entries"));
-//     snapshot.forEach((doc) => {
-//       cocktailEntries.push({ ...doc.data(), id: doc.id });
-//     });
+    const snapshot = await getDocs(collection(db, "users"));
+    snapshot.forEach((doc) => {
+      users.push({ ...doc.data(), id: doc.id });
+    });
 
-//     return cocktailEntries;
-//   } catch (error) {
-//     console.log("Something went wrong when returning collection: " + error);
-//     return [];
-//   }
-// };
+    return cocktailComps;
+  } catch (error) {
+    console.log("Something went wrong when fetching users: " + error);
+    return [];
+  }
+};
+
+// entering comp
+export const enterCompetition = async (
+  name,
+  compId,
+  entryImg,
+  alcohol,
+  value
+) => {
+  try {
+    const compRef = doc(db, "cocktails", compId);
+    const compDocSnapshot = await getDoc(compRef);
+
+    if (compDocSnapshot.exists()) {
+      const docRef = await addDoc(
+        collection(db, "cocktails", compId, "entries"),
+        {
+          entryImg: entryImg,
+          name: name,
+          alcohol: alcohol,
+          value: value,
+        }
+      );
+      console.log("Entered into comp: " + docRef.id);
+    } else {
+      console.log("unlucky");
+    }
+  } catch (error) {
+    console.error("could not enter::: ", error);
+  }
+};
+
+// get competition entries
+export const getAllCocktailEntries = async (compId) => {
+  const entries = [];
+  try {
+    const querySnapshot = await getDocs(
+      collection(db, "cocktails", compId, "entries")
+    );
+    querySnapshot.forEach((doc) => {
+      entries.push({ ...doc.data(), id: doc.id });
+    });
+    return entries;
+  } catch (e) {
+    console.log("Could not fetch data: " + e);
+    return entries;
+  }
+};

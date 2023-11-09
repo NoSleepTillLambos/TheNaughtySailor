@@ -69,11 +69,11 @@ export const useFirestore = (collection) => {
     }
   };
 
-  const updateDocument = async (id, updates) => {
+  const updateDocument = async (cocktail, updates) => {
     dispatch({ type: "IS_PENDING" });
 
     try {
-      const updatedDocument = await ref.doc(id).update(updates);
+      const updatedDocument = await ref.doc(cocktail).update(updates);
       dispatchIfNotCancelled({
         type: "UPDATED_DOCUMENT",
         payload: updatedDocument,
@@ -86,11 +86,11 @@ export const useFirestore = (collection) => {
   };
 
   // delete doc
-  const deleteDocument = async (id) => {
+  const deleteDocument = async (cocktail) => {
     dispatch({ type: "IS_PENDING" });
 
     try {
-      await ref.doc(id).delete();
+      await ref.doc(cocktail).delete();
       dispatchIfNotCancelled({ type: "DELETED_DOCUMENT" });
     } catch (err) {
       dispatchIfNotCancelled({ type: "ERROR", payload: "could not delete" });

@@ -1,6 +1,17 @@
-import { StyleSheet, Text, View, Image, Pressable, Modal } from "react-native";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  Modal,
+} from "react-native";
 import React, { useEffect, useState } from "react";
-import { getCocktailFeatures } from "../services/firebaseDB";
+import {
+  enterCompetition,
+  getAllCocktailEntries,
+} from "../services/firebaseDB";
 import {
   RefreshControl,
   ScrollView,
@@ -20,6 +31,7 @@ const CompDetails = ({ route }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
+  const [entries, setEntries] = useState([]);
   const [name, setName] = useState("");
   const [alcohol, setAlcohol] = useState("");
   const [cocktails, setCocktails] = useState("");
@@ -43,17 +55,11 @@ const CompDetails = ({ route }) => {
     <AppLoading />;
   }
 
-  // entering a competition
-  const enterComp = () => {};
   const { cocktail } = route.params;
-
-  useEffect(() => {
-    getCurrentCocktails();
-  }, []);
-
-  const getCurrentCocktails = async () => {
-    const result = await getCocktailFeatures(cocktail.id);
-    setCocktails(result);
+  const compId = cocktail.id;
+  // entering a contestant
+  enterComp = () => {
+    enterCompetition(name, compId, imageEntry, alcohol, value);
   };
 
   const pickCocktail = async () => {
@@ -68,17 +74,17 @@ const CompDetails = ({ route }) => {
       setImageEntry(result.assets[0].uri);
     }
   };
-
   useEffect(() => {
-    getEntries();
+    getAllEntries();
   }, []);
   // get all from db
-  const getEntries = async () => {
-    setRefreshing(true);
-    const allEntries = await getAllEntries();
-    setCocktailEntries(allEntries);
+  const getAllEntries = async () => {
+    const allEntries = await getAllCocktailEntries(compId);
+    setEntries(allEntries);
     setRefreshing(false);
+    console.log(allEntries);
   };
+
   return (
     <View
       style={[
@@ -86,69 +92,69 @@ const CompDetails = ({ route }) => {
         modalVisible ? styles.modalVisCon : styles.container,
       ]}
     >
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.modalView}>
-            <Ionicons
-              name="add-circle-outline"
-              size={30}
-              style={styles.addDrink}
-              onPress={pickCocktail}
-            />
-            <TextInput
-              placeholder="Your cocktails name"
-              style={styles.cocktailName}
-              onChangeText={(newValue) => setName(newValue)}
-            ></TextInput>
-            <TextInput
-              style={styles.alcoholType}
-              placeholder="What alcohol does it have?"
-              onChangeText={(newValue) => setAlcohol(newValue)}
-            ></TextInput>
-            <DropDownPicker
-              style={styles.dropdown}
-              open={open}
-              value={value}
-              placeholder="Alcoholic or non-alcoholic"
-              items={items}
-              setOpen={setOpen}
-              setValue={setValue}
-              setItems={setItems}
-              disableBorderRadius={false}
-            />
-            {imageEntry ? (
-              <Image source={{ uri: imageEntry }} style={styles.imageEntry} />
-            ) : (
-              <Ionicons name="image-outline" size={50} style={styles.image} />
-            )}
-            <Ionicons
-              name="close-circle"
-              size={20}
-              style={styles.close}
-              onPress={() => setModalVisible(false)}
-            />
-
-            <Pressable style={styles.enter}>
-              <Text style={{ textAlign: "center", color: "#fff" }}>
-                Enter cocktail
-              </Text>
-            </Pressable>
-          </View>
-        </Modal>
-      </View>
-
       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={getEntries} />
+          <RefreshControl refreshing={refreshing} onRefresh={getAllEntries} />
         }
       >
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.modalView}>
+              <Ionicons
+                name="add-circle-outline"
+                size={30}
+                style={styles.addDrink}
+                onPress={pickCocktail}
+              />
+              <TextInput
+                placeholder="Your cocktails name"
+                style={styles.cocktailName}
+                onChangeText={(newValue) => setName(newValue)}
+              ></TextInput>
+              <TextInput
+                style={styles.alcoholType}
+                placeholder="What alcohol does it have?"
+                onChangeText={(newValue) => setAlcohol(newValue)}
+              ></TextInput>
+              <DropDownPicker
+                style={styles.dropdown}
+                open={open}
+                value={value}
+                placeholder="Alcoholic or non-alcoholic"
+                items={items}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
+                disableBorderRadius={false}
+              />
+              {imageEntry ? (
+                <Image source={{ uri: imageEntry }} style={styles.imageEntry} />
+              ) : (
+                <Ionicons name="image-outline" size={50} style={styles.image} />
+              )}
+              <Ionicons
+                name="close-circle"
+                size={20}
+                style={styles.close}
+                onPress={() => setModalVisible(false)}
+              />
+
+              <Pressable style={styles.enter} onPress={enterComp}>
+                <Text style={{ textAlign: "center", color: "#fff" }}>
+                  Enter cocktail
+                </Text>
+              </Pressable>
+            </View>
+          </Modal>
+        </View>
+
         <View style={styles.compView}>
           <Text style={styles.compTitle}>{cocktail.name}</Text>
 
@@ -165,9 +171,9 @@ const CompDetails = ({ route }) => {
             </Text>
           </Pressable>
           <Text style={styles.entryTitle}>Current Entries: </Text>
-          {cocktailEntries.map((entry, index) => (
+          {entries.map((entry, index) => (
             <TouchableOpacity key={index}>
-              <CompetitionEntry entryData={entry} />
+              <CompetitionEntry key={entry.id} entryData={entry} />
             </TouchableOpacity>
           ))}
         </View>
