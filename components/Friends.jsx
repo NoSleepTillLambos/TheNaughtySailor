@@ -34,9 +34,7 @@ const styles = StyleSheet.create({
   Friends: {
     height: 100,
     width: "80%",
-
     paddingTop: 10,
-    marginLeft: 30,
     marginBottom: 100,
     borderRadius: 10,
   },

@@ -10,9 +10,14 @@ import LottieView from "lottie-react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import Friends from "../components/Friends";
+import { getCurrentUser } from "../services/firebaseAuth";
 import { getAllUsersFromCollection } from "../services/firebaseDB";
+import { firebaseAuth } from "../firebase";
 
 const HomeScreen = ({ navigation }) => {
+  const user = firebaseAuth.currentUser.email.split("@")[0];
+  const newUser = user.charAt(0).toUpperCase() + user.slice(1);
+
   // loading fonts
   let [fontsLoaded] = useFonts({
     // cursive font
@@ -45,51 +50,34 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.HomeCon}>
-      <Text style={styles.header}>It's time for a</Text>
-      <Text style={styles.drink}>Drink</Text>
-
-      <Text style={styles.desc}>
-        Your all in one cocktail app for every occasion
-      </Text>
-      <TouchableOpacity
-        style={styles.enterBtn}
-        onPress={() => navigation.navigate("Competitions")}
-      >
-        <Text
-          style={{
-            fontSize: 20,
-            fontFamily: "Quicksand-Medium",
-          }}
-        >
-          Enter now <Ionicons name="enter-outline" size={18}></Ionicons>
-        </Text>
-      </TouchableOpacity>
-
-      <View>
-        <LottieView
-          loop
-          autoPlay
-          style={{
-            height: 200,
-            justifyContent: "center",
-            alignItems: "center",
-            aspectRatio: 1,
-            marginRight: 60,
-          }}
-          source={require("../assets/animations/newScene.json")}
-        />
+      <View style={styles.backgroundHeader}>
+        <Text style={styles.headerTitle}>Hey, {newUser}!</Text>
+        <Text style={styles.headerSub}>Enjoy mixology at it's finest!</Text>
       </View>
-      <Text style={styles.friendsTitle}>Users</Text>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={getAllUsers} />
-        }
-        horizontal={true}
-      >
-        {users.map((cocktail, index) => (
-          <Friends key={index} data={cocktail} />
-        ))}
-      </ScrollView>
+
+      <View style={styles.backgroundCon}>
+        <View style={styles.boxCon}>
+          <View style={styles.box}></View>
+          <View style={styles.box}></View>
+          <View style={styles.box}></View>
+          <View style={styles.box}></View>
+        </View>
+      </View>
+
+      <View style={styles.ScrollView}>
+        <Text style={styles.friendsTitle}>Users</Text>
+        <ScrollView
+          directionalLockEnabled={true}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={getAllUsers} />
+          }
+          horizontal={true}
+        >
+          {users.map((cocktail, index) => (
+            <Friends key={index} data={cocktail} />
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -104,32 +92,81 @@ const styles = StyleSheet.create({
   HomeCon: {
     backgroundColor: "#fff",
     color: "white",
+    flex: 1,
+  },
+  backgroundHeader: {
+    backgroundColor: "#dd9a9a",
+    zIndex: 1,
+    padding: 20,
+    height: 200,
+  },
+  backgroundCon: {
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    backgroundColor: "#fff",
+    height: "100%",
+    marginTop: -40,
+    zIndex: 999,
+    width: "100%",
+  },
+  boxCon: {
+    marginLeft: 20,
+    marginTop: -20,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 20,
+  },
+  box: {
+    backgroundColor: "#fff",
+    height: 180,
+    width: 160,
+    shadowColor: "#171717",
+    shadowOffset: { width: -4, height: 7 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    borderRadius: 10,
   },
 
   friendsTitle: {
-    fontSize: 20,
-    marginLeft: 30,
-    fontWeight: "bold",
-    fontFamily: "Quicksand-Medium",
+    fontSize: 25,
+    color: "#2b2b2b",
+    opacity: 0.8,
+    fontFamily: "Quicksand-Bold",
   },
   homeImg: {
     paddingLeft: 30,
     marginLeft: 30,
     marginTop: 30,
   },
-  header: {
-    fontSize: 20,
-    marginTop: 70,
+  ScrollView: {
+    position: "absolute",
+    bottom: 40,
     marginLeft: 30,
-    color: "#2b2b2b",
+    width: "90%",
+    zIndex: 999,
+  },
+  headerSub: {
+    marginLeft: 30,
+    fontSize: 17,
+    fontFamily: "Quicksand-Bold",
+    marginBottom: 20,
+    color: "#fff",
+    marginTop: 10,
+  },
+  headerTitle: {
+    fontSize: 25,
+
+    marginTop: 40,
+    marginLeft: 30,
+    color: "#fff",
     fontWeight: "bold",
-    paddingTop: 20,
-    fontFamily: "Quicksand-Medium",
+
+    fontFamily: "Quicksand-Bold",
   },
   drink: {
     fontSize: 50,
     marginLeft: 30,
-    color: "#2b2b2b",
+    color: "#fff",
     fontFamily: "Dancing-SemiBold",
     paddingTop: 20,
   },

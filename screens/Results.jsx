@@ -1,15 +1,23 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
-import { RefreshControl, ScrollView } from "react-native-gesture-handler";
+import {
+  RefreshControl,
+  ScrollView,
+  TextInput,
+} from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { getAllCompetitionsFromCollection } from "../services/firebaseDB";
 import CocktailCard from "../components/CocktailCard";
+import SearchBar from "../components/SearchBar";
+import { db } from "../firebase";
 
 const Results = () => {
   const navigation = useNavigation();
 
   const [cocktails, setCocktails] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [filteredCocktails, setFilteredCocktails] = useState();
+  const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     getAllCocktails();

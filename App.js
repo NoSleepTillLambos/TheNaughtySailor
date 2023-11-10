@@ -11,7 +11,6 @@ import CompDetails from "./screens/CompDetails";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "./firebase";
-import { Icon } from "@rneui/base";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import OnBoarding from "./screens/OnBoarding";
 
@@ -56,7 +55,6 @@ export default function App({ cocktail }) {
                 title: "Home",
                 headerShown: false,
                 tabBarActiveTintColor: "#dd9a9a",
-
                 tabBarIcon: ({ focus, size }) => (
                   <Ionicons size={25} name="home-outline" />
                 ),

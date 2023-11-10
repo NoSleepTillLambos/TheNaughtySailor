@@ -26,21 +26,12 @@ export const signInUser = async (email, password) => {
   await signInWithEmailAndPassword(firebaseAuth, email, password)
     .then((userCredential) => {
       // Signed in
-
+      online: true;
       const user = userCredential.user;
       console.log("User logged in: " + user.email);
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-
-      console.log(errorCode + ": " + errorMessage);
-      Alert.alert("Oops!", [
-        {
-          text: "Try again",
-          onPress: () => {},
-        },
-      ]);
+      console.log(error);
     });
 };
 export const updateAuthProfile = async (email, imageUrl = "") => {
