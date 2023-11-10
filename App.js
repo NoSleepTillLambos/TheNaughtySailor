@@ -13,9 +13,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "./firebase";
 import { Icon } from "@rneui/base";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import OnBoarding from "./screens/OnBoarding";
 
-// TODO: CREATE PROFILE PAGE AND MAKE THE USERNAME AND PROFILE PICTURE UPDATEABLE
-// TODO: ENTER COMPETITION AND DISPLAY COMPS BASED ON WHETHER YOU ARE A JUDE OR A CONTESTANT
 // TODO: HIDE ENTERING COMPETITIONS FROM ANYONE BUT ME
 // TODO: TAB BAR BADGE WHEN CLICKING NEW COMP IS ADDED
 
@@ -32,7 +31,7 @@ export default function App({ cocktail }) {
   return (
     <NavigationContainer styles={styles.container}>
       <Tab.Navigator
-        initialRouteName="Register"
+        initialRouteName="OnBoarding"
         screenOptions={{
           tabBarShowLabel: false,
           tabBarStyle: {
@@ -122,6 +121,11 @@ export default function App({ cocktail }) {
             <Tab.Screen
               name="Register"
               component={Register}
+              options={{ tabBarStyle: { display: "none" }, headerShown: false }}
+            />
+            <Tab.Screen
+              name="OnBoarding"
+              component={OnBoarding}
               options={{ tabBarStyle: { display: "none" }, headerShown: false }}
             />
           </>
