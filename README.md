@@ -206,8 +206,8 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 ## Contact
 
-- **Liam Wedge** - [liamwedge00@gmail.com]()
-- **Naughty Sailor** - [https://github.com/NoSleepTillLambos/TheNaughtySailor]
+**Liam Wedge** - [liamwedge00@gmail.com]()
+**Naughty Sailor** - https://github.com/NoSleepTillLambos/TheNaughtySailor
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -224,4 +224,5 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 ***UI***
 
-
+- [Lottie](https://lottiefiles.com/) (Lottie animation loaders/ onboarding ui)
+- [React-Native Elements](https://reactnativeelements.com/) (Onboarding screens/ skeleton loaders as well as further UI implementation)
