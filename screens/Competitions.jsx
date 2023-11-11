@@ -13,6 +13,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
 import { addCocktailCompetition } from "../services/firebaseDB";
+import { Modal } from "react-native-web";
+import AnimatedLottieView from "lottie-react-native";
 
 const Competitions = () => {
   const [openTip, setOpenTip] = useState(false);
@@ -28,7 +30,20 @@ const Competitions = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [success, setSuccess] = useState(false);
 
+  const createComp = () => {
+    try {
+      addCocktailCompetition(name, value, image, alcoholOne, alcoholTwo);
+      setSuccess(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setAlcoholOne, setName, "";
+      setImage(null);
+      setSuccess(false);
+    }
+  };
   const pickImageFromLibrary = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -45,101 +60,116 @@ const Competitions = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.EnterDetails}>
-        <Text style={styles.heading}>Create competition</Text>
+      {success ? (
+        <View style={styles.successView}>
+          <AnimatedLottieView
+            autoPlay
+            style={{
+              position: "absolute",
+              height: 200,
+              justifyContent: "center",
+              alignItems: "center",
+              aspectRatio: 1,
+              left: 30,
+              top: 90,
+            }}
+            source={require("../assets/animations/success.json")}
+          />
+        </View>
+      ) : (
+        <View style={styles.EnterDetails}>
+          <Text style={styles.heading}>Create competition</Text>
 
-        <Tooltip
-          visible={openTip}
-          onOpen={() => setOpenTip(true)}
-          onClose={() => setOpenTip(false)}
-          popover={
-            <>
-              <Text style={{ color: "#fff" }}>1. Choose a name {"\n"}</Text>
-              <Text style={{ color: "#fff" }}>2. Choose a category</Text>
-              <Text style={{ color: "#fff" }}>
-                3. Upload a picture of your cocktail
-              </Text>
-            </>
-          }
-        >
-          <Text style={{ fontSize: 15, paddingLeft: 30 }}>
-            Rules<Ionicons name="help-outline"></Ionicons>
+          <Tooltip
+            visible={openTip}
+            onOpen={() => setOpenTip(true)}
+            onClose={() => setOpenTip(false)}
+            popover={
+              <>
+                <Text style={{ color: "#fff" }}>1. Choose a name {"\n"}</Text>
+                <Text style={{ color: "#fff" }}>2. Choose a category</Text>
+                <Text style={{ color: "#fff" }}>
+                  3. Upload a picture of your cocktail
+                </Text>
+              </>
+            }
+          >
+            <Text style={{ fontSize: 15, paddingLeft: 30 }}>
+              Rules<Ionicons name="help-outline"></Ionicons>
+            </Text>
+          </Tooltip>
+          <Text style={styles.cocktailType}>Cocktail type:</Text>
+          <DropDownPicker
+            style={styles.dropdown}
+            open={open}
+            value={value}
+            placeholder="Alcoholic or non-alcoholic"
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            disableBorderRadius={true}
+          />
+          <Text style={styles.cocktailName}>Cocktail name:</Text>
+          <TextInput
+            style={styles.cocktailPick}
+            keyboardType="default"
+            defaultValue={name}
+            onChangeText={(newValue) => setName(newValue)}
+          />
+          <Text style={styles.cocktailImage}>
+            Select the competition image:
           </Text>
-        </Tooltip>
-        <Text style={styles.cocktailType}>Cocktail type:</Text>
-        <DropDownPicker
-          style={styles.dropdown}
-          open={open}
-          value={value}
-          placeholder="Alcoholic or non-alcoholic"
-          items={items}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}
-          disableBorderRadius={true}
-        />
-        <Text style={styles.cocktailName}>Cocktail name:</Text>
-        <TextInput
-          style={styles.cocktailPick}
-          keyboardType="default"
-          defaultValue={name}
-          onChangeText={(newValue) => setName(newValue)}
-        />
-        <Text style={styles.cocktailImage}>Select the competition image:</Text>
-        <View style={styles.cocktailImg}>
-          {image && (
-            <Image
-              source={{ uri: image }}
-              style={{ height: 130, width: 130, borderRadius: 130 / 2 }}
+          <View style={styles.cocktailImg}>
+            {image && (
+              <Image
+                source={{ uri: image }}
+                style={{ height: 130, width: 130, borderRadius: 130 / 2 }}
+              />
+            )}
+          </View>
+          <View style={styles.inputGroup}>
+            {image ? (
+              <Pressable onPress={() => setImage(null)}>
+                <Ionicons name="trash-outline" size={20} color="red" />
+              </Pressable>
+            ) : (
+              <>
+                <Pressable
+                  style={styles.uploadImageButton}
+                  onPress={() => pickImageFromLibrary(1)}
+                >
+                  <Ionicons name="images-outline" size={32} color="white" />
+                </Pressable>
+                <Pressable onPress={() => {}}>
+                  <Ionicons name="camera-outline" size={34} color="white" />
+                </Pressable>
+              </>
+            )}
+          </View>
+          <Text style={{ paddingLeft: 30, fontSize: 10, marginBottom: 5 }}>
+            What type of alcohol must it contain?
+          </Text>
+          <View style={styles.alcoholType}>
+            <TextInput
+              style={styles.alcohol}
+              keyboardType="default"
+              defaultValue={alcoholOne}
+              onChangeText={(newValue) => setAlcoholOne(newValue)}
             />
-          )}
-        </View>
-        <View style={styles.inputGroup}>
-          {image ? (
-            <Pressable onPress={() => setImage(null)}>
-              <Ionicons name="trash-outline" size={20} color="red" />
-            </Pressable>
-          ) : (
-            <>
-              <Pressable
-                style={styles.uploadImageButton}
-                onPress={() => pickImageFromLibrary(1)}
-              >
-                <Ionicons name="images-outline" size={32} color="white" />
-              </Pressable>
-              <Pressable onPress={() => {}}>
-                <Ionicons name="camera-outline" size={34} color="white" />
-              </Pressable>
-            </>
-          )}
-        </View>
-        <Text style={{ paddingLeft: 30, fontSize: 10, marginBottom: 5 }}>
-          What type of alcohol must it contain?
-        </Text>
-        <View style={styles.alcoholType}>
-          <TextInput
-            style={styles.alcohol}
-            keyboardType="default"
-            defaultValue={alcoholOne}
-            onChangeText={(newValue) => setAlcoholOne(newValue)}
-          />
-          <TextInput
-            style={styles.alcohol}
-            keyboardType="default"
-            defaultValue={alcoholTwo}
-            onChangeText={(newValue) => setAlcoholTwo(newValue)}
-          />
-        </View>
+            <TextInput
+              style={styles.alcohol}
+              keyboardType="default"
+              defaultValue={alcoholTwo}
+              onChangeText={(newValue) => setAlcoholTwo(newValue)}
+            />
+          </View>
 
-        <TouchableOpacity
-          style={styles.upload}
-          onPress={() =>
-            addCocktailCompetition(name, value, image, alcoholOne, alcoholTwo)
-          }
-        >
-          <Text style={styles.Enter}>Create Competition</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity style={styles.upload} onPress={createComp}>
+            <Text style={styles.Enter}>Create Competition</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
@@ -149,6 +179,12 @@ export default Competitions;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  successView: {
+    backgroundColor: "green",
+    opacity: 0.7,
+    height: "100%",
+    width: "100%",
   },
   alcohol: {
     height: 50,

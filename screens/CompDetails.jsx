@@ -60,7 +60,12 @@ const CompDetails = ({ route }) => {
   const compId = cocktail.id;
   // entering a contestant
   enterComp = () => {
-    enterCompetition(name, compId, imageEntry, alcohol, value);
+    try {
+      enterCompetition(name, compId, imageEntry, alcohol, value);
+    } catch {
+      setName, alcohol, value("");
+      setImageEntry(null);
+    }
   };
 
   const pickCocktail = async () => {

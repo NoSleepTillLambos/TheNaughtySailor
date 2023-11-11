@@ -8,8 +8,6 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { getAllCompetitionsFromCollection } from "../services/firebaseDB";
 import CocktailCard from "../components/CocktailCard";
-import SearchBar from "../components/SearchBar";
-import { db } from "../firebase";
 
 const Results = () => {
   const navigation = useNavigation();

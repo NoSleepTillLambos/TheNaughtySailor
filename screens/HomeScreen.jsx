@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import {
   RefreshControl,
@@ -57,10 +57,34 @@ const HomeScreen = ({ navigation }) => {
 
       <View style={styles.backgroundCon}>
         <View style={styles.boxCon}>
-          <View style={styles.box}></View>
-          <View style={styles.box}></View>
-          <View style={styles.box}></View>
-          <View style={styles.box}></View>
+          <View style={styles.box}>
+            <Image
+              style={styles.boxImg}
+              source={require("../assets/cocktails/home1.png")}
+            ></Image>
+            <Text style={styles.boxTxt}>Relax</Text>
+          </View>
+          <View style={styles.box}>
+            <Image
+              style={styles.boxImg}
+              source={require("../assets/cocktails/home2.png")}
+            ></Image>
+            <Text style={styles.boxTxt}>Learn</Text>
+          </View>
+          <View style={styles.box}>
+            <Image
+              style={styles.boxImg}
+              source={require("../assets/cocktails/home3.png")}
+            ></Image>
+            <Text style={styles.boxTxt}>Join the community</Text>
+          </View>
+          <View style={styles.box}>
+            <Image
+              style={styles.boxImg}
+              source={require("../assets/cocktails/home4.png")}
+            ></Image>
+            <Text style={styles.boxTxt}>Begin your journey</Text>
+          </View>
         </View>
       </View>
 
@@ -89,6 +113,10 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingTop: 20,
   },
+  boxTxt: {
+    marginTop: 10,
+    fontFamily: "Quicksand-Medium",
+  },
   HomeCon: {
     backgroundColor: "#fff",
     color: "white",
@@ -109,6 +137,10 @@ const styles = StyleSheet.create({
     zIndex: 999,
     width: "100%",
   },
+  boxImg: {
+    height: 100,
+    width: 100,
+  },
   boxCon: {
     marginLeft: 20,
     marginTop: -20,
@@ -120,6 +152,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: 180,
     width: 160,
+    justifyContent: "center",
+    alignItems: "center",
     shadowColor: "#171717",
     shadowOffset: { width: -4, height: 7 },
     shadowOpacity: 0.2,
@@ -128,9 +162,9 @@ const styles = StyleSheet.create({
   },
 
   friendsTitle: {
-    fontSize: 25,
-    color: "#2b2b2b",
-    opacity: 0.8,
+    fontSize: 22,
+    color: "#dd9a9a",
+    opacity: 0.9,
     fontFamily: "Quicksand-Bold",
   },
   homeImg: {
