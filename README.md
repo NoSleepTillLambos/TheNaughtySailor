@@ -134,7 +134,7 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ### Road Map and conceptual process
 
-![image4](assets/mockups/Frame66.png)
+<img src="assets/mockups/Frame66.png" height="200" width="200"></img>
 ![image10](assets/userFlow.jpg)
 ![image11](assets/mockups/planning1.jpg)
 ![image12](assets/mockups/planning2.jpg)
@@ -144,14 +144,14 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 - I spent a lot of time on apps that were in line with what i was trying to create, i.e restaurants, bars etc and went through the functionality and how the app was going to work
 - A lot of the process went towards and was guided around the question of **how can i make this a real world application?** **what do i need to do for this app to be world ready?**
-- I also accepted this as a growing project, one i can keep bettering and working on, there are so many options and ideas i have to add to this project
+- I also accepted this as a growing project, one i can keep bettering and working on. There are so many options and ideas i want to add to this project in the future 
 
 ### Implementation Process
 
-<!-- stipulate all of the functionality you included in the project -->
 <!-- This is your time to shine, explain the technical nuances of your project, how did you achieve the final outcome!-->
 
 - A big part of the process was getting familiar with Expo and the world of mobile development and getting familiar with working on android and ios.
+- The project is very frontend orientated especially as my first app that i am developing i wanted it to be as thought out as possible with every little piece to be tailormade. 
 
 #### Above And Beyond
 
@@ -159,28 +159,28 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 <!-- what did you learn outside of the classroom and implement into your project-->
 
-- Search functionality
-- Comment section where users can visit the individual entries and leave comments on their fellow competitors drinks
+- Search functionality (todo)
+- Comment section where users can visit the individual entries and leave comments on their fellow competitors drinks (todo)
 - Google login and verification (todo)
 - Lottie animations
+- Onboarding
 
 ### Future Implementation
 
 <!-- stipulate functionality and improvements that can be implemented in the future. -->
 
-- In future i would like to publish the app to the app store, Firebase could be an issue however with calls to the db. I'd really like to create something real world ready.
-- Functionality to login with a Google account
-- Google reviews?
+- In future i would like to publish the app to the app store and take care of a real world app
+- Google reviews
 
 <!-- MOCKUPS -->
 
 ## Final Outcome
 
-### Previous Mockups
+### Mockups
 
-![image2](assets/mockups/2.png)
+![image2]()
 <br>
-![image3](assets/mockups/3.png)
+![image3]()
 
 <!-- VIDEO DEMONSTRATION -->
 
