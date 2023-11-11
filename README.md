@@ -136,6 +136,8 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ![image4](assets/mockups/Frame66.png)
 ![image10](assets/userFlow.jpg)
+![image11](assets/mockups/planning1.jpg)
+![image12](assets/mockups/planning2.jpg)
 <!-- DEVELOPMENT PROCESS -->
 
 ## Development Process
@@ -225,4 +227,5 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 ***UI***
 
 - [Lottie](https://lottiefiles.com/) (Lottie animation loaders/ onboarding ui)
+- [unDraw](https://undraw.co/) (Easy & free to use website for illustrations / easily customizable to fit your apps color pallete)
 - [React-Native Elements](https://reactnativeelements.com/) (Onboarding screens/ skeleton loaders as well as further UI implementation)
