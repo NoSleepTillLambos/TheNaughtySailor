@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     width: "45%",
     padding: 7,
     height: 40,
-    bottom: 35,
+    bottom: 33,
     left: 20,
   },
   container: {
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     color: "#D07474",
     position: "absolute",
     fontFamily: "Quicksand-Medium",
-    left: 47,
+    left: 60,
     top: 10,
   },
   create: {

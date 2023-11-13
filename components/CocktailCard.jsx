@@ -15,12 +15,6 @@ const CocktailCard = (props) => {
         <Text style={styles.type}>{data.value}</Text>
 
         <Text style={styles.alcoholTypes}>Alc: {data.alcoholOne}</Text>
-
-        <Ionicons
-          style={styles.likes}
-          size={25}
-          name="heart-circle-outline"
-        ></Ionicons>
       </View>
     </View>
   );

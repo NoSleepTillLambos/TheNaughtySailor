@@ -170,6 +170,7 @@ const CompDetails = ({ route }) => {
               style={styles.compImg}
               source={{ uri: cocktail.cocktailImg }}
             />
+            <Text>Required alcohol: {cocktail.alcohol}</Text>
           </Card>
 
           <Pressable style={styles.enterComp}>

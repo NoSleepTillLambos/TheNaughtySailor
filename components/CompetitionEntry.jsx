@@ -38,7 +38,7 @@ const CompetitionEntry = (props) => {
       ></Image>
       <Text style={styles.name}>{entryData.name}</Text>
       <Text style={styles.person}>{entryData.value}</Text>
-
+      <Text style={styles.voteN}>Votes: {entryData.votes}</Text>
       <View style={styles.voteBlock}>
         <Pressable
           onPress={voteOnCocktail}
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     position: "absolute",
     right: 10,
-    top: 15,
+    top: 5,
     width: 70,
   },
   votes: {
@@ -106,7 +106,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   voteN: {
-    textAlign: "center",
+    position: "absolute",
+    right: 25,
+    bottom: 10,
+    fontWeight: "bold",
   },
   voteTxt: {
     color: "#fff",
