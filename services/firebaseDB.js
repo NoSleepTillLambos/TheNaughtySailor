@@ -152,6 +152,7 @@ export const getAllCocktailEntries = async (compId) => {
       collection(db, "cocktails", compId, "entries")
     );
     querySnapshot.forEach((doc) => {
+      console.log(doc.id, "=>", doc.data());
       entries.push({ ...doc.data(), id: doc.id });
     });
     return entries;

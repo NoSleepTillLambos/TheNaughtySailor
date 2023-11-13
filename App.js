@@ -13,6 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "./firebase";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import OnBoarding from "./screens/OnBoarding";
+import LeaderBoards from "./screens/Leaderboards";
 
 // TODO: HIDE ENTERING COMPETITIONS FROM ANYONE BUT ME
 // TODO: TAB BAR BADGE WHEN CLICKING NEW COMP IS ADDED
@@ -88,6 +89,16 @@ export default function App({ cocktail }) {
             <Tab.Screen
               name="CompDetails"
               component={CompDetails}
+              options={({ route }) => ({
+                // hides this tab bar from the stack, that way the component is still part of the stack
+                // --> but is just not visible on the frontend
+                tabBarButton: () => null,
+                headerShown: false,
+              })}
+            />
+            <Tab.Screen
+              name="Leaderboards"
+              component={LeaderBoards}
               options={({ route }) => ({
                 // hides this tab bar from the stack, that way the component is still part of the stack
                 // --> but is just not visible on the frontend

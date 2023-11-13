@@ -26,7 +26,7 @@ import {
   getAllCocktailEntries,
 } from "../services/firebaseDB";
 
-const CompDetails = ({ route }) => {
+const CompDetails = ({ route, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -170,7 +170,16 @@ const CompDetails = ({ route }) => {
               style={styles.compImg}
               source={{ uri: cocktail.cocktailImg }}
             />
-            <Text>Required alcohol: {cocktail.alcohol}</Text>
+            <Card.FeaturedSubtitle style={styles.alcoholRequire}>
+              Requirements
+            </Card.FeaturedSubtitle>
+            <CardDivider style={styles.divider} />
+            <Card.FeaturedSubtitle style={styles.alcohol}>
+              Alcohol: {cocktail.alcoholOne}
+            </Card.FeaturedSubtitle>
+            <Card.FeaturedSubtitle style={styles.val}>
+              Type: {cocktail.value}
+            </Card.FeaturedSubtitle>
           </Card>
 
           <Pressable style={styles.enterComp}>
@@ -180,6 +189,12 @@ const CompDetails = ({ route }) => {
             >
               Enter this competition
             </Text>
+          </Pressable>
+          <Pressable
+            style={styles.trophy}
+            onPress={() => navigation.navigate("Leaderboards", { compId })}
+          >
+            <Ionicons name="trophy" size={30} color="gold" />
           </Pressable>
           <Text style={styles.entryTitle}>Current Entries: </Text>
           {entries.map((entry, index) => (
@@ -203,6 +218,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  alcohol: {
+    color: "#2b2b2b",
+    fontFamily: "Quicksand-Medium",
+    position: "absolute",
+    left: 160,
+    top: 100,
+  },
+  val: {
+    position: "absolute",
+    left: 160,
+    top: 130,
+    fontFamily: "Quicksand-Medium",
+    color: "#2b2b2b",
+  },
+  divider: {
+    color: "#2b2b2b",
+    fontFamily: "Quicksand-Bold",
+    position: "absolute",
+    left: 160,
+    top: 85,
+    width: 120,
+    fontSize: 15,
+  },
+  alcoholRequire: {
+    color: "#2b2b2b",
+    fontFamily: "Quicksand-Bold",
+    position: "absolute",
+    left: 160,
+    top: 60,
+    fontSize: 15,
+  },
   modalVisCon: {
     opacity: 0.05,
     backgroundColor: "#2b2b2b",
@@ -218,6 +264,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 100,
   },
+  requireAlc: {
+    color: "#2b2b2b",
+  },
   modalView: {
     justifyContent: "center",
     backgroundColor: "#fff",
@@ -228,6 +277,14 @@ const styles = StyleSheet.create({
     opacity: 0.97,
     borderRadius: 10,
     alignItems: "center",
+  },
+  trophy: {
+    position: "absolute",
+    left: 20,
+    borderRadius: 10,
+    top: 278,
+    backgroundColor: "#fff",
+    padding: 10,
   },
   compRequire: {
     alignItems: "flex-end",
@@ -246,8 +303,9 @@ const styles = StyleSheet.create({
   },
   enterComp: {
     backgroundColor: "#fff",
-    marginTop: 30,
-    width: 200,
+    marginTop: 25,
+    marginLeft: 60,
+    width: 280,
     height: 40,
     borderRadius: 10,
     borderColor: "#2b2b2b",

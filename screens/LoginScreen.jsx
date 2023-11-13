@@ -91,12 +91,6 @@ const Login = ({ navigation }) => {
             </View>
           </View>
         </Modal>
-        {/* <AnimatedLottieView
-          source={require("../assets/104368-thank-you.json")}
-          autoPlay
-          style={{ width: "80%", aspectRatio: 1 }}
-          loop
-        /> */}
 
         <Image
           style={styles.tinyLogo}

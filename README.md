@@ -1,4 +1,3 @@
-
 ![GitHub repo size](https://img.shields.io/github/repo-size/NoSleepTillLambos/TheNaughtySailor)
 ![GitHub watchers](https://img.shields.io/github/watchers/NoSleepTillLambos/TheNaughtySailor)
 ![GitHub language count](https://img.shields.io/github/languages/count/NoSleepTillLambos/TheNaughtySailor)
@@ -26,6 +25,7 @@
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
+
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [How to install](#how-to-install)
@@ -50,20 +50,16 @@
   <img height="500" width="800" src="assets/mockups/homeGif.gif"></img>
 </p>
 
-
 ### Project Description
 
 **Naughty sailor is based off one of my favourite cocktails from a popular bar i used to work at and where i got the inspiration for my app. It allows users to vote on certain drinks and enter into competitions where they can face off and determine the best mixologist around**
 
 ### Built With
 
-
 ![Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
 ![React-Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
 ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
-
-
 
 **<!-- GETTING STARTED -->**
 
@@ -112,11 +108,11 @@ Here are a couple of ways to clone this repo:
 
 ### Feature 1
 
-
 ### Feature 2
 
 **🏆 Users can discover newly listed competitions, read up about them and their requirements and enter from there** </br>
 **🔎 Users can search for their desired competition if they don't see one they are interested in entering straight away**
+
 - Home page, users are introduced to the app and can then move to the create entry screen where they can enter into a cocktail comp and compete
 
 ### Feature 3
@@ -141,20 +137,21 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 ![image11](assets/mockups/planning1.jpg)
 <br/>
 ![image12](assets/mockups/planning2.jpg)
+
 <!-- DEVELOPMENT PROCESS -->
 
 ## Development Process
 
 - I spent a lot of time on apps that were in line with what i was trying to create, i.e restaurants, bars etc and went through the functionality and how the app was going to work
 - A lot of the process went towards and was guided around the question of **how can i make this a real world application?** **what do i need to do for this app to be world ready?**
-- I also accepted this as a growing project, one i can keep bettering and working on. There are so many options and ideas i want to add to this project in the future 
+- I also accepted this as a growing project, one i can keep bettering and working on. There are so many options and ideas i want to add to this project in the future
 
 ### Implementation Process
 
 <!-- This is your time to shine, explain the technical nuances of your project, how did you achieve the final outcome!-->
 
 - A big part of the process was getting familiar with Expo and the world of mobile development and getting familiar with working on android and ios.
-- The project is very frontend orientated especially as my first app that i am developing i wanted it to be as thought out as possible with every little piece to be tailormade. 
+- The project is very frontend orientated especially as my first app that i am developing i wanted it to be as thought out as possible with every little piece to be tailormade.
 
 #### Above And Beyond
 
@@ -170,7 +167,7 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 <!-- stipulate functionality and improvements that can be implemented in the future. -->
 
 - **Search functionality**
-- **Comment section where users can visit the individual entries and leave comments on their fellow competitors drinks** 
+- **Comment section where users can visit the individual entries and leave comments on their fellow competitors drinks**
 - **Google login and verification**
 - **Skeleton loading animations, they add a great touch to the UI and the experience of the app**
 
@@ -217,16 +214,17 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 ## Acknowledgements
 
-***Languages & frameworks***
+**_Languages & frameworks_**
+
 <!-- all resources that you used and Acknowledgements here -->
+
 ![Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
 ![React-Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
 ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 ![StackOverflow](https://img.shields.io/badge/Stack_Overflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)
 
-
-***UI***
+**_UI_**
 
 - [Lottie](https://lottiefiles.com/) (Lottie animation loaders/ onboarding ui)
 - [unDraw](https://undraw.co/) (Easy & free to use website for illustrations / easily customizable to fit your apps color pallete)

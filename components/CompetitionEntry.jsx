@@ -47,7 +47,11 @@ const CompetitionEntry = (props) => {
         >
           {voted ? (
             <>
-              <Text style={styles.voteTxt}>Voted!</Text>
+              <Ionicons
+                style={styles.votes}
+                size={20}
+                name="checkbox-outline"
+              />
             </>
           ) : (
             <>
@@ -55,7 +59,7 @@ const CompetitionEntry = (props) => {
                 style={styles.votes}
                 size={20}
                 name="arrow-up-outline"
-              ></Ionicons>
+              />
             </>
           )}
         </Pressable>
@@ -83,13 +87,14 @@ const styles = StyleSheet.create({
   },
   voteBtn: {
     backgroundColor: "#dd9a9a",
-    padding: 10,
+    padding: 2,
     color: "#fff",
     borderRadius: 5,
     position: "absolute",
     right: 10,
     top: 5,
-    width: 70,
+    width: 30,
+    height: 32,
   },
   votes: {
     position: "absolute",
