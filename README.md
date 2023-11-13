@@ -162,18 +162,17 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 <!-- what did you learn outside of the classroom and implement into your project-->
 
-- Search functionality (todo)
-- Comment section where users can visit the individual entries and leave comments on their fellow competitors drinks (todo)
-- Google login and verification (todo)
 - Lottie animations
-- Onboarding
+- Onboarding screens
 
 ### Future Implementation
 
 <!-- stipulate functionality and improvements that can be implemented in the future. -->
 
-- In future i would like to publish the app to the app store and take care of a real world app
-- Google reviews
+- **Search functionality**
+- **Comment section where users can visit the individual entries and leave comments on their fellow competitors drinks** 
+- **Google login and verification**
+- **Skeleton loading animations, they add a great touch to the UI and the experience of the app**
 
 <!-- MOCKUPS -->
 
@@ -181,9 +180,9 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ### Mockups
 
-![image2]()
+![image2](assets/mockups/iPhone 15 Pro.png)
 <br>
-![image3]()
+![image3](assets/mockups/1.png)
 
 <!-- VIDEO DEMONSTRATION -->
 
