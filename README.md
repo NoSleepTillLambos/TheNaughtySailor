@@ -180,7 +180,7 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 ### Mockups
 
-![image2](assets/mockups/iPhone 15 Pro.png)
+![image2](assets/mockups/4.png)
 <br>
 ![image3](assets/mockups/1.png)
 
