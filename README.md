@@ -149,8 +149,9 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 <!-- This is your time to shine, explain the technical nuances of your project, how did you achieve the final outcome!-->
 
-- A big part of the process was getting familiar with Expo and the world of mobile development and getting familiar with working on android and ios.
-- The project is very frontend orientated especially as my first app that i am developing i wanted it to be as thought out as possible with every little piece to be tailormade. 
+- A big part of the process was getting familiar with Expo and the world of mobile development & React native specifically, involved a lot of tutorials and practice, a lot of the practices I learn from React could not be implemented in React Native.
+- The project is very frontend orientated especially as my first app that i am developing i wanted it to be as thought out as possible with every little piece to be tailormade for the app.
+- Touching on my previous point I'd like to include some global styling just to simplify my codebase as an addition 
 
 #### Above And Beyond
 
