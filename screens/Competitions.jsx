@@ -1,20 +1,19 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Tooltip } from "@rneui/themed";
+import * as ImagePicker from "expo-image-picker";
+import AnimatedLottieView from "lottie-react-native";
+import React, { useState } from "react";
 import {
+  Image,
+  Pressable,
   StyleSheet,
   Text,
-  View,
-  TouchableOpacity,
   TextInput,
-  Pressable,
-  Image,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import React, { useState } from "react";
-import { Tooltip } from "@rneui/themed";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
 import { addCocktailCompetition } from "../services/firebaseDB";
-import { Modal } from "react-native-web";
-import AnimatedLottieView from "lottie-react-native";
 
 const Competitions = () => {
   const [openTip, setOpenTip] = useState(false);

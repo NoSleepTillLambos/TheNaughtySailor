@@ -1,26 +1,25 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
+import AnimatedLottieView from "lottie-react-native";
+import React, { useState } from "react";
 import {
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
   Image,
-  TextInput,
-  View,
+  KeyboardAvoidingView,
   Modal,
   Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
-import React, { useState } from "react";
-import { firebaseAuth } from "../firebase";
 import {
-  TouchableOpacity,
-  TouchableHighlight,
   ScrollView,
+  TouchableHighlight,
+  TouchableOpacity,
 } from "react-native-gesture-handler";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
+import { firebaseAuth } from "../firebase";
 import { signInUser } from "../services/firebaseAuth";
-import AnimatedLottieView from "lottie-react-native";
 
 const Login = ({ navigation }) => {
   // loading fonts

@@ -1,14 +1,17 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
-import { firebaseAuth } from "../firebase";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AppLoading from "expo-app-loading";
-import { changeEmail, updateAuthProfile } from "../services/firebaseAuth";
-import { getCurrentUser } from "../services/firebaseAuth";
-import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { useFonts } from "expo-font";
-import { updateUserInDb } from "../services/firebaseDB";
 import * as ImagePicker from "expo-image-picker";
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, TextInput } from "react-native-gesture-handler";
+import { firebaseAuth } from "../firebase";
+import {
+  changeEmail,
+  getCurrentUser,
+  updateAuthProfile,
+} from "../services/firebaseAuth";
+import { updateUserInDb } from "../services/firebaseDB";
 import { uploadToStorage } from "../services/firebaseStorage";
 
 const Profile = (navigation) => {
@@ -140,7 +143,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    borderColor: "#7799CC",
+    borderColor: "#D07474",
     borderWidth: 1,
     height: 40,
     left: 20,
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    borderColor: "#7799CC",
+    borderColor: "#D07474",
     borderWidth: 1,
     height: 40,
     bottom: 0,
@@ -177,7 +180,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 15,
-    color: "#7799CC",
+    color: "#D07474",
     fontFamily: "Quicksand-Medium",
   },
 });

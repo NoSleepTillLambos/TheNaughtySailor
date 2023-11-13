@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const CocktailCard = (props) => {
   const { data } = props;
@@ -13,7 +13,6 @@ const CocktailCard = (props) => {
       <View style={styles.desc}>
         <Text style={styles.cocktailName}>{data.name}</Text>
         <Text style={styles.type}>{data.value}</Text>
-        <Text style={styles.likeCnt}>5</Text>
 
         <Text style={styles.alcoholTypes}>Alc: {data.alcoholOne}</Text>
 

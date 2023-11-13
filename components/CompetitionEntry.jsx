@@ -1,11 +1,14 @@
-import { Pressable, StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
-import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
+import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { updateEntryInCollection } from "../services/firebaseDB";
 
 const CompetitionEntry = (props) => {
   const { entryData } = props;
+
+  const [voted, setVoted] = useState(false);
   let [fontsLoaded] = useFonts({
     // QUICKSAND FONTS
     "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
@@ -18,6 +21,15 @@ const CompetitionEntry = (props) => {
   if (!fontsLoaded) {
     <AppLoading />;
   }
+
+  // voting on entry
+  const voteOnCocktail = async () => {
+    if (!voted) {
+      setVoted(true);
+    }
+
+    await updateEntryInCollection(props.compId, props.entryId);
+  };
   return (
     <View style={styles.container}>
       <Image
@@ -28,12 +40,24 @@ const CompetitionEntry = (props) => {
       <Text style={styles.person}>{entryData.value}</Text>
 
       <View style={styles.voteBlock}>
-        <Pressable>
-          <Ionicons name="caret-up-circle-outline" size={25} color="green" />
-        </Pressable>
-        <Text style={styles.voteN}>10</Text>
-        <Pressable>
-          <Ionicons name="caret-down-circle-outline" size={25} color="red" />
+        <Pressable
+          onPress={voteOnCocktail}
+          style={styles.voteBtn}
+          disabled={voted}
+        >
+          {voted ? (
+            <>
+              <Text style={styles.voteTxt}>Voted!</Text>
+            </>
+          ) : (
+            <>
+              <Ionicons
+                style={styles.votes}
+                size={20}
+                name="arrow-up-outline"
+              ></Ionicons>
+            </>
+          )}
         </Pressable>
       </View>
     </View>
@@ -57,6 +81,25 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: "Quicksand-Bold",
   },
+  voteBtn: {
+    backgroundColor: "#dd9a9a",
+    padding: 10,
+    color: "#fff",
+    borderRadius: 5,
+    position: "absolute",
+    right: 10,
+    top: 15,
+    width: 70,
+  },
+  votes: {
+    position: "absolute",
+    right: 5,
+    top: 6,
+    color: "#fff",
+  },
+  voted: {
+    color: "#fff",
+  },
   person: {
     fontFamily: "Quicksand-Medium",
     marginLeft: 90,
@@ -64,6 +107,11 @@ const styles = StyleSheet.create({
   },
   voteN: {
     textAlign: "center",
+  },
+  voteTxt: {
+    color: "#fff",
+    fontWeight: "bold",
+    bottom: 1,
   },
   entryImg: {
     height: "80%",

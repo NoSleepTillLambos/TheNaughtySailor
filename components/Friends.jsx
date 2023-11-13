@@ -1,8 +1,7 @@
-import React from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
-import { useCollection } from "../hooks/useCollection";
-import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
 
 const Friends = (props) => {
   // loading fonts
@@ -34,17 +33,17 @@ const styles = StyleSheet.create({
   Friends: {
     height: 100,
     width: "80%",
-    paddingTop: 10,
+    paddingTop: 6,
     marginBottom: 100,
     borderRadius: 10,
   },
 
   cocktailImage: {
-    height: 90,
-    marginRight: -70,
-    width: 90,
-    marginTop: 10,
-    borderRadius: 90 / 2,
+    height: 80,
+    marginRight: -60,
+    width: 80,
+    marginTop: 20,
+    borderRadius: 80 / 2,
   },
 });
 

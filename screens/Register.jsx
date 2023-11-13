@@ -1,21 +1,20 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
+import React, { useState } from "react";
 import {
+  Image,
+  KeyboardAvoidingView,
+  Modal,
+  Pressable,
   StyleSheet,
   Text,
-  View,
   TextInput,
-  Modal,
-  Image,
-  TouchableOpacity,
   TouchableHighlight,
-  KeyboardAvoidingView,
-  Pressable,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import React from "react";
-import { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
 import { registerNewUser } from "../services/firebaseAuth";
 
 const Register = ({ navigation }) => {

@@ -1,11 +1,11 @@
 import {
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  updateProfile,
+  signInWithEmailAndPassword,
   updateEmail,
+  updateProfile,
 } from "firebase/auth";
-import { createUserInDB } from "./firebaseDB";
 import { firebaseAuth } from "../firebase";
+import { createUserInDB } from "./firebaseDB";
 
 export const registerNewUser = async (email, password, role) => {
   createUserWithEmailAndPassword(firebaseAuth, email, password, role)

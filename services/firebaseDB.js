@@ -5,6 +5,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  increment,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -131,6 +132,7 @@ export const enterCompetition = async (
           name: name,
           alcohol: alcohol,
           value: value,
+          votes: 0,
         }
       );
       console.log("Entered into comp: " + docRef.id);
@@ -156,5 +158,18 @@ export const getAllCocktailEntries = async (compId) => {
   } catch (e) {
     console.log("Could not fetch data: " + e);
     return entries;
+  }
+};
+
+// voting on competition
+export const updateEntryInCollection = async (cocktailId, entryId) => {
+  try {
+    const entryRef = doc(db, `cocktails/${cocktailId}/entries`, entryId);
+
+    // increment votes by 1
+    await updateDoc(entryRef, { votes: increment(1) });
+    console.log("successfully voted on comp");
+  } catch (e) {
+    console.log("could not vote on comp " + e);
   }
 };

@@ -1,10 +1,10 @@
+import { useNavigation } from "@react-navigation/native";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
 import AnimatedLottieView from "lottie-react-native";
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
-import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
-import { useNavigation } from "@react-navigation/native";
 
 const OnBoarding = () => {
   // loading fonts

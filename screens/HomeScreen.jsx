@@ -1,18 +1,11 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React, { useEffect, useState } from "react";
-import {
-  RefreshControl,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import LottieView from "lottie-react-native";
-import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
+import React, { useEffect, useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { RefreshControl, ScrollView } from "react-native-gesture-handler";
 import Friends from "../components/Friends";
-import { getCurrentUser } from "../services/firebaseAuth";
-import { getAllUsersFromCollection } from "../services/firebaseDB";
 import { firebaseAuth } from "../firebase";
+import { getAllUsersFromCollection } from "../services/firebaseDB";
 
 const HomeScreen = ({ navigation }) => {
   const user = firebaseAuth.currentUser.email.split("@")[0];
@@ -69,21 +62,21 @@ const HomeScreen = ({ navigation }) => {
               style={styles.boxImg}
               source={require("../assets/cocktails/home2.png")}
             ></Image>
-            <Text style={styles.boxTxt}>Learn</Text>
+            <Text style={styles.boxTxt}>Practice</Text>
           </View>
           <View style={styles.box}>
             <Image
               style={styles.boxImg}
               source={require("../assets/cocktails/home3.png")}
             ></Image>
-            <Text style={styles.boxTxt}>Join the community</Text>
+            <Text style={styles.boxTxt}>Interact</Text>
           </View>
           <View style={styles.box}>
             <Image
               style={styles.boxImg}
               source={require("../assets/cocktails/home4.png")}
             ></Image>
-            <Text style={styles.boxTxt}>Begin your journey</Text>
+            <Text style={styles.boxTxt}>Learn</Text>
           </View>
         </View>
       </View>

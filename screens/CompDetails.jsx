@@ -1,43 +1,41 @@
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Pressable,
-  Modal,
-} from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { CardDivider } from "@rneui/base/dist/Card/Card.Divider";
+import { Card } from "@rneui/themed";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
+import * as ImagePicker from "expo-image-picker";
 import React, { useEffect, useState } from "react";
 import {
-  enterCompetition,
-  getAllCocktailEntries,
-} from "../services/firebaseDB";
+  Image,
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 import {
   RefreshControl,
   ScrollView,
   TextInput,
 } from "react-native-gesture-handler";
-import { useFonts } from "expo-font";
-import { Card, Button, Icon } from "@rneui/themed";
-import AppLoading from "expo-app-loading";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import CompetitionEntry from "../components/CompetitionEntry";
-import DropDownPicker from "react-native-dropdown-picker";
-import * as ImagePicker from "expo-image-picker";
-import { getCurrentUser } from "../services/firebaseAuth";
-import { CardDivider } from "@rneui/base/dist/Card/Card.Divider";
+import {
+  enterCompetition,
+  getAllCocktailEntries,
+} from "../services/firebaseDB";
 
 const CompDetails = ({ route }) => {
-  const user = getCurrentUser().email;
   const [modalVisible, setModalVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [entries, setEntries] = useState([]);
   const [name, setName] = useState("");
   const [alcohol, setAlcohol] = useState("");
-  const [cocktails, setCocktails] = useState("");
+
   const [imageEntry, setImageEntry] = useState(null); // set entry image
-  const [cocktailEntries, setCocktailEntries] = useState([]);
+
   const [refreshing, setRefreshing] = useState(false);
   const [items, setItems] = useState([
     { label: "Non Alcoholic", value: "non-alcoholic" },
@@ -61,9 +59,10 @@ const CompDetails = ({ route }) => {
   // entering a contestant
   enterComp = () => {
     try {
+      // entering details
       enterCompetition(name, compId, imageEntry, alcohol, value);
     } catch {
-      setName, alcohol, value("");
+      setName, setAlcohol, setValue("");
       setImageEntry(null);
     }
   };
@@ -86,7 +85,7 @@ const CompDetails = ({ route }) => {
     const allEntries = await getAllCocktailEntries(compId);
     setEntries(allEntries);
     setRefreshing(false);
-    console.log(allEntries);
+    // console.log(allEntries);
   };
   useEffect(() => {
     getAllEntries();
@@ -184,7 +183,11 @@ const CompDetails = ({ route }) => {
           <Text style={styles.entryTitle}>Current Entries: </Text>
           {entries.map((entry, index) => (
             <TouchableOpacity key={index}>
-              <CompetitionEntry key={entry.id} entryData={entry} />
+              <CompetitionEntry
+                compId={compId}
+                entryId={entry.id}
+                entryData={entry}
+              />
             </TouchableOpacity>
           ))}
         </View>
@@ -198,7 +201,6 @@ export default CompDetails;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#7799CC",
   },
   modalVisCon: {
     opacity: 0.05,
@@ -206,7 +208,7 @@ const styles = StyleSheet.create({
   },
   compTitle: {
     fontSize: 25,
-    color: "#7799CC",
+    color: "#dd9a9a",
     fontFamily: "Quicksand-Bold",
     fontWeight: "normal",
   },
@@ -254,12 +256,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Quicksand-Bold",
     marginTop: 5,
-    color: "#7799CC",
+    color: "#dd9a9a",
   },
   entryTitle: {
     fontSize: 20,
-    color: "#fff",
+    color: "#2b2b2b",
     marginTop: 30,
+    marginBottom: 10,
     fontFamily: "Quicksand-Medium",
   },
   enter: {
