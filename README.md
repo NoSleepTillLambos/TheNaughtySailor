@@ -113,23 +113,21 @@ Here are a couple of ways to clone this repo:
 </br>
 **🏆 Users can discover newly listed competitions, read the requirements & enter** 
 
-### Feature 2
+**Feature 2**
 </br>
-![image2](assets/mockups/f9.png)
+![image13](assets/mockups/f9.png)
 </br>
 </br>
 
 **🔎 Check leaderboard standings**
 
-### Feature 3
+**Feature 3**
 </br>
 ![image2](assets/mockups/profile.png)
 </br>
 </br>
 <!-- CONCEPT PROCESS -->
 ## Concept Process
-
-
 
 ### Road Map and conceptual process
 **The concept originated from my job. I work as a bartender at a high end establishment and always felt the need for customers to have the ability to visit the shop,
