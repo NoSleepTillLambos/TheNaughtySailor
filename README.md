@@ -104,32 +104,38 @@ Here are a couple of ways to clone this repo:
 
 ![image2](assets/mockups/olderFeatures.png)
 
-**New features & functionality**
+### New features & functionality
 
-### Feature 1
+**Feature 1**
+</br>
+![image2](assets/mockups/f10.png)
+</br>
+</br>
+**🏆 Users can discover newly listed competitions, read the requirements & enter** 
 
 ### Feature 2
+</br>
+![image2](assets/mockups/f9.png)
+</br>
+</br>
 
-**🏆 Users can discover newly listed competitions, read up about them and their requirements and enter from there** </br>
-**🔎 Users can search for their desired competition if they don't see one they are interested in entering straight away**
-
-- Home page, users are introduced to the app and can then move to the create entry screen where they can enter into a cocktail comp and compete
+**🔎 Check leaderboard standings**
 
 ### Feature 3
-
-- Users can create a cocktail entry by uploading the details and an image of their creation, along with some details about the ingredients and other important information so users can try the recipes at home for themselves!
-- Users being able to try the cocktails out is the entire premise of the app, teaching keen learners a new hobbie!
-
+</br>
+![image2](assets/mockups/profile.png)
+</br>
+</br>
 <!-- CONCEPT PROCESS -->
-<!-- here you will add things like wireframing, data structure planning, anything that shows your process. You need to include images-->
-
 ## Concept Process
 
-The concept originated from my job. I work as a bartender at a high end establishment and always felt the need for customers to have the ability to visit the shop,
-have a cocktail and then rate it on an app of some sort, thus my idea was born!
+
 
 ### Road Map and conceptual process
-
+**The concept originated from my job. I work as a bartender at a high end establishment and always felt the need for customers to have the ability to visit the shop,
+have a cocktail and then rate it on an app of some sort, thus my idea was born! | I wanted users to learn from people in the industry**
+</br>
+</br>
 ![image9](assets/mockups/planning.png)
 <br/>
 
@@ -139,7 +145,7 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 - A lot of the process went towards and was guided around the question of **how can i make this a real world application?** **what do i need to do for this app to be world ready?**
 - I also accepted this as a growing project, one i can keep bettering and working on. There are so many options and ideas i want to add to this project in the future
 
-### Implementation Process
+### Implementation Process 
 
 <!-- This is your time to shine, explain the technical nuances of your project, how did you achieve the final outcome!-->
 
@@ -152,8 +158,8 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 
 <!-- what did you learn outside of the classroom and implement into your project-->
 
-- Lottie animations
-- Onboarding screens
+- **Lottie animations**
+- **Onboarding screens**
 
 ### Future Implementation
 
@@ -173,14 +179,15 @@ have a cocktail and then rate it on an app of some sort, thus my idea was born!
 ![image2](assets/mockups/4.png)
 <br>
 ![image3](assets/mockups/1.png)
-
+<br>
+![image12](assets/mockups/6.png)
+<br>
+![image12](assets/mockups/5.png)
 <!-- VIDEO DEMONSTRATION -->
 
 ### Video Demonstration
 
 To see a run through of the application, please click below:
-
-[View Demonstration](https://drive.google.com/drive/folders/1IiMC4ZpDRhs8Q5RuAk9rlZmzaHfeihNa)
 
 See the [open issues](https://github.com/NoSleepTillLambos/TheNaughtySailor) for a list of proposed features (and known issues).
 
