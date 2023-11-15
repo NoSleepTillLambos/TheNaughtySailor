@@ -125,7 +125,7 @@ const CompDetails = ({ route, navigation }) => {
               ></TextInput>
               <TextInput
                 style={styles.alcoholType}
-                placeholder="What alcohol does it have?"
+                placeholder="Main ingredient?"
                 onChangeText={(newValue) => setAlcohol(newValue)}
               ></TextInput>
               <DropDownPicker
@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
   addDrink: {
     position: "absolute",
     top: 60,
-    left: 80,
+    left: 55,
   },
   image: {
     position: "absolute",

@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { getAllCocktailEntries } from "../services/firebaseDB";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import {
+  FlatList,
+  RefreshControl,
+  ScrollView,
+} from "react-native-gesture-handler";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import ContestantCard from "../components/ContestantCard";
 
 const LeaderBoards = ({ route }) => {
   const [entries, setEntries] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
   const { compId } = route.params;
   const [enteredCocktails, setEnteredCocktails] = useState([]);
   let [fontsLoaded] = useFonts({
@@ -49,21 +54,29 @@ const LeaderBoards = ({ route }) => {
       <View style={styles.topBanner}>
         <Text style={styles.standingTxt}>Leaderboard</Text>
       </View>
-
-      <FlatList
-        data={enteredCocktails}
-        renderItem={({ item, index }) => (
-          <View key={item.id}>
-            <ContestantCard
-              name={item.name}
-              votes={item.votes}
-              alcohol={item.alcohol}
-              image={{ uri: item.entryImg }}
-              value={item.value}
-            />
-          </View>
-        )}
-      />
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={getCurrentCocktailEntries}
+          />
+        }
+      >
+        <FlatList
+          data={enteredCocktails}
+          renderItem={({ item, index }) => (
+            <View key={item.id}>
+              <ContestantCard
+                name={item.name}
+                votes={item.votes}
+                alcohol={item.alcohol}
+                image={{ uri: item.entryImg }}
+                value={item.value}
+              />
+            </View>
+          )}
+        />
+      </ScrollView>
     </View>
   );
 };
