@@ -92,6 +92,7 @@ const Profile = (navigation) => {
         </View>
 
         <Text style={styles.text}>Your Entries:</Text>
+        <Text style={styles.noentries}>Your currently have no entries </Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => firebaseAuth.signOut()}
@@ -121,6 +122,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#E2B5B5",
     height: "100%",
+  },
+  noentries: {
+    textAlign: "center",
+    marginTop: "25%",
   },
   innerCon: {
     justifyContent: "center",
