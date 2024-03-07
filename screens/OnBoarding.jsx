@@ -55,7 +55,7 @@ const OnBoarding = () => {
             backgroundColor: "#E2B5B5",
             image: (
               <AnimatedLottieView
-                source={require("../assets/animations/onboarding2.json")}
+                source={require("../assets/animations/51632-drink-loader.json")}
                 autoPlay
                 loop
                 style={styles.lottie}

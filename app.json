@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Naughty Sailor",
-    "slug": "Naughty Sailor",
+    "name": "naughty-sailor",
+    "slug": "naughty-sailor",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo/43341.png",
@@ -32,8 +32,8 @@
         {
           "photosPermission": "The app accesses your photos to let you share features of your app."
         }
-      ]
+      ],
+      "expo-font"
     ]
-    
   }
 }

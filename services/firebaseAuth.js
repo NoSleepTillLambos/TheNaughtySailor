@@ -22,6 +22,7 @@ export const registerNewUser = async (email, password, role) => {
     });
 };
 
+// sign in a user
 export const signInUser = async (email, password) => {
   await signInWithEmailAndPassword(firebaseAuth, email, password)
     .then((userCredential) => {

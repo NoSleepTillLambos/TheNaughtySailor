@@ -3,7 +3,14 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import * as ImagePicker from "expo-image-picker";
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { firebaseAuth } from "../firebase";
 import {
@@ -52,6 +59,16 @@ const Profile = (navigation) => {
     const updateEmail = await changeEmail(email);
   };
 
+  const signOut = async () => {
+    try {
+      firebaseAuth.signOut();
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+    } catch (e) {
+      Alert.alert(e + "means you couldn't sign out");
+    }
+  };
+
   const chooseProfileImg = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -93,10 +110,7 @@ const Profile = (navigation) => {
 
         <Text style={styles.text}>Your Entries:</Text>
         <Text style={styles.noentries}>Your currently have no entries </Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => firebaseAuth.signOut()}
-        >
+        <TouchableOpacity style={styles.button} onPress={signOut}>
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.updateBtn} onPress={updateProfile}>

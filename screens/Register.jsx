@@ -16,8 +16,11 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { registerNewUser } from "../services/firebaseAuth";
+import { colors } from "../Utils/Colors";
+import { Input, Icon } from "@rneui/themed";
 
 const Register = ({ navigation }) => {
+  const GlobalStyles = require("../styles/GlobalStyles");
   let [fontsLoaded] = useFonts({
     "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
     "Quicksand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
@@ -100,7 +103,7 @@ const Register = ({ navigation }) => {
           style={styles.tinyLogo}
           source={require("../assets/logo/43341.png")}
         />
-        <Text style={styles.register}>Register</Text>
+        <Text style={styles.register}>Sign Up</Text>
 
         <View style={styles.nameSurname}>
           <TextInput
@@ -108,12 +111,14 @@ const Register = ({ navigation }) => {
             placeholder="Name"
             autoCapitalize="none"
             value={name}
+            placeholderTextColor={colors.primary}
             onChangeText={(text) => setName(text)}
           />
           <TextInput
             style={styles.shortInput}
             placeholder="Judge or User?"
             autoCapitalize="none"
+            placeholderTextColor={colors.primary}
             value={role}
             onChangeText={(text) => setRole(text)}
           />
@@ -124,6 +129,7 @@ const Register = ({ navigation }) => {
             required
             placeholder="Email"
             autoCapitalize="none"
+            placeholderTextColor={colors.primary}
             value={email}
             onChangeText={(text) => setEmail(text)}
             // onChange={(text) => handleCheckEmail(text)}
@@ -135,33 +141,35 @@ const Register = ({ navigation }) => {
               autoCapitalize="none"
               value={password}
               secureTextEntry={seePassword}
+              placeholderTextColor={colors.primary}
               onChangeText={(text) => setPassword(text)}
             />
             <Ionicons
               name={seePassword ? "eye-outline" : "eye-off-outline"}
               onPress={() => setSeePassword(!seePassword)}
               size={25}
-              style={{ padding: 20 }}
+              style={{ padding: 20, color: colors.primary }}
             />
           </View>
         </KeyboardAvoidingView>
-        {/* sign in with google */}
-        <TouchableOpacity style={styles.googleBtn}>
-          <Image
-            style={styles.google}
-            source={require("../assets/google.png")}
-          />
-          <Text style={styles.googleTxt}>Use Google</Text>
-        </TouchableOpacity>
+        <View style={styles.loginBox}>
+          {/* sign in with google */}
+          <TouchableOpacity style={GlobalStyles.googleButton}>
+            <Image
+              style={GlobalStyles.googleLogo}
+              source={require("../assets/google.png")}
+            />
+            <Text style={GlobalStyles.buttonText}>Use Google</Text>
+          </TouchableOpacity>
 
-        <TouchableHighlight
-          style={styles.button}
-          underlayColor="#E2B5B5"
-          onPress={signUp}
-        >
-          <Text style={styles.create}>Create account</Text>
-        </TouchableHighlight>
-
+          <TouchableHighlight
+            style={GlobalStyles.button}
+            underlayColor="#E2B5B5"
+            onPress={signUp}
+          >
+            <Text style={GlobalStyles.buttonText}>Sign up</Text>
+          </TouchableHighlight>
+        </View>
         <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
           <Text style={styles.noAccount}>Already Have an account? Login</Text>
         </TouchableOpacity>
@@ -173,8 +181,12 @@ const Register = ({ navigation }) => {
 export default Register;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+  },
   emailMsg: {
-    color: "#800000",
+    color: colors.error,
     padding: 7,
     marginLeft: 13,
   },
@@ -185,33 +197,34 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     height: 50,
     width: "42.4%",
-    shadowColor: "#2b2b2b",
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: "#dd9a9a",
+    borderBottomWidth: 1,
+    borderColor: colors.primary,
     marginLeft: 20,
     padding: 10,
-    backgroundColor: "#dd9a9a",
   },
   input: {
     marginVertical: 8,
     height: 50,
     width: "90%",
-    shadowColor: "#2b2b2b",
-    borderWidth: 1,
-    borderRadius: 10,
+    borderBottomWidth: 1,
     flex: 1,
-    borderColor: "#dd9a9a",
+    borderColor: colors.primary,
     marginLeft: 20,
     padding: 10,
-    backgroundColor: "#dd9a9a",
+  },
+
+  loginBox: {
+    flexDirection: "row",
+    alignSelf: "center",
+    paddingTop: 20,
+    gap: 10,
   },
   register: {
     fontSize: 20,
     marginBottom: 20,
     marginTop: -20,
     textAlign: "center",
-    color: "#D07474",
+    color: colors.secondary,
     fontWeight: "bold",
     fontFamily: "Quicksand-Bold",
   },
@@ -220,51 +233,9 @@ const styles = StyleSheet.create({
     height: 350,
     marginLeft: 10,
   },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#D07474",
-    width: "45%",
-    height: 40,
-    width: 150,
-    marginLeft: 200,
-    marginTop: 20,
-  },
-  googleBtn: {
-    position: "absolute",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#D07474",
-    width: "45%",
-    padding: 7,
-    height: 40,
-    bottom: 33,
-    left: 20,
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#E2B5B5",
-  },
-  googleTxt: {
-    fontSize: 15,
-    color: "#D07474",
-    position: "absolute",
-    fontFamily: "Quicksand-Medium",
-    left: 60,
-    top: 10,
-  },
-  create: {
-    fontSize: 15,
-    color: "#D07474",
-    fontFamily: "Quicksand-Medium",
-  },
   noAccount: {
     color: "#2b2b2b",
     textAlign: "center",
-
     fontSize: 15,
     marginTop: 15,
     fontFamily: "Quicksand-Medium",
@@ -273,12 +244,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
   },
-
   // MODAL VIEWS
-  google: {
-    height: 25,
-    width: 25,
-  },
   modalView: {
     margin: 20,
     backgroundColor: "white",
@@ -312,6 +278,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     elevation: 2,
-    backgroundColor: "#dd9a9a",
+    backgroundColor: colors.primary,
   },
 });

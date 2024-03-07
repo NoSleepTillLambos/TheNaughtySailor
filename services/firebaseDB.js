@@ -174,3 +174,13 @@ export const updateEntryInCollection = async (cocktailId, entryId) => {
     console.log("could not vote on comp " + e);
   }
 };
+
+// fetching each users entry
+export const fetchUsersEntries = async () => {
+  userEntries = [];
+  try {
+    const docRef = doc(db, "cocktails", compId, user.id);
+  } catch {
+    console.log(e);
+  }
+};

@@ -18,10 +18,14 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native-gesture-handler";
-import { firebaseAuth } from "../firebase";
+// import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
 import { signInUser } from "../services/firebaseAuth";
+import { firebaseAuth } from "../firebase";
+import { colors } from "../Utils/Colors";
 
 const Login = ({ navigation }) => {
+  const GlobalStyles = require("../styles/GlobalStyles");
+
   // loading fonts
   let [fontsLoaded] = useFonts({
     "Quicksand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
@@ -41,11 +45,21 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [emptyErrorMessage, setEmptyErrorMessage] = useState("");
-  const [thumbnail, setThumbnail] = useState(null);
-
-  const auth = firebaseAuth;
 
   const [modalVisible, setModalVisible] = useState(false);
+
+  // const googleSignUp = () => {
+  //   signInWithPopup(firebaseAuth, provider)
+  //     .then((res) => {
+  //       const cred = GoogleAuthProvider.credentialFromResult(res);
+  //       const token = cred.accessToken;
+
+  //       const user = res.user;
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //     });
+  // };
 
   const signIn = async () => {
     setLoading(true);
@@ -103,12 +117,14 @@ const Login = ({ navigation }) => {
             required
             placeholder="Email"
             autoCapitalize="none"
+            placeholderTextColor={colors.primary}
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
           <View style={styles.passwordCon}>
             <TextInput
               style={styles.input}
+              placeholderTextColor={colors.primary}
               placeholder="Password"
               autoCapitalize="none"
               value={password}
@@ -119,40 +135,29 @@ const Login = ({ navigation }) => {
               name={seePassword ? "eye-outline" : "eye-off-outline"}
               onPress={() => setSeePassword(!seePassword)}
               size={25}
-              style={{ padding: 20 }}
+              style={{ padding: 20, color: colors.primary }}
             />
           </View>
-
-          {loading ? (
-            <AnimatedLottieView
-              loop
-              autoPlay
-              style={{
-                position: "absolute",
-                height: 200,
-                justifyContent: "center",
-                alignItems: "center",
-                aspectRatio: 1,
-                left: 30,
-                top: 15,
-              }}
-              source={require("../assets/animations/loading.json")}
-            />
-          ) : (
-            <>
-              <TouchableHighlight
-                underlayColor="#E2B5B5"
-                style={styles.button}
-                onPress={signIn}
-              >
-                <Text style={styles.create}>Login</Text>
-              </TouchableHighlight>
-            </>
-          )}
-          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-            <Text style={styles.noAccount}>Don't have an account? Sign Up</Text>
-          </TouchableOpacity>
         </KeyboardAvoidingView>
+        <View style={styles.loginBox}>
+          <TouchableOpacity style={GlobalStyles.googleButton}>
+            <Image
+              style={GlobalStyles.googleLogo}
+              source={require("../assets/google.png")}
+            />
+            <Text style={GlobalStyles.buttonText}>Use Google</Text>
+          </TouchableOpacity>
+          <TouchableHighlight
+            underlayColor="#E2B5B5"
+            style={GlobalStyles.button}
+            onPress={signIn}
+          >
+            <Text style={GlobalStyles.buttonText}>Login</Text>
+          </TouchableHighlight>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <Text style={styles.noAccount}>Don't have an account? Sign Up</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -164,12 +169,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#E2B5B5",
   },
   tinyLogo: {
     width: 350,
     height: 350,
     marginLeft: 10,
+  },
+  loginBox: {
+    flexDirection: "row",
+    alignSelf: "center",
+    paddingTop: 20,
+    gap: 10,
   },
   login: {
     fontSize: 20,
@@ -180,42 +190,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Quicksand-Bold",
   },
+
   input: {
-    marginVertical: 4,
-    height: 50,
-    borderWidth: 1,
-    padding: 10,
-    marginVertical: 4,
+    marginVertical: 8,
     height: 50,
     width: "90%",
-    shadowColor: "#2b2b2b",
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: "#dd9a9a",
-    marginLeft: 20,
+    borderBottomWidth: 1,
     flex: 1,
+    borderColor: colors.primary,
+    marginLeft: 20,
     padding: 10,
-    backgroundColor: "#dd9a9a",
-  },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#D07474",
-    width: "45%",
-    height: 40,
-    width: 150,
-    marginLeft: 110,
-    marginTop: 20,
-  },
-  create: {
-    fontSize: 15,
-    color: "#D07474",
-    fontFamily: "Quicksand-Bold",
-  },
-  signIn: {
-    backgroundColor: "white",
   },
   noAccount: {
     color: "black",

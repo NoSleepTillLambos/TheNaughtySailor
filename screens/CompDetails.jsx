@@ -25,6 +25,7 @@ import {
   enterCompetition,
   getAllCocktailEntries,
 } from "../services/firebaseDB";
+import { getCurrentUser } from "../services/firebaseAuth";
 
 const CompDetails = ({ route, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -55,12 +56,13 @@ const CompDetails = ({ route, navigation }) => {
   }
 
   const { cocktail } = route.params;
+  const user = getCurrentUser.uid;
   const compId = cocktail.id;
   // entering a contestant
   enterComp = () => {
     try {
       // entering details
-      enterCompetition(name, compId, imageEntry, alcohol, value);
+      enterCompetition(name, compId, imageEntry, alcohol, value, user);
     } catch {
       setName, setAlcohol, setValue("");
       setImageEntry(null);
